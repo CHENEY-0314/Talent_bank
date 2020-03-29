@@ -2,11 +2,13 @@ package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -32,7 +34,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         tvInNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GuideActivity.this,MainActivity.class));
+                startActivity(new Intent(GuideActivity.this,MainActivity.class), ActivityOptions.makeSceneTransitionAnimation(GuideActivity.this).toBundle());
             }
         });
     }
@@ -64,9 +66,13 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if (e1.getX() > e2.getX()) {
+        if (e1.getX()-e2.getX()>120) {
+            mVFActivity.setInAnimation(this, R.anim.in_leftright);
+            mVFActivity.setOutAnimation(this, R.anim.out_leftright);
             mVFActivity.showNext();
-        } else if (e1.getX() < e2.getX()) {
+        } else if (e1.getX()-e2.getY()<-120) {
+            mVFActivity.setInAnimation(this, R.anim.in_rightleft);
+            mVFActivity.setOutAnimation(this, R.anim.out_rightleft);
             mVFActivity.showPrevious();
         } else {
             return false;
