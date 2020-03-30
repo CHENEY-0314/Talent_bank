@@ -6,4 +6,262 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/signupback"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="建立属于你的个人简历"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/imageView4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="28dp"
+            app:cardBackgroundColor="#959595"
+            app:cardCornerRadius="20dp"
+            app:contentPadding="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个人优势"
+                    android:textColor="#fff"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#fff"
+                    android:maxLength="100"
+                    android:gravity="start"
+                    android:lineSpacingExtra="3dp"
+                    android:textSize="16sp"
+                    android:inputType="textMultiLine"
+                    android:hint="填写您的意向、优点、特长等"
+                    android:textColorHint="#D3D3D3"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="28dp"
+            app:cardBackgroundColor="#959595"
+            app:cardCornerRadius="20dp"
+            app:contentPadding="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目经验"
+                    android:textColor="#fff"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#fff"
+                    android:maxLength="100"
+                    android:gravity="start"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:inputType="textMultiLine"
+                    android:hint="填写您的过往项目经历、团队定位等"
+                    android:textColorHint="#D3D3D3"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginBottom="28dp"
+                app:cardBackgroundColor="#959595"
+                app:cardCornerRadius="20dp"
+                app:contentPadding="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="综合能力标签"
+                            android:textColor="#fff"
+                            android:textSize="23sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="多选"
+                            android:paddingLeft="20dp"
+                            android:textColor="#fff"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+                        <CheckBox
+                            android:id="@+id/cb_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="PPT"
+                            android:textColor="#939393"
+                            android:button="@null"
+                            android:checked="true"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/register_choose"/>
+                        <CheckBox
+                            android:id="@+id/cb_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="平面设计"
+                            android:textColor="#939393"
+                            android:button="@null"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/register_choose"/>
+                        <CheckBox
+                            android:id="@+id/cb_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="Photoshop"
+                            android:textColor="#939393"
+                            android:button="@null"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/register_choose"/>
+                        <CheckBox
+                            android:id="@+id/cb_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="演讲能力"
+                            android:textColor="#939393"
+                            android:button="@null"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/register_choose"/>
+                        <CheckBox
+                            android:id="@+id/cb_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="时间管理"
+                            android:textColor="#939393"
+                            android:button="@null"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/register_choose"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="下一步"
+                android:layout_marginHorizontal="50dp"
+                android:textSize="30dp"
+                android:background="@drawable/signup_btnshape"
+                android:gravity="center"
+                android:layout_marginBottom="100dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
