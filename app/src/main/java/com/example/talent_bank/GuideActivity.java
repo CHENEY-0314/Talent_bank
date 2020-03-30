@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         mVFActivity=findViewById(R.id.vf_activity);
         tvInNew=findViewById(R.id.tvInNew);
         initView();
+        getWindow().setExitTransition(new Fade().setDuration(2000));
     }
 
     @SuppressWarnings("deprecation")
@@ -35,6 +37,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(GuideActivity.this,LoginActivity.class), ActivityOptions.makeSceneTransitionAnimation(GuideActivity.this).toBundle());
+                GuideActivity.this.finish();
             }
         });
     }
