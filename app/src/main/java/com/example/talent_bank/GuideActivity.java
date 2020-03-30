@@ -21,7 +21,6 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
     private TextView tvInNew;
     private String shpName = "SHP_NAME";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
