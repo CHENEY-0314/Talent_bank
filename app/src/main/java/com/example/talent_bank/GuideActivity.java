@@ -34,7 +34,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         tvInNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GuideActivity.this,MainActivity.class), ActivityOptions.makeSceneTransitionAnimation(GuideActivity.this).toBundle());
+                startActivity(new Intent(GuideActivity.this,LoginActivity.class), ActivityOptions.makeSceneTransitionAnimation(GuideActivity.this).toBundle());
             }
         });
     }
