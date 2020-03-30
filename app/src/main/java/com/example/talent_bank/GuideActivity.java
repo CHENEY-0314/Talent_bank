@@ -3,9 +3,10 @@ package com.example.talent_bank;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +19,8 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
     private ViewFlipper mVFActivity;
     private GestureDetector mGestureDetector;
     private TextView tvInNew;
+    private String shpName = "SHP_NAME";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,16 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         setContentView(R.layout.activity_guide);
         mVFActivity=findViewById(R.id.vf_activity);
         tvInNew=findViewById(R.id.tvInNew);
-        initView();
-        getWindow().setExitTransition(new Fade().setDuration(1000));
+        SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shp.edit();
+        boolean fristload = shp.getBoolean("fristload_key",true);
+        if (fristload == true) {
+            initView();
+            editor.putBoolean("fristload_key",false);
+            editor.apply();
+        } else {
+            toMain();
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -36,10 +47,14 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         tvInNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GuideActivity.this,LoginActivity.class));
-                GuideActivity.this.finish();
+                startActivity(new Intent(GuideActivity.this,LoginActivity.class), ActivityOptions.makeSceneTransitionAnimation(GuideActivity.this).toBundle());
             }
         });
+    }
+
+    private void toMain() {
+        Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
