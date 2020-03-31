@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterLastActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:paddingTop="10dp"
+        android:paddingStart="28dp"
+        android:gravity="center"
+        tools:ignore="RtlSymmetry,UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/signupback"
+            app:srcCompat="?attr/homeAsUpIndicator" />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="78dp"
+            android:text="@string/secretmessage"
+            android:paddingStart="10dp"
+            android:textSize="27sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:orientation="vertical"
+        android:focusableInTouchMode="true"
+        android:padding="30dp">
+        <TextView
+            android:id="@+id/RLtextQQ"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/QQ"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/RLeditQQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="15"
+            android:textSize="18sp"
+            tools:ignore="LabelFor"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/RLtextWechart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Wechart"
+            android:paddingTop="30dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/RLeditWechat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="text"
+            android:maxLength="18"
+            android:textSize="18sp"
+            tools:ignore="LabelFor"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/RLtextEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Email"
+            android:paddingTop="30dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/RLeditEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="20"
+            android:textSize="18sp"
+            tools:ignore="LabelFor,TextFields"
+            tools:layout_editor_absoluteX="20dp" />
+
+
+        <TextView
+            android:id="@+id/RLtextAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adress"
+            android:textSize="20sp"
+            android:paddingTop="30dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/RLeditAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLength="50"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/RLbtn_complet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/signup_btnshape"
+            android:bufferType="normal"
+            android:paddingVertical="15dp"
+            android:text="@string/comple"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>

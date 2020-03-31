@@ -16,6 +16,7 @@ import android.widget.ViewFlipper;
 
 public class GuideActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
+    private final int code=12;
     private ViewFlipper mVFActivity;
     private GestureDetector mGestureDetector;
     private TextView tvInNew;
@@ -32,10 +33,12 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         boolean fristload = shp.getBoolean("fristload_key",true);
         if (fristload == true) {
             initView();
+            GuideActivity.this.finish();
             editor.putBoolean("fristload_key",false);
             editor.apply();
         } else {
             toMain();
+            GuideActivity.this.finish();
         }
     }
 

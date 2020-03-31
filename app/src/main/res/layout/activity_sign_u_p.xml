@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF7F7"
+    android:focusableInTouchMode="true"
     tools:context=".LoginActivity">
 
     <Button
@@ -80,7 +81,7 @@
         app:layout_constraintStart_toStartOf="@+id/edt_number" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/SP_img_back"
         android:layout_width="53dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
@@ -94,17 +95,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.11" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signup"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        android:textSize="27sp"
+        app:layout_constraintBottom_toBottomOf="@+id/SP_img_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/SP_img_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
