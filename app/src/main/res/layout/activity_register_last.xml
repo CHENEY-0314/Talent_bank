@@ -33,10 +33,13 @@
             android:textSize="27sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.85"
+        android:layout_weight="0.68">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:focusableInTouchMode="true"
         android:padding="30dp">
@@ -119,13 +122,19 @@
             android:inputType="text"
             android:textSize="18sp"
             tools:ignore="LabelFor" />
-
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.17"
+        android:gravity="center_vertical">
         <Button
             android:id="@+id/RLbtn_complet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="50dp"
+            android:stateListAnimator="@null"
             android:background="@drawable/signup_btnshape"
             android:bufferType="normal"
             android:paddingVertical="15dp"
@@ -134,4 +143,5 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
     </LinearLayout>
+
 </LinearLayout>
