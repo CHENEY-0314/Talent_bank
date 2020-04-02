@@ -7,14 +7,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.Fade;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

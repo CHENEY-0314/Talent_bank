@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 public class GuideViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> fristload;
