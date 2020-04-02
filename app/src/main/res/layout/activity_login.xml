@@ -21,10 +21,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_signEnter" />
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_signEnter"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:background="@drawable/login_btnshape"

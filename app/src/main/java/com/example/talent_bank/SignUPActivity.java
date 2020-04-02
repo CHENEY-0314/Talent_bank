@@ -2,7 +2,6 @@ package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Slide;
@@ -11,8 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class SignUPActivity extends AppCompatActivity {
 
+public class SignUPActivity extends AppCompatActivity {
     private Button mBtnsignup;
     private ImageView imgback;
     @Override

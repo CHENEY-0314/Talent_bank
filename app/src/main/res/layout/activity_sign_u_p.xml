@@ -9,7 +9,7 @@
     tools:context=".LoginActivity">
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_signEnter"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:background="@drawable/signup_btnshape"

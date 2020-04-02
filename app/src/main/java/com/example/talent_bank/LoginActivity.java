@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mBtnRegister=findViewById(R.id.btn_register);
         mBtnSignup=findViewById(R.id.btn_signup);
-        finishActivity(12);
         setListeners();
     }
 
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.btn_register:
                     //跳转到Register界面
-                    startActivity(new Intent(LoginActivity.this,RegisterBasedActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+                    startActivity(new Intent(LoginActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                     break;
                 case R.id.btn_signup:
                     //跳转到SignUP界面
