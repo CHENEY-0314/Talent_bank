@@ -4,19 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-
-import com.example.talent_bank.register.RegisterActivity;
-import com.example.talent_bank.register.RegisterLastActivity;
 import com.example.talent_bank.home_page.HomeFragment;
 import com.example.talent_bank.home_page.MainFragment;
 import com.example.talent_bank.home_page.TalkingFragment;
@@ -33,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     //适配器
     private ViewPagerAdapterForNav mViewPagerAdapterForNav;
-
     private MenuItem menuItem;
 
     @Override
@@ -43,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
             Window window = getWindow();
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//状态栏字体颜色设置为黑色这个是Android 6.0才出现的属性
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //实例化组件
         initElement();
         //初始化Fragment集合

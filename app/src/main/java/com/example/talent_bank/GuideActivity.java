@@ -24,17 +24,20 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
+
         mVFActivity=findViewById(R.id.vf_activity);
         tvInNew=findViewById(R.id.tvInNew);
         SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = shp.edit();
+
         boolean fristload = shp.getBoolean("fristload_key",true);
-        if (fristload == true) {
+        if (fristload == true) {  //如果是第一次登录，开启引导界面
             initView();
-            GuideActivity.this.finish();
+            GuideActivity.this.finish();  //删除当前页面
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
             editor.putBoolean("fristload_key",false);
             editor.apply();
-        } else {
+        } else {  //反之，直接打开登录界面
             toMain();
             GuideActivity.this.finish();
         }

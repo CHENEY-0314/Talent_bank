@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.talent_bank.R;
-import com.example.talent_bank.TalkingViewModel;
+import com.example.talent_bank.viewmodel.TalkingViewModel;
 
 public class TalkingFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.viewmodel;
 
 import android.app.Application;
 import android.content.Context;

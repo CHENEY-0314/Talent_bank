@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.talent_bank.MainViewModel;
+import com.example.talent_bank.viewmodel.MainViewModel;
 import com.example.talent_bank.R;
 
 public class MainFragment extends Fragment {

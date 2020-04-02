@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.talent_bank.register.RegisterActivity;
 import com.example.talent_bank.register.RegisterBasedActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -18,29 +17,28 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mBtnRegister=findViewById(R.id.btn_register);
         mBtnSignup=findViewById(R.id.btn_signEnter);
+
         setListeners();
     }
 
-    private void setListeners(){
+    private void setListeners(){  //声明点击事件的函数
         OnClick onClick=new OnClick();
         mBtnRegister.setOnClickListener(onClick);
         mBtnSignup.setOnClickListener(onClick);
     }
 
-    private class OnClick implements View.OnClickListener{
+    private class OnClick implements View.OnClickListener{  //点击事件判断
 
         @Override
         public void onClick(View v) {
-            Intent intent=null;
             switch (v.getId()){
                 case R.id.btn_register:
-                    //跳转到Register界面
-                    startActivity(new Intent(LoginActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+                    //跳转到RegisterBased界面
+                    startActivity(new Intent(LoginActivity.this,RegisterBasedActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                     break;
                 case R.id.btn_signEnter:
                     //跳转到SignUP界面
