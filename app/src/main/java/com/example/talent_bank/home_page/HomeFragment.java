@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.home_page;
 
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.talent_bank.HomeViewModel;
+import com.example.talent_bank.R;
 
 public class HomeFragment extends Fragment {
 
@@ -24,7 +27,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) { 
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         // TODO: Use the ViewModel

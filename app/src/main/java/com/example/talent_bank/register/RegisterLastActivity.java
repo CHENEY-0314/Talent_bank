@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.talent_bank.R;
+import com.example.talent_bank.SignUPActivity;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 

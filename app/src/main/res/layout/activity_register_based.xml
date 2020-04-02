@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterBasedActivity">
+    tools:context=".register.RegisterBasedActivity">
 
     <LinearLayout
         android:id="@+id/RBhead"

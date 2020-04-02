@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.home_page;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -12,24 +12,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainFragment extends Fragment {
+import com.example.talent_bank.R;
+import com.example.talent_bank.TalkingViewModel;
 
-    private MainViewModel mViewModel;
+public class TalkingFragment extends Fragment {
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    private TalkingViewModel mViewModel;
+
+    public static TalkingFragment newInstance() {
+        return new TalkingFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.talking_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(TalkingViewModel.class);
         // TODO: Use the ViewModel
     }
 
