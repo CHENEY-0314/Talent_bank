@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.talent_bank.LoginActivity;
+import com.example.talent_bank.R;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
@@ -72,6 +75,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                         @Override
                         public void onClick(ColorDialog dialog) {
                             startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                             dialog.dismiss();
                         }
                     })
@@ -104,6 +108,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                 @Override
                 public void onClick(ColorDialog dialog) {
                     startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                     dialog.dismiss();
                 }
             })

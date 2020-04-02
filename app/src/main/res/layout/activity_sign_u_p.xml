@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.58" />
+        app:layout_constraintGuide_percent="0.56" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -38,13 +38,13 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/SPedt_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
-        android:labelFor="@id/edt_password"
+        android:labelFor="@id/SPedt_password"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/txt_edtpas" />
 
@@ -54,18 +54,18 @@
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/edt_password"
-        app:layout_constraintStart_toStartOf="@+id/edt_number" />
+        app:layout_constraintBottom_toTopOf="@+id/SPedt_password"
+        app:layout_constraintStart_toStartOf="@+id/SPedt_number" />
 
     <EditText
-        android:id="@+id/edt_number"
+        android:id="@+id/SPedt_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="phone"
-        android:labelFor="@id/edt_number"
+        android:labelFor="@id/SPedt_number"
         app:layout_constraintBottom_toTopOf="@+id/txt_edtpas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -77,13 +77,13 @@
         android:layout_height="wrap_content"
         android:text="@string/account"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/edt_number"
-        app:layout_constraintStart_toStartOf="@+id/edt_number" />
+        app:layout_constraintBottom_toTopOf="@+id/SPedt_number"
+        app:layout_constraintStart_toStartOf="@+id/SPedt_number" />
 
     <ImageView
         android:id="@+id/SP_img_back"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:contentDescription="@string/signupback"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
@@ -107,5 +107,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/SP_img_back" />
+
+    <CheckBox
+        android:id="@+id/checkBox_rempassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/Rempassword"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/SPedt_password"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

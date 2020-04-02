@@ -22,4 +22,5 @@
     <string name="Email">邮箱（选填）</string>
     <string name="adress">地址（选填）</string>
     <string name="comple">完成</string>
+    <string name="Rempassword">记住密码</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".register.RegisterActivity"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/Rhead"
@@ -12,13 +12,13 @@
         android:layout_height="0dp"
         android:layout_weight="0.15"
         android:paddingTop="10dp"
-        android:paddingLeft="28dp"
+        android:paddingStart="28dp"
         android:gravity="center">
 
     <ImageView
         android:id="@+id/Rimg_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:contentDescription="@string/signupback"
         app:srcCompat="?attr/homeAsUpIndicator" />
     <TextView
