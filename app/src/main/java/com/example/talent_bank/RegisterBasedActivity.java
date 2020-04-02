@@ -6,15 +6,20 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Slide;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import cn.refactor.lib.colordialog.ColorDialog;
 
 public class RegisterBasedActivity extends AppCompatActivity {
 
     private EditText mEdtname,mEdtnumber,mEdtpassword,mEdtcode;
     private Button mBtnCode;
     private Button mBtnNext;
+    private ImageView mImgback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +32,12 @@ public class RegisterBasedActivity extends AppCompatActivity {
         mEdtnumber=findViewById(R.id.RBeditNumber);
         mEdtpassword=findViewById(R.id.RBeditPassword);
         mEdtcode=findViewById(R.id.RBeditCode);
+        mImgback=findViewById(R.id.RBimg_back);
         setListeners();
     }
     private void setListeners(){
         RegisterBasedActivity.OnClick onClick=new RegisterBasedActivity.OnClick();
+        mImgback.setOnClickListener(onClick);
         mBtnCode.setOnClickListener(onClick);
         mBtnNext.setOnClickListener(onClick);
     }
@@ -38,7 +45,6 @@ public class RegisterBasedActivity extends AppCompatActivity {
     private class OnClick implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            Intent intent=null;
             switch (v.getId()){
                 case R.id.RBbtn_code:
                     //获取手机验证码
@@ -46,6 +52,28 @@ public class RegisterBasedActivity extends AppCompatActivity {
                 case R.id.RBbtn_next:
                     //跳转到注册第二界面
                     if(!IsEmpty()) startActivity(new Intent(RegisterBasedActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterBasedActivity.this).toBundle());
+                    break;
+                case R.id.RBimg_back:
+                    //返回上一界面（不保存当前页面数据）
+                    ColorDialog dialog = new ColorDialog(RegisterBasedActivity.this);
+                    dialog.setTitle("提示");
+                    dialog.setColor("#ffffff");//颜色
+                    dialog.setContentTextColor("#656565");
+                    dialog.setTitleTextColor("#656565");
+                    dialog.setContentText("继续返回将丢失当前页面信息，是否确定离开？");
+                    dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                        @Override
+                        public void onClick(ColorDialog dialog) {
+                            startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            dialog.dismiss();
+                        }
+                    })
+                            .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                @Override
+                                public void onClick(ColorDialog dialog) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
                     break;
             }
         }
@@ -55,5 +83,32 @@ public class RegisterBasedActivity extends AppCompatActivity {
         if(mEdtname.getText()!=null && mEdtnumber.getText()!=null && mEdtpassword.getText()!=null && mEdtcode.getText()!=null) return false;
         else return true;
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            ColorDialog dialog = new ColorDialog(RegisterBasedActivity.this);
+            dialog.setTitle("提示");
+            dialog.setColor("#ffffff");//颜色
+            dialog.setContentTextColor("#656565");
+            dialog.setTitleTextColor("#656565");
+            dialog.setContentText("继续返回将丢失当前页面信息，是否确定离开？");
+            dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                @Override
+                public void onClick(ColorDialog dialog) {
+                    startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    dialog.dismiss();
+                }
+            })
+                    .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                        @Override
+                        public void onClick(ColorDialog dialog) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
 }
