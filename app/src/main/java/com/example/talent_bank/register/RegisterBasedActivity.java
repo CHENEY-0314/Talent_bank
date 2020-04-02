@@ -61,7 +61,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     break;
                 case R.id.RBbtn_next:
                     //跳转到注册第二界面
-                    if(!IsEmpty()) startActivity(new Intent(RegisterBasedActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterBasedActivity.this).toBundle());
+                    if(!IsEmpty()) startActivity(new Intent(RegisterBasedActivity.this, RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterBasedActivity.this).toBundle());
                     break;
                 case R.id.RBimg_back:
                     //返回上一界面（不保存当前页面数据）

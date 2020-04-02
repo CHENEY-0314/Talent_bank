@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.btn_register:
                     //跳转到Register界面
-                    startActivity(new Intent(LoginActivity.this, RegisterBasedActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+                    startActivity(new Intent(LoginActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                     break;
                 case R.id.btn_signEnter:
                     //跳转到SignUP界面
