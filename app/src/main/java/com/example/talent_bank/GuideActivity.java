@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class GuideActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
-    private final int code=12;
     private ViewFlipper mVFActivity;
     private GestureDetector mGestureDetector;
     private TextView tvInNew;
