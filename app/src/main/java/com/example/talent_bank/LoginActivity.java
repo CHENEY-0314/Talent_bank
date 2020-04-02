@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mBtnRegister=findViewById(R.id.btn_register);
-        mBtnSignup=findViewById(R.id.btn_signup);
+        mBtnSignup=findViewById(R.id.btn_signEnter);
         setListeners();
     }
 
@@ -41,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                     //跳转到Register界面
                     startActivity(new Intent(LoginActivity.this,RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                     break;
-                case R.id.btn_signup:
+                case R.id.btn_signEnter:
                     //跳转到SignUP界面
                     startActivity(new Intent(LoginActivity.this,SignUPActivity.class), ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                     break;

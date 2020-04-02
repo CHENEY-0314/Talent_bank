@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.talent_bank.MainFragment"
+        android:label="首页"
+        tools:layout="@layout/main_fragment" />
+    <fragment
+        android:id="@+id/talkingFragment"
+        android:name="com.example.talent_bank.TalkingFragment"
+        android:label="话题中心"
+        tools:layout="@layout/talking_fragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.talent_bank.HomeFragment"
+        android:label="个人中心"
+        tools:layout="@layout/home_fragment" />
+</navigation>
