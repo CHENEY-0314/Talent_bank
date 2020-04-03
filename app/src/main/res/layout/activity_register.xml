@@ -12,15 +12,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.15"
         android:paddingTop="10dp"
-        android:paddingStart="28dp"
+        android:paddingStart="30dp"
         android:gravity="center">
 
     <ImageView
         android:id="@+id/Rimg_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
         android:contentDescription="@string/signupback"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        android:background="@drawable/back" />
     <TextView
         android:gravity="center"
         android:id="@+id/textView2"
@@ -29,7 +29,7 @@
         android:paddingEnd="78dp"
         android:text="@string/register"
         android:paddingStart="10dp"
-        android:textSize="27sp" />
+        android:textSize="23sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,19 +38,21 @@
         android:layout_height="0dp"
         android:layout_weight="0.15"
         android:orientation="vertical"
-        android:paddingStart="28dp">
-    <ImageView
-        android:id="@+id/middleimage"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
-        app:srcCompat="@drawable/mountain" />
+        android:paddingStart="30dp">
+
+        <ImageView
+            android:id="@+id/middleimage"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:contentDescription="back"
+            app:srcCompat="@drawable/mountain" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="建立属于你的个人简历"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
     </LinearLayout>
 
@@ -90,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:text="个人优势"
                         android:textColor="#fff"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 v
                     <EditText
@@ -105,7 +107,8 @@ v
                         android:maxLength="100"
                         android:textColor="#fff"
                         android:textColorHint="#D3D3D3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:autofillHints="" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -130,7 +133,7 @@ v
                         android:layout_height="wrap_content"
                         android:text="项目经验"
                         android:textColor="#fff"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -145,7 +148,8 @@ v
                         android:maxLength="100"
                         android:textColor="#fff"
                         android:textColorHint="#D3D3D3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:autofillHints="" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -172,7 +176,7 @@ v
                             android:layout_height="wrap_content"
                             android:text="综合能力标签"
                             android:textColor="#fff"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             android:paddingBottom="5dp"/>
 
@@ -181,7 +185,7 @@ v
                             android:layout_height="wrap_content"
                             android:text="（ 多选 ）"
                             android:textColor="#E6E6E6"
-                            android:textSize="17sp" />
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <com.google.android.flexbox.FlexboxLayout
@@ -194,7 +198,7 @@ v
                             android:id="@+id/cb_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -210,7 +214,7 @@ v
                             android:id="@+id/cb_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -225,7 +229,7 @@ v
                             android:id="@+id/cb_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -240,7 +244,7 @@ v
                             android:id="@+id/cb_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -255,7 +259,7 @@ v
                             android:id="@+id/cb_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -270,7 +274,7 @@ v
                             android:id="@+id/cb_6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -285,7 +289,7 @@ v
                             android:id="@+id/cb_7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
@@ -307,10 +311,10 @@ v
                 android:layout_marginHorizontal="50dp"
                 android:background="@drawable/signup_btnshape"
                 android:gravity="center"
-                android:text="下一步"
+                android:text="@string/next"
                 android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="22dp" />
+                android:textSize="22sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

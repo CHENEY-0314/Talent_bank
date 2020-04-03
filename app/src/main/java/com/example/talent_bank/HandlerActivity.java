@@ -14,7 +14,6 @@ import com.example.talent_bank.register.RegisterBasedActivity;
 
 public class HandlerActivity extends AppCompatActivity {
 
-    private Handler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +22,7 @@ public class HandlerActivity extends AppCompatActivity {
         Toast toast=Toast.makeText(HandlerActivity.this,"三秒后自动跳转",Toast.LENGTH_SHORT);
         toast.show();
         //进行页面的自动跳转
-        mHandler=new Handler();
+        Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

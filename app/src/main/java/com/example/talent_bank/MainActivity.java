@@ -1,6 +1,7 @@
 package com.example.talent_bank;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapterForNav mViewPagerAdapterForNav;
     private MenuItem menuItem;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置屏幕上方状态栏颜色
