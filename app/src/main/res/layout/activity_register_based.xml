@@ -11,15 +11,15 @@
         android:id="@+id/RBhead"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_weight="0.12"
         android:paddingTop="10dp"
         android:paddingStart="35dp"
-        android:gravity="center"
+        android:gravity="bottom"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
         <ImageView
             android:id="@+id/RBimg_back"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
             android:contentDescription="@string/signupback"
             android:background="@drawable/back"/>
         <TextView
@@ -27,29 +27,31 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="78dp"
+            android:paddingEnd="58dp"
+            android:textColor="#686868"
             android:text="@string/register"
             android:paddingStart="10dp"
-            android:textSize="23sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.68">
+        android:layout_weight="0.71">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:focusableInTouchMode="true"
-        android:padding="40dp">
+        android:padding="30dp">
         <TextView
             android:id="@+id/RBtextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
+            android:paddingTop="30dp"
             android:text="@string/reg_name"
-            android:textSize="18sp"
+            android:textColor="#686868"
+            android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editQQ"
             app:layout_constraintStart_toStartOf="@+id/editQQ" />
@@ -60,7 +62,7 @@
             android:ems="10"
             android:maxLength="8"
             android:inputType="textPersonName"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:autofillHints=""
             tools:ignore="LabelFor" />
 
@@ -69,8 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reg_number"
-            android:paddingTop="30dp"
-            android:textSize="18sp"
+            android:textColor="#686868"
+            android:paddingTop="38dp"
+            android:textSize="17sp"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RBeditNumber"
@@ -79,7 +82,7 @@
             android:ems="10"
             android:maxLength="11"
             android:inputType="phone"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:autofillHints=""
             tools:ignore="LabelFor" />
 
@@ -88,8 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reg_password"
-            android:paddingTop="30dp"
-            android:textSize="18sp"
+            android:paddingTop="38dp"
+            android:textColor="#686868"
+            android:textSize="17sp"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RBeditPassword"
@@ -97,27 +101,32 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:maxLength="8"
-            android:textSize="18sp"
+            android:maxLength="16"
+            android:textSize="17sp"
             android:importantForAutofill="no"
             tools:ignore="LabelFor,TextFields" />
+
         <TextView
             android:id="@+id/RBtextPasswordmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reg_password_mark"/>
+            android:textColor="#CDCDCD"
+            android:text="@string/reg_password_mark"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/RBtextCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
+            android:paddingTop="38dp"
             android:text="@string/reg_code"
-            android:textSize="18sp"
+            android:textSize="17sp"
+            android:textColor="#686868"
             android:textStyle="bold"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
             <EditText
                 android:maxLength="6"
                 android:id="@+id/RBeditCode"
@@ -125,13 +134,16 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor" />
             <Button
                 android:id="@+id/RBbtn_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:background="@drawable/getcode_btnshape"
+                android:textColor="#fff"
                 android:text="@string/reg_getcode"/>
         </LinearLayout>
 
@@ -146,14 +158,14 @@
             android:id="@+id/RBbtn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
+            android:layout_marginHorizontal="53dp"
             android:background="@drawable/signup_btnshape"
             android:bufferType="normal"
             android:paddingVertical="15dp"
             android:stateListAnimator="@null"
             android:text="@string/next"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>
 

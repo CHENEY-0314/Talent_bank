@@ -12,13 +12,13 @@
     <string name="reg_name">昵称</string>
     <string name="reg_number">手机号</string>
     <string name="reg_password">设置密码</string>
-    <string name="reg_password_mark">密码由八个数字或字母组成</string>
+    <string name="reg_password_mark">密码由八个以上十六个以下数字或字母组成</string>
     <string name="reg_code">验证码</string>
     <string name="reg_getcode">获取</string>
     <string name="next">下一步</string>
     <string name="secretmessage">隐私信息</string>
-    <string name="QQ">QQ号（选填）</string>
-    <string name="Wechart">微信号（选填）</string>
+    <string name="QQ">年级与专业</string>
+    <string name="Wechart">QQ/微信号（选填）</string>
     <string name="Email">邮箱（选填）</string>
     <string name="adress">地址（选填）</string>
     <string name="comple">完成</string>

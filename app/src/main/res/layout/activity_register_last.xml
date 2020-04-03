@@ -11,15 +11,15 @@
         android:id="@+id/RLhead"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_weight="0.11"
         android:paddingTop="10dp"
-        android:paddingStart="35dp"
-        android:gravity="center"
+        android:paddingStart="30dp"
+        android:gravity="bottom"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
         <ImageView
             android:id="@+id/RLimg_back"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
             android:contentDescription="@string/signupback"
             android:background="@drawable/back"/>
         <TextView
@@ -27,29 +27,31 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="78dp"
+            android:paddingEnd="58dp"
             android:text="@string/secretmessage"
+            android:textColor="#686868"
             android:paddingStart="10dp"
-            android:textSize="23sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.68">
+        android:layout_weight="0.71">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:focusableInTouchMode="true"
-        android:padding="40dp">
+        android:padding="30dp">
         <TextView
             android:id="@+id/RLtextQQ"
-            android:paddingTop="20dp"
+            android:paddingTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/QQ"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:textColor="#686868"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RLeditQQ"
@@ -68,8 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Wechart"
-            android:paddingTop="32dp"
-            android:textSize="18sp"
+            android:paddingTop="38dp"
+            android:textSize="16sp"
+            android:textColor="#686868"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RLeditWechat"
@@ -88,8 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Email"
-            android:paddingTop="32dp"
-            android:textSize="18sp"
+            android:paddingTop="38dp"
+            android:textSize="16sp"
+            android:textColor="#686868"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/RLeditEmail"
@@ -109,8 +113,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/adress"
-            android:textSize="18sp"
-            android:paddingTop="32dp"
+            android:textSize="16sp"
+            android:textColor="#686868"
+            android:paddingTop="38dp"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RLeditAdress"
@@ -122,6 +127,12 @@
             android:inputType="text"
             android:textSize="18sp"
             tools:ignore="LabelFor" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="广州大学城内"
+            android:textSize="13sp"
+            android:textColor="#CDCDCD"/>
     </LinearLayout>
     </ScrollView>
     <LinearLayout
@@ -133,14 +144,14 @@
             android:id="@+id/RLbtn_complet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
+            android:layout_marginHorizontal="53dp"
             android:stateListAnimator="@null"
             android:background="@drawable/signup_btnshape"
             android:bufferType="normal"
             android:paddingVertical="15dp"
             android:text="@string/comple"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>
 
