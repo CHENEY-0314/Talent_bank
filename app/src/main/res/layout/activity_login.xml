@@ -41,8 +41,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="182dp"
-        android:layout_height="169dp"
+        android:layout_width="190dp"
+        android:layout_height="175dp"
         android:contentDescription="@string/img_profile"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:srcCompat="@drawable/mountain" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

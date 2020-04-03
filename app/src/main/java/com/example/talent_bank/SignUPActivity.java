@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,11 +20,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SignUPActivity extends AppCompatActivity {
+
+    private CheckBox mCbxhidepsa;
     private Button mBtnsignup;
     private ImageView imgback;
     private EditText medtname;
     private EditText medtpassword;
     private CheckBox mCbxrempas;
+
+    //以下用于手机存用户信息
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -38,8 +43,10 @@ public class SignUPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_u_p);
 
+
         imgback=findViewById(R.id.SP_img_back);
         mCbxrempas=findViewById(R.id.checkBox_rempassword);
+        mCbxhidepsa=findViewById(R.id.SP_check_showpassword);
         mBtnsignup=findViewById(R.id.btn_signup);
         medtname=findViewById(R.id.SPedt_number);
         medtpassword=findViewById(R.id.SPedt_password);
@@ -49,6 +56,20 @@ public class SignUPActivity extends AppCompatActivity {
         //初始化用户名和密码输入框
         medtname.setText(mSharedPreferences.getString("number",""));
         medtpassword.setText(mSharedPreferences.getString("password",""));
+
+        mCbxhidepsa.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+            @Override
+            public void onClick(View v) {  //点击显示、隐藏密码
+                    //记住光标开始的位置
+                    int pos = medtpassword.getSelectionStart();
+                    if(medtpassword.getInputType()!= (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){//隐藏密码
+                        medtpassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    }else{//显示密码
+                        medtpassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    }
+                medtpassword.setSelection(pos);
+            }
+        });
 
         imgback.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override

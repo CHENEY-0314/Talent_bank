@@ -43,7 +43,7 @@
         android:id="@+id/middleimage"
         android:layout_width="60dp"
         android:layout_height="55dp"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+        app:srcCompat="@drawable/mountain" />
 
     <TextView
         android:id="@+id/textView3"
@@ -92,8 +92,9 @@
                         android:textColor="#fff"
                         android:textSize="20sp"
                         android:textStyle="bold" />
-
+v
                     <EditText
+                        android:id="@+id/R_edt_adantage"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
@@ -133,6 +134,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/R_edt_experience"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
