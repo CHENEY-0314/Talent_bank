@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import com.example.talent_bank.home_page.HomeFragment;
 import com.example.talent_bank.home_page.MainFragment;
+import com.example.talent_bank.home_page.NewsFragment;
 import com.example.talent_bank.home_page.TalkingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(MainFragment.newInstance());
         mFragments.add(TalkingFragment.newInstance());
         mFragments.add(HomeFragment.newInstance());
+        mFragments.add(NewsFragment.newInstance());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -102,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.homeFragment:
                     viewPager.setCurrentItem(2);
+                    return true;
+                case R.id.newsFragment:
+                    viewPager.setCurrentItem(3);
                     return true;
             }
             return false;
