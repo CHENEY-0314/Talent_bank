@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.10"
         android:paddingTop="10dp"
-        android:paddingStart="35dp"
+        android:paddingStart="30dp"
         android:gravity="bottom"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
         <ImageView
