@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MyBiographicalActivity"></activity>
+        <activity android:name=".MyCollectionActivity" />
+        <activity android:name=".MyApplyActivity" />
+        <activity android:name=".MyPublishActivity" />
         <activity android:name=".HandlerActivity" />
         <activity android:name=".register.RegisterLastActivity" />
         <activity android:name=".register.RegisterBasedActivity" />

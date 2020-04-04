@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
@@ -15,6 +16,10 @@ import com.example.talent_bank.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
+    private LinearLayout mMyPublish;
+    private LinearLayout mMyApply;
+    private LinearLayout mMyCollection;
+    private LinearLayout mMyBiographical;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();

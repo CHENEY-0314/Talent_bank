@@ -10,10 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.28"
         android:background="@color/homeHead"
         android:orientation="horizontal"
-        android:paddingTop="66dp">
+        android:gravity="center_vertical"
+        android:paddingTop="40dp">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -23,118 +24,135 @@
             android:src="@drawable/mountain" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="20dp">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/home_txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="何咱"
+                android:textStyle="bold"
                 android:textColor="@color/cardview_light_background"
-                android:textSize="25sp" />
+                android:textSize="23sp" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/home_txt_grade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
+                android:paddingTop="5dp"
                 android:text="2018级/工业设计"
                 android:textColor="#B3B2C2"
                 android:textSize="15sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:padding="26dp">
+            <ImageView
+                android:id="@+id/home_setup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/setup"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75"
+        android:layout_weight="0.72"
+        android:padding="23dp"
         android:background="@color/homeContent"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="25dp">
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="90dp"-->
+<!--            app:cardCornerRadius="25dp">-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal">-->
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="90dp"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="90dp"
-                    app:layout_constraintStart_toStartOf="parent" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:gravity="center">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView15"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="5个"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/textColor_1"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/textView16"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/textView16"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/textView16"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView16"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="完成项目"-->
+<!--                        android:textColor="@color/textColor_2"-->
+<!--                        android:textSize="13.3sp"/>-->
+<!--                </LinearLayout>-->
 
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5个"
-                    android:textColor="@color/textColor_1"
-                    android:textSize="17sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView16"
-                    app:layout_constraintEnd_toEndOf="@+id/textView16"
-                    app:layout_constraintStart_toStartOf="@+id/textView16"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <View-->
+<!--                    android:layout_width="0.8dp"-->
+<!--                    android:layout_marginVertical="11dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#D6D6D6"/>-->
 
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="完成项目"
-                    android:textColor="@color/textColor_2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:gravity="center">-->
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="90dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_begin="282dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView17"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="15个"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/textColor_1"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/textView18"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/guideline8"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15个"
-                    android:textColor="@color/textColor_1"
-                    android:textSize="17sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView18"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView18"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="赞"-->
+<!--                        android:textColor="@color/textColor_2"-->
+<!--                        android:textSize="13.3sp"/>-->
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="赞"
-                    android:textColor="@color/textColor_2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/textView17"
-                    app:layout_constraintStart_toStartOf="@+id/textView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="310dp"
-            android:layout_margin="20dp"
+            android:layout_marginTop="23dp"
+            app:cardElevation="0dp"
             app:cardCornerRadius="25dp">
 
             <LinearLayout
@@ -143,6 +161,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/home_btn_MyPublish"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -151,17 +170,18 @@
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:src="@android:drawable/presence_online"
+                        android:background="@mipmap/bottomchoosed"
                         android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="237dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="18dp"
+                        android:textColor="#656566"
                         android:text="我的发布"
                         android:textSize="18sp" />
 
@@ -173,7 +193,14 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#E8E8E8" />
+
                 <LinearLayout
+                    android:id="@+id/home_btn_MyApply"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -182,18 +209,19 @@
 
                     <ImageView
                         android:id="@+id/imageView7"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:src="@android:drawable/presence_online"
+                        android:background="@mipmap/bottomchoosed"
                         android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="237dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="18dp"
                         android:text="我的申请"
+                        android:textColor="#656566"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -203,7 +231,14 @@
                         android:src="@drawable/ic_navigate_next_black_24dp" />
                 </LinearLayout>
 
+                <View
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#E8E8E8" />
+
                 <LinearLayout
+                    android:id="@+id/home_btn_MyCollection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -212,18 +247,19 @@
 
                     <ImageView
                         android:id="@+id/imageView9"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:src="@android:drawable/presence_online"
+                        android:background="@mipmap/bottomchoosed"
                         android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView23"
                         android:layout_width="237dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="18dp"
                         android:text="我的收藏"
+                        android:textColor="#656566"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -233,7 +269,14 @@
                         android:src="@drawable/ic_navigate_next_black_24dp" />
                 </LinearLayout>
 
+                <View
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#E8E8E8" />
+
                 <LinearLayout
+                    android:id="@+id/home_btn_MyBiographical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -242,18 +285,19 @@
 
                     <ImageView
                         android:id="@+id/imageView11"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:src="@android:drawable/presence_online"
+                        android:background="@mipmap/bottomchoosed"
                         android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView24"
                         android:layout_width="237dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="18dp"
                         android:text="我的简历"
+                        android:textColor="#656566"
                         android:textSize="18sp" />
 
                     <ImageView
