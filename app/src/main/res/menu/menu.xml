@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/mainFragment"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/bottom_choosed"
         android:title="首页" />
     <item
         android:id="@+id/talkingFragment"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/bottom_choosed"
         android:title="发现" />
     <item
         android:id="@+id/newsFragment"
-        android:icon="@drawable/ic_comment_black_24dp"
+        android:icon="@drawable/bottom_choosed"
         android:title="通知" />
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_perm_identity_black_24dp"
+        android:icon="@drawable/bottom_choosed"
         android:title="个人" />
 </menu>
