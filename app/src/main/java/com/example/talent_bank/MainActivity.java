@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         mFragments = new ArrayList<>();
         mFragments.add(MainFragment.newInstance());
         mFragments.add(TalkingFragment.newInstance());
-        mFragments.add(HomeFragment.newInstance());
         mFragments.add(NewsFragment.newInstance());
+        mFragments.add(HomeFragment.newInstance());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.talkingFragment:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.homeFragment:
+                case R.id.newsFragment:
                     viewPager.setCurrentItem(2);
                     return true;
-                case R.id.newsFragment:
+                case R.id.homeFragment:
                     viewPager.setCurrentItem(3);
                     return true;
             }
