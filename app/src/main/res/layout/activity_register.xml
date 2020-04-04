@@ -10,7 +10,7 @@
         android:id="@+id/Rhead"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.11"
+        android:layout_weight="0.10"
         android:paddingTop="10dp"
         android:paddingStart="30dp"
         android:gravity="bottom">
@@ -63,7 +63,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.72"
         android:background="#F3F3F3"
         android:clipToPadding="true"
         android:fillViewport="true">
