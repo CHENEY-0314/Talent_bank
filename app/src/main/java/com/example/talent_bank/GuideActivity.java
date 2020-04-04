@@ -56,6 +56,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
     }
 
     private void toMain() {
+        //界面跳转
         Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
         startActivity(intent);
     }
