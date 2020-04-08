@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.talent_bank.AdviceActivity;
 import com.example.talent_bank.MyApplyActivity;
 import com.example.talent_bank.MyBiographicalActivity;
 import com.example.talent_bank.MyCollectionActivity;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout mMyApply;
     private LinearLayout mMyCollection;
     private LinearLayout mMyBiographical;
+    private LinearLayout mAdvice;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -61,6 +63,8 @@ public class HomeFragment extends Fragment {
         mMyBiographical.setOnClickListener(new ButtonListener());
         mSetUp=mView.findViewById(R.id.home_btn_setup);
         mSetUp.setOnClickListener(new ButtonListener());
+        mAdvice=mView.findViewById(R.id.home_btn_advice);
+        mAdvice.setOnClickListener(new ButtonListener());
     }
 
     private class ButtonListener implements View.OnClickListener {
@@ -85,6 +89,10 @@ public class HomeFragment extends Fragment {
                 case R.id.home_btn_setup:
                     Intent intent4= new Intent(getActivity(), SetUpActivity.class);
                     startActivity(intent4);
+                    break;
+                case R.id.home_btn_advice:
+                    Intent intent5= new Intent(getActivity(), AdviceActivity.class);
+                    startActivity(intent5);
                     break;
             }
         }
