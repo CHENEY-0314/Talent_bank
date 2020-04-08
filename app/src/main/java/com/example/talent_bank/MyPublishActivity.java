@@ -1,6 +1,8 @@
 package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 public class MyPublishActivity extends AppCompatActivity {
 
     private ImageView imgBack;
+    private RecyclerView mRvMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,11 @@ public class MyPublishActivity extends AppCompatActivity {
                 MyPublishActivity.this.finish();
             }
         });
+
+        mRvMain = findViewById(R.id.rv_my_publish);
+        mRvMain.setLayoutManager(new LinearLayoutManager(MyPublishActivity.this));
+        mRvMain.setAdapter(new LinearAdapter(MyPublishActivity.this)); //对RecyclerView设置适配器
+
 
     }
 }

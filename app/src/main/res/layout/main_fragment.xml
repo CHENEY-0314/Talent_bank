@@ -27,18 +27,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/main_btn_publish"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="260dp"
         android:layout_marginEnd="28dp"
         app:cardBackgroundColor="#C1C2C4"
         app:cardCornerRadius="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintBottom_toBottomOf="@+id/main_btn_entertable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toTopOf="@+id/cardView2"
+        app:layout_constraintStart_toEndOf="@+id/main_btn_entertable"
+        app:layout_constraintTop_toTopOf="@+id/main_btn_entertable"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
@@ -65,14 +65,14 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/main_btn_entertable"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="350dp"
         app:cardBackgroundColor="#C1C2C4"
         app:cardCornerRadius="35dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/main_btn_publish"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
