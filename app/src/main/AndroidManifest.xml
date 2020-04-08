@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".SetUpActivity" >
-        </activity>
+        <activity android:name=".SetUpActivity" />
         <activity android:name=".AdviceActivity" />
+        <activity android:name=".ProjectReleased"></activity>
+        <activity android:name=".GuideActivity$ProjectReleased" />
         <activity android:name=".MyBiographicalActivity" />
         <activity android:name=".MyCollectionActivity" />
         <activity android:name=".MyApplyActivity" />
@@ -22,7 +23,7 @@
         <activity android:name=".SignUPActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".GuideActivity" >
+        <activity android:name=".GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

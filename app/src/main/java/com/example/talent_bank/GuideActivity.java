@@ -106,4 +106,12 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         return mGestureDetector.onTouchEvent(event);
     }
 
+    public static class ProjectReleased extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_project_released);
+        }
+    }
 }
