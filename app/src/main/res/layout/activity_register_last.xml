@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingEnd="58dp"
             android:text="@string/secretmessage"
-            android:textColor="#686868"
+            android:textColor="@color/titlecolor"
             android:paddingStart="10dp"
             android:textSize="20sp" />
     </LinearLayout>
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/QQ"
             android:textSize="16sp"
-            android:textColor="#686868"
+            android:textColor="#000"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RLeditQQ"
@@ -72,7 +72,7 @@
             android:text="@string/Wechart"
             android:paddingTop="38dp"
             android:textSize="16sp"
-            android:textColor="#686868"
+            android:textColor="#000"
             android:textStyle="bold"/>
         <EditText
             android:id="@+id/RLeditWechat"
@@ -93,7 +93,7 @@
             android:text="@string/Email"
             android:paddingTop="38dp"
             android:textSize="16sp"
-            android:textColor="#686868"
+            android:textColor="#000"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/RLeditEmail"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:text="@string/adress"
             android:textSize="16sp"
-            android:textColor="#686868"
+            android:textColor="#000"
             android:paddingTop="38dp"
             android:textStyle="bold"/>
         <EditText

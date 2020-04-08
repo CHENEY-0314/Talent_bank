@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.28"
-        android:background="@color/homeHead"
+        android:background="@drawable/me_topimage"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingTop="40dp">
@@ -47,30 +47,17 @@
                 android:textColor="#B3B2C2"
                 android:textSize="15sp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:padding="26dp">
-            <ImageView
-                android:id="@+id/home_setup"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/setup"/>
-        </LinearLayout>
-
-
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.72">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.72"
-        android:padding="23dp"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="26dp"
         android:background="@color/homeContent"
         android:orientation="vertical">
 
@@ -173,7 +160,7 @@
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:background="@mipmap/bottomchoosed"
+                        android:background="@drawable/me_img_publish"
                         android:textAlignment="center" />
 
                     <TextView
@@ -212,7 +199,7 @@
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:background="@mipmap/bottomchoosed"
+                        android:background="@drawable/me_img_apply"
                         android:textAlignment="center" />
 
                     <TextView
@@ -250,7 +237,7 @@
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:background="@mipmap/bottomchoosed"
+                        android:background="@drawable/me_img_collection"
                         android:textAlignment="center" />
 
                     <TextView
@@ -288,7 +275,7 @@
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:layout_marginStart="23dp"
-                        android:background="@mipmap/bottomchoosed"
+                        android:background="@drawable/me_img_biogra"
                         android:textAlignment="center" />
 
                     <TextView
@@ -308,6 +295,89 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="30dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/home_btn_setup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="23dp"
+                        android:background="@drawable/me_img_setup"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="237dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:textColor="#656566"
+                        android:text="设置"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_navigate_next_black_24dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#E8E8E8" />
+
+                <LinearLayout
+                    android:id="@+id/home_btn_advice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="23dp"
+                        android:background="@drawable/me_img_advice"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="237dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:text="意见反馈"
+                        android:textColor="#656566"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_navigate_next_black_24dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
     private View mView;
-    private ImageView mSetUp;
+    private LinearLayout mSetUp;
     private LinearLayout mMyPublish;
     private LinearLayout mMyApply;
     private LinearLayout mMyCollection;
@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
         mMyCollection.setOnClickListener(new ButtonListener());
         mMyBiographical=mView.findViewById(R.id.home_btn_MyBiographical);
         mMyBiographical.setOnClickListener(new ButtonListener());
-        mSetUp=mView.findViewById(R.id.home_setup);
+        mSetUp=mView.findViewById(R.id.home_btn_setup);
         mSetUp.setOnClickListener(new ButtonListener());
     }
 
@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
                     Intent intent3= new Intent(getActivity(), MyBiographicalActivity.class);
                     startActivity(intent3);
                     break;
-                case R.id.home_setup:
+                case R.id.home_btn_setup:
                     Intent intent4= new Intent(getActivity(), SetUpActivity.class);
                     startActivity(intent4);
                     break;

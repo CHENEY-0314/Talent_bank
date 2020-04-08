@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingEnd="58dp"
-        android:textColor="#686868"
+        android:textColor="@color/titlecolor"
         android:text="@string/register"
         android:paddingStart="10dp"
         android:textSize="20sp" />
@@ -37,8 +37,9 @@
         android:id="@+id/middle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="16dp"
-        android:layout_weight="0.18"
+        android:paddingBottom="10dp"
+        android:gravity="bottom"
+        android:layout_weight="0.17"
         android:orientation="vertical"
         android:paddingStart="30dp">
 
@@ -54,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="建立属于你的个人简历"
-        android:textColor="#565657"
+        android:textColor="#000"
         android:textSize="20sp"
         android:textStyle="bold"/>
     </LinearLayout>
@@ -63,8 +64,8 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.72"
-        android:background="#F3F3F3"
+        android:layout_weight="0.73"
+        android:background="@color/homeContent"
         android:clipToPadding="true"
         android:fillViewport="true">
 
@@ -74,14 +75,15 @@
             android:orientation="vertical"
             android:padding="28dp">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/card_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
-                app:cardBackgroundColor="#9A9A9A"
-                app:cardCornerRadius="24dp"
-                app:contentPadding="20dp">
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:background="@drawable/register_cardview"
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,8 +96,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="个人优势"
-                        android:textColor="#fff"
+                        android:textColor="#000"
                         android:textSize="16sp"
+                        android:paddingBottom="10dp"
                         android:textStyle="bold" />
 
 
@@ -110,20 +113,21 @@
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="3dp"
                         android:maxLength="100"
-                        android:textColor="#fff"
+                        android:textColor="#000"
                         android:textColorHint="#CBCBCB"
                         android:textSize="13sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/card_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
-                app:cardBackgroundColor="#959595"
-                app:cardCornerRadius="20dp"
-                app:contentPadding="20dp">
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:background="@drawable/register_cardview"
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -136,7 +140,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="项目经验"
-                        android:textColor="#fff"
+                        android:textColor="#000"
+                        android:paddingBottom="10dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -151,20 +156,21 @@
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="3dp"
                         android:maxLength="130"
-                        android:textColor="#fff"
+                        android:textColor="#000"
                         android:textColorHint="#CBCBCB"
                         android:textSize="13sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/card_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
-                app:cardBackgroundColor="#9A9A9A"
-                app:cardCornerRadius="20dp"
-                app:contentPadding="20dp">
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:background="@drawable/register_cardview"
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,14 +179,15 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
                             android:text="综合能力标签"
-                            android:textColor="#fff"
+                            android:textColor="#000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -211,7 +218,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="PPT"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -226,7 +233,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="平面设计"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -241,7 +248,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="Photoshop"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -256,7 +263,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="演讲能力"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -271,7 +278,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="时间管理"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -286,7 +293,7 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="外语"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
 
                         <CheckBox
@@ -301,12 +308,12 @@
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
                             android:text="编程"
-                            android:textColor="#939393"
+                            android:textColor="#fff"
                             android:textSize="15sp" />
                     </com.google.android.flexbox.FlexboxLayout>
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/Rbtn_next"

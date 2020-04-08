@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="#000"
     tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_register"
@@ -16,7 +27,7 @@
         android:backgroundTint="#FFFFFF"
         android:bufferType="normal"
         android:stateListAnimator="@null"
-        android:textColor="#296EF8"
+        android:textColor="@color/colorPrimary"
         android:text="@string/register"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +40,7 @@
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:background="@drawable/login_btnshape"
-        android:backgroundTint="#296EF8"
+        android:backgroundTint="@color/colorPrimary"
         android:bufferType="normal"
         android:stateListAnimator="@null"
         android:text="@string/signup"

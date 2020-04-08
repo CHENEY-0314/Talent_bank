@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF7F7"
+    android:background="@color/homeContent"
     android:id="@+id/SignUP"
     android:focusableInTouchMode="true"
     tools:context=".LoginActivity">
@@ -105,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signup"
-        android:textColor="#686868"
+        android:textColor="@color/titlecolor"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="@+id/SP_img_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,8 +126,8 @@
 
     <CheckBox
         android:id="@+id/SP_check_showpassword"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginStart="8dp"
         android:checked="true"
         android:background="@drawable/hidepassword_choose"
