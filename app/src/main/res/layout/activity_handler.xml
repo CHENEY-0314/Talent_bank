@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#000"
+tools:context=".HandlerActivity">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/image_handle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/img_handle" />
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
 </LinearLayout>
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Two heads"
+    android:textColor="#fff"
+    android:textSize="23sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toTopOf="@+id/guideline"
+    app:layout_constraintStart_toStartOf="@+id/handler_textView5" />
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.42" />
+
+<TextView
+    android:id="@+id/handler_textView5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="are better than one."
+    android:textColor="#fff"
+    android:textSize="23sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

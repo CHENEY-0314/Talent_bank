@@ -2,16 +2,21 @@ package com.example.talent_bank;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.text.InputType;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,7 +28,40 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import pl.droidsonroids.gif.GifImageView;
+
+
 public class SignUPActivity extends AppCompatActivity {
+
+    /**
+     * Id to identity READ_CONTACTS permission request.
+     * ID来标识READ_CONTACTS权限请求。
+     */
+    private static final int REQUEST_READ_CONTACTS = 0;
+
+    /**
+     * A dummy authentication store containing known user names and passwords.
+     * 包含已知用户名和密码的虚假认证存储。
+     * TODO: remove after connecting to a real authentication system.
+     * 连接到真实身份验证系统后删除。
+     */
+    private static final String[] DUMMY_CREDENTIALS = new String[]{
+            "17726827319:hellords", "18293729182:worldrfds",
+            //DUMMY_CREDENTTALS用于模拟已存在的账户，冒号前为账户，冒号后为密码
+    };
 
     private CheckBox mCbxhidepsa;
     private Button mBtnsignup;
@@ -31,6 +69,13 @@ public class SignUPActivity extends AppCompatActivity {
     private EditText medtname;
     private EditText medtpassword;
     private CheckBox mCbxrempas;
+
+    private GifImageView runWebView;
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     * 跟踪登录任务以确保我们可以根据请求取消它。
+     */
+    private UserLoginTask mAuthTask = null;
 
     //以下用于手机存用户信息
     private SharedPreferences mSharedPreferences;
@@ -47,6 +92,8 @@ public class SignUPActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_u_p);
+
+        runWebView =findViewById(R.id.gv_error);
 
         imgback=findViewById(R.id.SP_img_back);
         mCbxrempas=findViewById(R.id.checkBox_rempassword);
@@ -86,36 +133,219 @@ public class SignUPActivity extends AppCompatActivity {
         mBtnsignup.setOnClickListener(new View.OnClickListener() {  //登录，检查账号密码是否正确
             @Override
             public void onClick(View v) {
-                Toast toast=Toast.makeText(SignUPActivity.this,"登陆成功",Toast.LENGTH_SHORT);
-                toast.show();
-                new Handler(new Handler.Callback() {   //等待登录成功显示完成之后跳转
-                    @Override
-                    public boolean handleMessage(Message msg) {  //记住用户名和密码（判断是否选择了记住密码）
-                        if(mCbxrempas.isChecked()){
-                            mEditor.putString("number",medtname.getText().toString());
-                            mEditor.putString("password",medtpassword.getText().toString());
-                            mEditor.apply();
-                        }else{
-                            mEditor.putString("number",medtname.getText().toString());
-                            mEditor.putString("password","");    //如没有选择则清空password文件
-                            mEditor.apply();
-                        }
-                        //实现页面跳转（并清空页面栈）
-                        startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
-                        return false;
-                    }
-                }).sendEmptyMessageDelayed(0,1500);//表示延迟1.5秒发送任务
-
+                attemptLogin();
             }
         });
+    }
+
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * 尝试登录或注册登录表单指定的帐户。
+     * errors are presented and no actual login attempt is made.
+     * 出现错误并且没有进行实际的登录尝试。
+     */
+    private void attemptLogin() {
+
+        String number=medtname.getText().toString();
+        String password=medtpassword.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.如果用户输入密码，请检查有效的密码。
+        if ("".equals(password) || !isPasswordValid(password)) {
+            medtpassword.setError(getString(R.string.error_invalid_password));
+            focusView = medtpassword;
+            cancel = true;
+        }
+
+        // Check for a valid number.检查一个有效的账号。
+        if ("".equals(number) || !isNumberValid(number)) {
+            medtname.setError(getString(R.string.error_invalid_number));
+            focusView = medtname;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            //有一个错误;不要尝试登录并首先关注
+            // form field with an error.
+            //表单字段有错误。
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            //显示进度微调，并启动后台任务
+            // perform the user login attempt.
+            //执行用户登录尝试。
+            showProgress(true);
+            mAuthTask = new UserLoginTask(number, password);
+            mAuthTask.execute((Void) null);
+        }
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() >= 8 && password.length()<=16;
+    }
+    private boolean isNumberValid(String number) {
+        //TODO: Replace this with your own logic
+        return number.length() == 11;
+    }
+
+
+    /**
+     * Shows the progress UI and hides the login form.
+     * 显示进度UI并隐藏登录表单。
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        //在Honeycomb MR2上，我们有ViewPropertyAnimator API，可以实现非常简单的动画。如果可用，请使用这些API淡入进度微调器。
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        mBtnsignup.setVisibility(show ? View.GONE : View.VISIBLE);
+        mBtnsignup.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mBtnsignup.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
+
+        runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
+        runWebView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     * 表示用于验证用户的异步登录/注册任务。
+     */
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String mmNumber;
+        private final String mmPassword;
+
+        UserLoginTask(String number, String password) {
+            mmNumber = number;
+            mmPassword = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+            //尝试对网络服务进行身份验证。
+            try {
+                LoginRequest(mmNumber,mmPassword);
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            showProgress(false);
+
+            if (success) {
+                /*
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+                */
+            } else {
+                runWebView.requestFocus();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+            showProgress(false);
+        }
+    }
+
+    public void LoginRequest(final String account, final String password) {
+
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/LoginServlet?number="+account+"&password="+password;
+        String tag = "Login";
+        //取得请求队列
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        requestQueue.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("params");
+                            String result = jsonObject.getString("Result");
+                            if (result.equals("success")) {
+                                //自动保存账号，密码
+                                if(mCbxrempas.isChecked()){
+                                    mEditor.putString("number",medtname.getText().toString());
+                                    mEditor.putString("password",medtpassword.getText().toString());
+                                    mEditor.apply();
+                                }else{
+                                    mEditor.putString("number",medtname.getText().toString());
+                                    mEditor.putString("password","");    //如没有选择则清空password文件
+                                    mEditor.apply();
+                                }
+                                //实现页面跳转（并清空页面栈）
+                                mEditor.putString("auto","true");
+                                mEditor.apply();
+                                startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
+                            } else {
+                                if (result.equals("failed"))
+                                    Toast.makeText(SignUPActivity.this,"账户或密码错误！",Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(SignUPActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                            Log.e("TAG", e.getMessage(), e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(SignUPActivity.this,"请稍后再试！",Toast.LENGTH_SHORT).show();
+                Log.e("TAG", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", account);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        //设置Tag标签
+        request.setTag(tag);
+        //将请求添加到队列中
+        requestQueue.add(request);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {   //重写返回函数
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             startActivity(new Intent(SignUPActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            overridePendingTransition(0,R.anim.slide_out);
         }
         return super.onKeyDown(keyCode, event);
     }

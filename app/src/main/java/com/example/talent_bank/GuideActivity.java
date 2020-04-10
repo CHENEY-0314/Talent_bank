@@ -39,7 +39,6 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
             editor.apply();
         } else {  //反之，直接打开登录界面
             toMain();
-            GuideActivity.this.finish();
         }
     }
 
@@ -59,6 +58,8 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         //界面跳转
         Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
         startActivity(intent);
+        GuideActivity.this.finish();
+        overridePendingTransition(0,0);
     }
 
     @Override

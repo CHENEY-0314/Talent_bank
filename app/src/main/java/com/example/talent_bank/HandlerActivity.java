@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.talent_bank.register.RegisterBasedActivity;
@@ -16,6 +17,9 @@ public class HandlerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handler);
         //显示提示框“三秒后自动跳转”
