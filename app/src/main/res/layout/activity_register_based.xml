@@ -138,7 +138,7 @@
             <Button
                 android:id="@+id/RBbtn_code"
                 android:layout_width="68dp"
-                android:layout_height="28dp"
+                android:layout_height="35dp"
                 android:textSize="13sp"
                 android:background="@drawable/getcode_btnshape"
                 android:textColor="#fff"

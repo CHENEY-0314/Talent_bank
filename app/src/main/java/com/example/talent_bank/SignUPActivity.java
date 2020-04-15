@@ -126,7 +126,7 @@ public class SignUPActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {  //点击上方返回按钮
                 startActivity(new Intent(SignUPActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(0,R.anim.slide_out);
             }
         });
 
@@ -341,8 +341,9 @@ public class SignUPActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //重写返回函数
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {   //重写返回函数
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             startActivity(new Intent(SignUPActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
             overridePendingTransition(0,R.anim.slide_out);

@@ -3,14 +3,18 @@ package com.example.talent_bank.register;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,9 +23,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.talent_bank.HandlerActivity;
 import com.example.talent_bank.LoginActivity;
 import com.example.talent_bank.R;
+import com.example.talent_bank.SignUPActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
@@ -33,6 +52,12 @@ public class RegisterBasedActivity extends AppCompatActivity {
     private Button mBtnCode;
     private Button mBtnNext;
     private ImageView mImgback;
+
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     * 跟踪登录任务以确保我们可以根据请求取消它。
+     */
+    private RegisterBasedActivity.UserExitTask mAuthTask = null;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -82,7 +107,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.RBbtn_code:
-                    //获取手机验证码
+                    IfExit();
                     break;
                 case R.id.RBbtn_next:
                     //跳转到注册第二界面
@@ -111,7 +136,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                             mEditor.putString("register_advantage","");
                             mEditor.apply();
                             startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                            overridePendingTransition(0,R.anim.slide_out);
                             dialog.dismiss();
                         }
                     })
@@ -138,11 +163,151 @@ public class RegisterBasedActivity extends AppCompatActivity {
         startActivity(new Intent(RegisterBasedActivity.this, RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterBasedActivity.this).toBundle());
     }
 
+    //判断是否正确输入值
     private boolean IsEmpty(){
-        if(mEdtname.getText()!=null && mEdtnumber.getText()!=null && mEdtpassword.getText()!=null && mEdtcode.getText()!=null) return false;
-        else return true;
+        if( !"".contentEquals(mEdtname.getText())){
+            if(!"".contentEquals(mEdtnumber.getText())){
+                if(!"".contentEquals(mEdtpassword.getText())&&mEdtpassword.getText().length()>7){
+                    if(!"".contentEquals(mEdtcode.getText())){
+                        return false;
+                    }else {mEdtcode.setError(getString(R.string.error_empty)); return true;}
+                }else {mEdtpassword.setError(getString(R.string.reg_password_mark)); return true;}
+            }else {mEdtnumber.setError(getString(R.string.error_empty)); return true;}
+        } else {mEdtname.setError(getString(R.string.error_empty)); return true;}
     }
 
+    //判断账号是否已经注册
+    private  void IfExit(){
+
+        boolean cancel = false;
+        View focusView = null;
+
+        String number=mEdtnumber.getText().toString();
+
+        // Check for a valid number.检查一个有效的账号。
+        if ("".equals(number) || !isNumberValid(number)) {
+            mEdtnumber.setError(getString(R.string.error_empty));
+            focusView = mEdtnumber;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            //有一个错误;不要尝试登录并首先关注
+            // form field with an error.
+            //表单字段有错误。
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            //显示进度微调，并启动后台任务
+            // perform the user login attempt.
+            //执行用户登录尝试。
+            mAuthTask = new UserExitTask(number);
+            mAuthTask.execute((Void) null);
+        }
+
+    }
+
+    //判断手机号是否正确
+    private boolean isNumberValid(String number) {
+        return number.length() == 11;
+    }
+
+    //调用验证的函数
+    public class UserExitTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String mmNumber;
+
+        UserExitTask(String number) {
+            mmNumber = number;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            //尝试对网络服务进行身份验证。
+            try {
+                IsExitRequest(mmNumber);
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            if (success) {
+                /*
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+                */
+            } else {
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+        }
+    }
+
+    public void IsExitRequest(final String account) {
+
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/isExistServlet?number="+account;
+        String tag = "Login";
+        //取得请求队列
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        requestQueue.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("结果");
+                            String result = jsonObject.getString("Result");
+                            if (result.equals("账号未注册")) {
+                                timer.start();  //开始60秒倒计时
+                                //这里发送验证码
+
+                            } else {
+                                if (result.equals("账号已存在"))
+                                    Toast.makeText(RegisterBasedActivity.this,"手机号已注册",Toast.LENGTH_SHORT).show();
+                                mEdtnumber.setError(getString(R.string.error_haveexit_number));
+                            }
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(RegisterBasedActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                            Log.e("TAG", e.getMessage(), e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(RegisterBasedActivity.this,"请稍后再试！",Toast.LENGTH_SHORT).show();
+                Log.e("TAG", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", account);
+                return params;
+            }
+        };
+
+        //设置Tag标签
+        request.setTag(tag);
+        //将请求添加到队列中
+        requestQueue.add(request);
+    }
+
+    //重写返回函数
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -167,7 +332,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     mEditor.putString("register_advantage","");
                     mEditor.apply();
                     startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                    overridePendingTransition(0,R.anim.slide_out);
                     dialog.dismiss();
                 }
             })
@@ -180,6 +345,22 @@ public class RegisterBasedActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    //倒计时60秒,这里不直接写60000,而用1000*60是因为后者看起来更直观,每走一步是1000毫秒也就是1秒
+    CountDownTimer timer = new CountDownTimer(1000 * 60, 1000) {
+        @SuppressLint("DefaultLocale")
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mBtnCode.setEnabled(false);
+            mBtnCode.setText(String.format("已发送(%d)",millisUntilFinished/1000));
+        }
+
+        @Override
+        public void onFinish() {
+            mBtnCode.setEnabled(true);
+            mBtnCode.setText("重新获取");
+        }
+    };
 
     //点击空白处收起键盘
     @Override
