@@ -22,7 +22,7 @@ import cn.refactor.lib.colordialog.ColorDialog;
 public class ProjectContents extends AppCompatActivity {
     private ImageView imgBack;
     private ImageView imgMore;
-    private Button button1,button2;
+    private Button button1,button2,button3;
     private TextView textView;
     private String shpName = "SHP_NAME";
 
@@ -40,19 +40,27 @@ public class ProjectContents extends AppCompatActivity {
         imgMore = findViewById(R.id.PCimg_more);
         button1 = findViewById(R.id.PC_btn_num);
         button2 = findViewById(R.id.PC_btn_demand);
+        button3 = findViewById(R.id.PC_btn_apply);
         textView = findViewById(R.id.PC_num);
 
-        button1.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //点击跳转界面
                 startActivity(new Intent(ProjectContents.this,EditProjectNum.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //点击跳转界面
                 startActivity(new Intent(ProjectContents.this,EditPeopleDemand.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {  //点击跳转界面
+                startActivity(new Intent(ProjectContents.this,ReceiveApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 

@@ -188,6 +188,7 @@
                             android:textSize="18sp" />
 
                         <Button
+                            android:id="@+id/PC_btn_apply"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:background="@drawable/login_btnshape"
