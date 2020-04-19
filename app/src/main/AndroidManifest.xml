@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EditDemand"></activity>
+        <activity android:name=".ReceiveApply"></activity>
+        <activity android:name=".EditDemand" />
         <activity android:name=".EditPeopleDemand" />
         <activity android:name=".EditProjectNum" />
         <activity android:name=".ProjectContents" />
