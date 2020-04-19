@@ -46,23 +46,6 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class SignUPActivity extends AppCompatActivity {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     * ID来标识READ_CONTACTS权限请求。
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * 包含已知用户名和密码的虚假认证存储。
-     * TODO: remove after connecting to a real authentication system.
-     * 连接到真实身份验证系统后删除。
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "17726827319:hellords", "18293729182:worldrfds",
-            //DUMMY_CREDENTTALS用于模拟已存在的账户，冒号前为账户，冒号后为密码
-    };
-
     private CheckBox mCbxhidepsa;
     private Button mBtnsignup;
     private ImageView imgback;

@@ -44,22 +44,35 @@
         android:orientation="vertical"
         android:focusableInTouchMode="true"
         android:padding="30dp">
-        <TextView
-            android:id="@+id/RLtextQQ"
-            android:paddingTop="30dp"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/QQ"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/RLtextGrade"
+                android:paddingTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/QQ"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textSize="20sp"
+                android:paddingTop="25dp"
+                android:textColor="#FF0000"
+                android:paddingLeft="8dp"
+                android:layout_toEndOf="@+id/RLtextGrade"/>
+        </RelativeLayout>
         <EditText
-            android:id="@+id/RLeditQQ"
+            android:id="@+id/RLeditGrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
-            android:inputType="number"
             android:maxLength="15"
             android:textSize="18sp"
             tools:ignore="LabelFor"
@@ -138,21 +151,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.17"
-        android:gravity="center_vertical">
-        <Button
-            android:id="@+id/RLbtn_complet"
+        android:layout_weight="0.17">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="53dp"
-            android:stateListAnimator="@null"
-            android:background="@drawable/signup_btnshape"
-            android:bufferType="normal"
-            android:paddingVertical="15dp"
-            android:text="@string/comple"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <Button
+                android:id="@+id/RLbtn_complet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="53dp"
+                android:stateListAnimator="@null"
+                android:background="@drawable/signup_btnshape"
+                android:bufferType="normal"
+                android:paddingVertical="10dp"
+                android:text="@string/comple"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/RL_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/RLbtn_complet"
+                android:layout_alignEnd="@+id/RLbtn_complet"
+                android:layout_alignBottom="@+id/RLbtn_complet"
+                android:src="@drawable/loading"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>

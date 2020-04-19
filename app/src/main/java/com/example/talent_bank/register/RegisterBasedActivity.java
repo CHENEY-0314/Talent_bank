@@ -120,21 +120,12 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     dialog.setColor("#ffffff");//颜色
                     dialog.setContentTextColor("#656565");
                     dialog.setTitleTextColor("#656565");
-                    dialog.setContentText("继续返回将丢失当前所有注册信息，是否确定离开？");
+                    dialog.setContentText("继续返回将丢失当前已填写的注册信息，是否确定离开？");
                     dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                         @Override
                         public void onClick(ColorDialog dialog) {
-                            mEditor.putString("register_Email","");
-                            mEditor.putString("register_Address","");
-                            mEditor.putString("register_Wechart","");
-                            mEditor.putString("register_QQ","");
-                            mEditor.putString("register_name","");   //清理先前存储的信息
-                            mEditor.putString("register_number","");
-                            mEditor.putString("register_password","");
-                            mEditor.putString("register_code","");
-                            mEditor.putString("register_experience","");
-                            mEditor.putString("register_advantage","");
-                            mEditor.apply();
+                            mEditor.clear();
+                            mEditor.commit();
                             startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                             overridePendingTransition(0,R.anim.slide_out);
                             dialog.dismiss();
@@ -320,17 +311,8 @@ public class RegisterBasedActivity extends AppCompatActivity {
             dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                 @Override
                 public void onClick(ColorDialog dialog) {
-                    mEditor.putString("register_Email","");
-                    mEditor.putString("register_Address","");
-                    mEditor.putString("register_Wechart","");
-                    mEditor.putString("register_QQ","");
-                    mEditor.putString("register_name","");   //清理先前存储的信息
-                    mEditor.putString("register_number","");
-                    mEditor.putString("register_password","");
-                    mEditor.putString("register_code","");
-                    mEditor.putString("register_experience","");
-                    mEditor.putString("register_advantage","");
-                    mEditor.apply();
+                    mEditor.clear();
+                    mEditor.commit();
                     startActivity(new Intent(RegisterBasedActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                     overridePendingTransition(0,R.anim.slide_out);
                     dialog.dismiss();
