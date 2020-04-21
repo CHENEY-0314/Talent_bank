@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.talent_bank.register.RegisterActivity;
+import com.example.talent_bank.register.RegisterBasedActivity;
 import com.example.talent_bank.register.RegisterLastActivity;
 
 import cn.refactor.lib.colordialog.ColorDialog;
@@ -75,10 +78,9 @@ public class ProjectContents extends AppCompatActivity {
         String textNum = "参与人数：" + String.valueOf(shp.getInt("editNum_key",0)) + "人";
         textView.setText(textNum);
 
-
         imgMore.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
-            public void onClick(View v) {  //点击上方返回按钮
+            public void onClick(View v) {  //点击右上角更多的按钮
                 new MyDialog(ProjectContents.this){
                     @Override
                     public void btnPickByTake(){
@@ -141,5 +143,13 @@ public class ProjectContents extends AppCompatActivity {
         SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
         String textNum = "参与人数：" + String.valueOf(shp.getInt("editNum_key",0)) + "人";
         textView.setText(textNum);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {   //重写返回函数
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            ProjectContents.this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

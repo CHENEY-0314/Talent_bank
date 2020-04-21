@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.talent_bank.HandlerActivity;
 import com.example.talent_bank.LoginActivity;
+import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.R;
 import com.example.talent_bank.SignUPActivity;
 
@@ -266,13 +267,18 @@ public class RegisterBasedActivity extends AppCompatActivity {
                                 //这里发送验证码
 
                             } else {
-                                if (result.equals("账号已存在"))
-                                    Toast.makeText(RegisterBasedActivity.this,"手机号已注册",Toast.LENGTH_SHORT).show();
-                                mEdtnumber.setError(getString(R.string.error_haveexit_number));
+                                if (result.equals("账号已存在")) {
+                                    Toast toast=Toast.makeText(RegisterBasedActivity.this,null,Toast.LENGTH_SHORT);
+                                    toast.setText("手机号已注册");
+                                    toast.show();
+                                    mEdtnumber.setError(getString(R.string.error_haveexit_number));
+                                }
                             }
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
-                            Toast.makeText(RegisterBasedActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                            Toast toast=Toast.makeText(RegisterBasedActivity.this,null,Toast.LENGTH_SHORT);
+                            toast.setText("无网络连接");
+                            toast.show();
                             Log.e("TAG", e.getMessage(), e);
                         }
                     }
@@ -280,7 +286,9 @@ public class RegisterBasedActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(RegisterBasedActivity.this,"请稍后再试！",Toast.LENGTH_SHORT).show();
+                Toast toast=Toast.makeText(RegisterBasedActivity.this,null,Toast.LENGTH_SHORT);
+                toast.setText("请稍后再试");
+                toast.show();
                 Log.e("TAG", error.getMessage(), error);
             }
         }) {

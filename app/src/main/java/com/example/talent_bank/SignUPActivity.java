@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.text.InputType;
 import android.transition.Slide;
@@ -34,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.talent_bank.register.RegisterLastActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,7 +241,6 @@ public class SignUPActivity extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
             if (success) {
                 /*
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
@@ -289,8 +290,15 @@ public class SignUPActivity extends AppCompatActivity {
                                 //实现页面跳转（并清空页面栈）
                                 mEditor.putString("auto","true");
                                 mEditor.apply();
-                                startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
+                                UpdateUserdate(account,password);
+                                Handler mHandler = new Handler();
+                                mHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
+                                    }
+                                },1800);
                             } else {
                                 if (result.equals("failed"))
                                     Toast.makeText(SignUPActivity.this,"账户或密码错误！",Toast.LENGTH_SHORT).show();
@@ -322,6 +330,59 @@ public class SignUPActivity extends AppCompatActivity {
         request.setTag(tag);
         //将请求添加到队列中
         requestQueue.add(request);
+    }
+
+    public void UpdateUserdate(final String number, final String password){  //更新当前登录的用户信息
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetUserdata?number="+number+"&password="+password;
+        String tag = "Updata";
+        //取得请求队列
+        RequestQueue Updata = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        Updata.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest Updatarequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
+                            mEditor.putString("name",jsonObject.getString("name"));
+                            mEditor.putString("advantage",jsonObject.getString("advantage"));
+                            mEditor.putString("grade",jsonObject.getString("grade"));
+                            mEditor.putString("experience",jsonObject.getString("experience"));
+                            mEditor.putString("tag",jsonObject.getString("tag"));
+                            mEditor.putString("wechart",jsonObject.getString("wechart"));
+                            mEditor.putString("email",jsonObject.getString("email"));
+                            mEditor.putString("adress",jsonObject.getString("adress"));
+                            mEditor.apply();
+                            Toast toast=Toast.makeText(SignUPActivity.this,null,Toast.LENGTH_SHORT);
+                            toast.setText("欢迎你:"+jsonObject.getString("name"));
+                            toast.show();
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(SignUPActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(SignUPActivity.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", number);
+                params.put("password", password);
+                return params;
+            }
+        };
+        //设置Tag标签
+        Updatarequest.setTag(tag);
+        //将请求添加到队列中
+        Updata.add(Updatarequest);
     }
 
     //重写返回函数

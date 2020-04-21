@@ -3,6 +3,7 @@ package com.example.talent_bank.home_page;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.talent_bank.AdviceActivity;
 import com.example.talent_bank.MyApplyActivity;
@@ -21,6 +23,10 @@ import com.example.talent_bank.MyPublishActivity;
 import com.example.talent_bank.SetUpActivity;
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
+
+import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
@@ -32,6 +38,11 @@ public class HomeFragment extends Fragment {
     private LinearLayout mMyCollection;
     private LinearLayout mMyBiographical;
     private LinearLayout mAdvice;
+
+    private TextView username;
+    private TextView grade;
+
+    private SharedPreferences mSharedPreferences;     //用于读取手机暂存用户信息
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -65,6 +76,15 @@ public class HomeFragment extends Fragment {
         mSetUp.setOnClickListener(new ButtonListener());
         mAdvice=mView.findViewById(R.id.home_btn_advice);
         mAdvice.setOnClickListener(new ButtonListener());
+
+        mSharedPreferences= Objects.requireNonNull(getActivity()).getSharedPreferences("userdata",MODE_PRIVATE);
+
+        username=mView.findViewById(R.id.home_txt_username);
+        grade=mView.findViewById(R.id.home_txt_grade);
+
+        //初始化用户名称和年级信息
+        username.setText(mSharedPreferences.getString("name",""));
+        grade.setText(mSharedPreferences.getString("grade",""));
     }
 
     private class ButtonListener implements View.OnClickListener {

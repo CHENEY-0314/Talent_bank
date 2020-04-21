@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/register_background"
     tools:context=".ProjectReleased">
     <LinearLayout
         android:id="@+id/pr_head"

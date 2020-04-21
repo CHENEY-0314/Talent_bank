@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.talent_bank.HandlerActivity;
+import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.R;
 import com.example.talent_bank.SignUPActivity;
 
@@ -284,11 +285,16 @@ public class RegisterLastActivity extends AppCompatActivity {
                             if (result.equals("注册成功")) {
                                 mEditor.clear();
                                 mEditor.commit();
-                                Toast.makeText(RegisterLastActivity.this,"注册成功！",Toast.LENGTH_SHORT).show();
+                                Toast toast=Toast.makeText(RegisterLastActivity.this,null,Toast.LENGTH_SHORT);
+                                toast.setText("注册成功");
+                                toast.show();
                                 startActivity(new Intent(RegisterLastActivity.this, SignUPActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                             } else {
-                                if (result.equals("账号已存在"))
-                                    Toast.makeText(RegisterLastActivity.this,"账号已存在！",Toast.LENGTH_SHORT).show();
+                                if (result.equals("账号已存在")){
+                                    Toast toast=Toast.makeText(RegisterLastActivity.this,null,Toast.LENGTH_SHORT);
+                                    toast.setText("账号已存在");
+                                    toast.show();
+                                }
                             }
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）

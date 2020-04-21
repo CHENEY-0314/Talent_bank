@@ -33,7 +33,7 @@
                 android:id="@+id/home_txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="何咱"
+                android:text="名称"
                 android:textStyle="bold"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="23sp" />
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="2018级/工业设计"
+                android:text="年级和专业"
                 android:textColor="#B3B2C2"
                 android:textSize="15sp" />
         </LinearLayout>

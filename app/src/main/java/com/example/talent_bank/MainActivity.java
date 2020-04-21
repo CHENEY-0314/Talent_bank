@@ -5,11 +5,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import android.app.ActivityManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
+
 import com.example.talent_bank.home_page.HomeFragment;
 import com.example.talent_bank.home_page.MainFragment;
 import com.example.talent_bank.home_page.NewsFragment;
@@ -28,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     //适配器
     private ViewPagerAdapterForNav mViewPagerAdapterForNav;
     private MenuItem menuItem;
+
+    private long exitTime=0;  //用于判断两次点击退出主页的事件间隔
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -110,6 +118,26 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {   //重写返回函数以实现点击两次退出APP
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast toast=Toast.makeText(MainActivity.this,null,Toast.LENGTH_SHORT);
+            toast.setText("再按一次退出程序");
+            toast.show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
+        }
+    }
 
 
 }

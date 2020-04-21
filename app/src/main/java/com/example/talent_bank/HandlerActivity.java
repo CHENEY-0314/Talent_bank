@@ -22,9 +22,6 @@ public class HandlerActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handler);
-        //显示提示框“三秒后自动跳转”
-        Toast toast=Toast.makeText(HandlerActivity.this,"三秒后自动跳转",Toast.LENGTH_SHORT);
-        toast.show();
         //进行页面的自动跳转
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
@@ -35,6 +32,6 @@ public class HandlerActivity extends AppCompatActivity {
                 finish();
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
             }
-        },3500);
+        },1800);
     }
 }
