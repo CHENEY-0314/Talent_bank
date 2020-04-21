@@ -12,9 +12,11 @@ public class GuideViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> fristload;
     private MutableLiveData<Integer> editnum;
     private MutableLiveData<String> editDemand;
+    private MutableLiveData<Integer> receiveApplyNum;
     private String key = "fristload_key";
     private String key2 = "editNum_key";
     private String key3 = "editDemand_key";
+    private String key4 = "receiveApplyNum_key";
     private String shpName = "SHP_NAME";
 
     public GuideViewModel(@NonNull Application application) {
@@ -33,6 +35,11 @@ public class GuideViewModel extends AndroidViewModel {
             editDemand = new MutableLiveData<>();
             SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
             editDemand.setValue(shp.getString(key3,""));
+        }
+        if(receiveApplyNum == null) {
+            receiveApplyNum = new MutableLiveData<>();
+            SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
+            receiveApplyNum.setValue(shp.getInt(key4,3));
         }
     }
 }

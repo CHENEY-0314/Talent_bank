@@ -60,7 +60,13 @@ public class ProjectContents extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //点击跳转界面
-                startActivity(new Intent(ProjectContents.this,ReceiveApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
+                int x = shp.getInt("receiveApplyNum_key",3);
+                if (x == 0) {
+                    startActivity(new Intent(ProjectContents.this,ReceiveApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                } else {
+                    startActivity(new Intent(ProjectContents.this,ReceiveNullApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                }
             }
         });
 
@@ -130,8 +136,6 @@ public class ProjectContents extends AppCompatActivity {
                 }.show();
             }
         });
-
-
     }
 
     @Override
