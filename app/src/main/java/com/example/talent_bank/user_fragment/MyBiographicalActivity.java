@@ -1,8 +1,6 @@
-package com.example.talent_bank;
+package com.example.talent_bank.user_fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,8 +8,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-public class EditPeopleDemand extends AppCompatActivity {
-    private RecyclerView mRvMain;
+import com.example.talent_bank.R;
+
+public class MyBiographicalActivity extends AppCompatActivity {
+
     private ImageView imgBack;
 
     @Override
@@ -22,20 +22,15 @@ public class EditPeopleDemand extends AppCompatActivity {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//状态栏字体颜色设置为黑色这个是Android 6.0才出现的属性
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_people_demand);
+        setContentView(R.layout.activity_my_biographical);
 
-        imgBack = findViewById(R.id.EPDimg_back);
-        mRvMain = findViewById(R.id.rv_edit_people_demand);
-        mRvMain.setLayoutManager(new LinearLayoutManager(EditPeopleDemand.this));
-        mRvMain.setAdapter(new EditLinearAdapter(EditPeopleDemand.this));
+        imgBack=findViewById(R.id.MBimg_back);
 
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击上方返回按钮
-                EditPeopleDemand.this.finish();
+                MyBiographicalActivity.this.finish();
             }
         });
-
     }
-
 }

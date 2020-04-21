@@ -1,8 +1,7 @@
-package com.example.talent_bank;
+package com.example.talent_bank.MyApply;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.talent_bank.R;
 
 public class EditDemand extends AppCompatActivity {
     private ImageView imgBack;
@@ -47,7 +48,7 @@ public class EditDemand extends AppCompatActivity {
                 String x = String.valueOf(editText.getText());
                 editor.putString("editDemand_key",x);
                 editor.apply();
-                Intent intent = new Intent(EditDemand.this,EditPeopleDemand.class);
+                Intent intent = new Intent(EditDemand.this, EditPeopleDemand.class);
                 startActivity(intent);
             }
         });

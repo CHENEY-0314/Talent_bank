@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.talent_bank.MyApply.EditDemand;
+import com.example.talent_bank.MyApply.EditPeopleDemand;
+
 public class EditLinearAdapter extends RecyclerView.Adapter<EditLinearAdapter.LinearViewHolder> {
     private String shpName = "SHP_NAME";
     private EditPeopleDemand mContext;
@@ -30,7 +33,7 @@ public class EditLinearAdapter extends RecyclerView.Adapter<EditLinearAdapter.Li
         holder.textView.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击编辑按钮
-                Intent intent = new Intent(mContext,EditDemand.class);
+                Intent intent = new Intent(mContext, EditDemand.class);
                 mContext.startActivity(intent);
             }
         });

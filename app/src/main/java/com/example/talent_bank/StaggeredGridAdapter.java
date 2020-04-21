@@ -25,6 +25,17 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
         this.mContext = context;
     }
 
+
+    //设置不同item标上序号以区别不同类型显示
+    @Override
+    public int getItemViewType(int position) {  //判断Item的Type
+        if(position % 2 !=0){  //position为奇数
+            return 0;
+        } else {   //偶数
+            return 1;
+        }
+    }
+    //设置不同item类型的样式
     @NonNull
     @Override
     public StaggeredGridAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -35,9 +46,11 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
         }
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull StaggeredGridAdapter.LinearViewHolder holder, final int position) {
         if(position % 2 !=0){  //position为奇数
+
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,25 +73,19 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
     @Override
     public int getItemCount() {
         return 2;
-    }
+    }  //项目数量
 
-    @Override
-    public int getItemViewType(int position) {  //判断Item的Type
-        if(position % 2 !=0){  //position为奇数
-            return 0;
-        } else {   //偶数
-            return 1;
-        }
-    }
-
+    //声明控件
     class LinearViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
 
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.mypush_card);
+
         }
     }
+
     //点击事件
     public interface OnItemClickListener {
         void onClick(int pos);

@@ -1,4 +1,6 @@
-package com.example.talent_bank;
+package com.example.talent_bank.user_fragment;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -6,11 +8,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.talent_bank.R;
 
-public class AdviceActivity extends AppCompatActivity {
+public class SetUpActivity extends AppCompatActivity {
 
     private ImageView imgBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置屏幕上方状态栏颜色
@@ -19,16 +22,15 @@ public class AdviceActivity extends AppCompatActivity {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//状态栏字体颜色设置为黑色这个是Android 6.0才出现的属性
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advice);
+        setContentView(R.layout.activity_set_up);
 
-        imgBack=findViewById(R.id.Adviceimg_back);
+        imgBack=findViewById(R.id.Setup_back);
 
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击上方返回按钮
-                AdviceActivity.this.finish();
+                SetUpActivity.this.finish();
             }
         });
-
     }
 }

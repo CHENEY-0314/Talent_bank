@@ -1,9 +1,6 @@
-package com.example.talent_bank;
+package com.example.talent_bank.MyApply;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.SavedStateHandle;
-import androidx.lifecycle.SavedStateViewModelFactory;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.talent_bank.viewmodel.HomeViewModel;
+import com.example.talent_bank.R;
 
 public class EditProjectNum extends AppCompatActivity {
     TextView textView;

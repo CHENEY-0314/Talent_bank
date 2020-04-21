@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.MyApply;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+
+import com.example.talent_bank.R;
 
 public abstract class MyDialog extends Dialog implements View.OnClickListener {
     private Activity activity;

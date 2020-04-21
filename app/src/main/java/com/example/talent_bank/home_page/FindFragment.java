@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 import com.example.talent_bank.R;
 import com.example.talent_bank.viewmodel.TalkingViewModel;
 
-public class TalkingFragment extends Fragment {
+public class FindFragment extends Fragment {
 
     private TalkingViewModel mViewModel;
 
-    public static TalkingFragment newInstance() {
-        return new TalkingFragment();
+    public static FindFragment newInstance() {
+        return new FindFragment();
     }
 
     @Override

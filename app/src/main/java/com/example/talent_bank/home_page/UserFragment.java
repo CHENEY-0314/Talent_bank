@@ -11,16 +11,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.talent_bank.AdviceActivity;
-import com.example.talent_bank.MyApplyActivity;
-import com.example.talent_bank.MyBiographicalActivity;
-import com.example.talent_bank.MyCollectionActivity;
-import com.example.talent_bank.MyPublishActivity;
-import com.example.talent_bank.SetUpActivity;
+import com.example.talent_bank.user_fragment.AdviceActivity;
+import com.example.talent_bank.user_fragment.MyApplyActivity;
+import com.example.talent_bank.user_fragment.MyBiographicalActivity;
+import com.example.talent_bank.user_fragment.MyCollectionActivity;
+import com.example.talent_bank.user_fragment.MyPublishActivity;
+import com.example.talent_bank.user_fragment.SetUpActivity;
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
 
@@ -28,7 +27,7 @@ import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class HomeFragment extends Fragment {
+public class UserFragment extends Fragment {
 
     private HomeViewModel mViewModel;
     private View mView;
@@ -44,8 +43,8 @@ public class HomeFragment extends Fragment {
 
     private SharedPreferences mSharedPreferences;     //用于读取手机暂存用户信息
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static UserFragment newInstance() {
+        return new UserFragment();
     }
 
     @Override

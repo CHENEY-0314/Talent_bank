@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.talent_bank.MyApply.ReceiveApply;
+
 import cn.refactor.lib.colordialog.ColorDialog;
 
 public class ReceiveApplyAdapter extends RecyclerView.Adapter<ReceiveApplyAdapter.LinearViewHolder> {

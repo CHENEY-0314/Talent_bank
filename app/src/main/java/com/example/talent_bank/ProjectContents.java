@@ -14,11 +14,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.talent_bank.register.RegisterActivity;
-import com.example.talent_bank.register.RegisterBasedActivity;
-import com.example.talent_bank.register.RegisterLastActivity;
+import com.example.talent_bank.MyApply.EditPeopleDemand;
+import com.example.talent_bank.MyApply.EditProjectNum;
+import com.example.talent_bank.MyApply.MyDialog;
+import com.example.talent_bank.MyApply.ReceiveApply;
+import com.example.talent_bank.MyApply.ReceiveNullApply;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
@@ -49,14 +50,14 @@ public class ProjectContents extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //点击跳转界面
-                startActivity(new Intent(ProjectContents.this,EditProjectNum.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                startActivity(new Intent(ProjectContents.this, EditProjectNum.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //点击跳转界面
-                startActivity(new Intent(ProjectContents.this,EditPeopleDemand.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                startActivity(new Intent(ProjectContents.this, EditPeopleDemand.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 
@@ -66,9 +67,9 @@ public class ProjectContents extends AppCompatActivity {
                 SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
                 int x = shp.getInt("receiveApplyNum_key",3);
                 if (x == 0) {
-                    startActivity(new Intent(ProjectContents.this,ReceiveApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                    startActivity(new Intent(ProjectContents.this, ReceiveApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
                 } else {
-                    startActivity(new Intent(ProjectContents.this,ReceiveNullApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
+                    startActivity(new Intent(ProjectContents.this, ReceiveNullApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
                 }
             }
         });

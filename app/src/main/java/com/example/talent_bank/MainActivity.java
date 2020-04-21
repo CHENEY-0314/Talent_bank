@@ -6,20 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.ActivityManager;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
-import com.example.talent_bank.home_page.HomeFragment;
+import com.example.talent_bank.home_page.UserFragment;
 import com.example.talent_bank.home_page.MainFragment;
 import com.example.talent_bank.home_page.NewsFragment;
-import com.example.talent_bank.home_page.TalkingFragment;
+import com.example.talent_bank.home_page.FindFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -91,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
     private void initFragments() {
         mFragments = new ArrayList<>();
         mFragments.add(MainFragment.newInstance());
-        mFragments.add(TalkingFragment.newInstance());
+        mFragments.add(FindFragment.newInstance());
         mFragments.add(NewsFragment.newInstance());
-        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(UserFragment.newInstance());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
