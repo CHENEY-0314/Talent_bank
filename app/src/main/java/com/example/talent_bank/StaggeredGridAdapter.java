@@ -72,7 +72,7 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 7;
     }  //项目数量
 
     //声明控件
