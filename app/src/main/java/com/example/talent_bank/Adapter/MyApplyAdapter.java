@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.talent_bank.MyApplyActivity;
+import com.example.talent_bank.user_fragment.MyApplyActivity;
 import com.example.talent_bank.R;
 
 import cn.refactor.lib.colordialog.ColorDialog;

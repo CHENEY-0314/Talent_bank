@@ -1,4 +1,4 @@
-package com.example.talent_bank.MyApply;
+package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +11,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.talent_bank.R;
 
 public class EditProjectNum extends AppCompatActivity {
     TextView textView;

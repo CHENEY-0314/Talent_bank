@@ -12,15 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyApply.ReceiveNullApply"></activity>
-        <activity android:name=".MyApply.ReceiveApply" />
-        <activity android:name=".MyApply.EditDemand" />
-        <activity android:name=".MyApply.EditPeopleDemand" />
-        <activity android:name=".MyApply.EditProjectNum" />
+
+        <activity android:name=".ReceiveNullApply"/>
+        <activity android:name=".MyApplyNull"/>
+        <activity android:name=".ReceiveApply" />
+        <activity android:name=".EditDemand" />
+        <activity android:name=".EditPeopleDemand" />
+        <activity android:name=".EditProjectNum" />
         <activity android:name=".ProjectContents" />
         <activity android:name=".user_fragment.SetUpActivity" />
         <activity android:name=".user_fragment.AdviceActivity" />
         <activity android:name=".ProjectReleased" />
+        <activity android:name=".ProjectReleased2" />
         <activity android:name=".GuideActivity$ProjectReleased" />
         <activity android:name=".user_fragment.MyBiographicalActivity" />
         <activity android:name=".user_fragment.MyCollectionActivity" />

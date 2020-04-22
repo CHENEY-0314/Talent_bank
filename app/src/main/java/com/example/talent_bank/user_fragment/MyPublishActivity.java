@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.user_fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +11,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.talent_bank.StaggeredGridAdapter;
-
 import com.example.talent_bank.Adapter.MyPublishAdapter;
+import com.example.talent_bank.R;
 
 public class MyPublishActivity extends AppCompatActivity {
 
@@ -42,8 +41,6 @@ public class MyPublishActivity extends AppCompatActivity {
 
         mRvMain = findViewById(R.id.rv_my_publish);
         mRvMain.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        mRvMain.setAdapter(new StaggeredGridAdapter(MyPublishActivity.this)); //对RecyclerView设置适配器
         mRvMain.setAdapter(new MyPublishAdapter(MyPublishActivity.this)); //对RecyclerView设置适配器
-
     }
 }

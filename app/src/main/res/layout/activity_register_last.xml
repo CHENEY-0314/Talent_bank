@@ -164,7 +164,7 @@
                 android:stateListAnimator="@null"
                 android:background="@drawable/signup_btnshape"
                 android:bufferType="normal"
-                android:paddingVertical="10dp"
+                android:paddingVertical="14dp"
                 android:text="@string/comple"
                 android:textColor="#fff"
                 android:textSize="20sp"

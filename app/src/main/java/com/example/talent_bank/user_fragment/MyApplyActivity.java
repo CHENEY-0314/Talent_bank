@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.talent_bank.Adapter.MyApplyAdapter;
 import com.example.talent_bank.Adapter.ReceiveApplyAdapter;
+import com.example.talent_bank.R;
 
 public class MyApplyActivity extends AppCompatActivity {
     private RecyclerView mRvMain;

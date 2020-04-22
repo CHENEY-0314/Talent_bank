@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.talent_bank.Adapter.ViewPagerAdapterForNav;
 import com.example.talent_bank.home_page.UserFragment;
 import com.example.talent_bank.home_page.MainFragment;
 import com.example.talent_bank.home_page.NewsFragment;

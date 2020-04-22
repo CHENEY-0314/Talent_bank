@@ -216,7 +216,7 @@
             android:layout_marginHorizontal="53dp"
             android:background="@drawable/signup_btnshape"
             android:bufferType="normal"
-            android:paddingVertical="10dp"
+            android:paddingVertical="14dp"
             android:stateListAnimator="@null"
             android:text="@string/next"
             android:textColor="#fff"

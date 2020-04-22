@@ -21,7 +21,6 @@
         app:layout_constraintStart_toStartOf="@+id/btn_signup"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="253dp"
@@ -33,6 +32,7 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:paddingVertical="13dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -139,8 +139,8 @@
 
     <CheckBox
         android:id="@+id/SP_check_showpassword"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:checked="true"
         android:background="@drawable/hidepassword_choose"

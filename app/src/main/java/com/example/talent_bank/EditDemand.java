@@ -1,4 +1,4 @@
-package com.example.talent_bank.MyApply;
+package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-import com.example.talent_bank.R;
 
 public class EditDemand extends AppCompatActivity {
     private ImageView imgBack;

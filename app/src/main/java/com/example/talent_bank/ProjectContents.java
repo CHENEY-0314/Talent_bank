@@ -15,12 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.talent_bank.MyApply.EditPeopleDemand;
-import com.example.talent_bank.MyApply.EditProjectNum;
-import com.example.talent_bank.MyApply.MyDialog;
-import com.example.talent_bank.MyApply.ReceiveApply;
-import com.example.talent_bank.MyApply.ReceiveNullApply;
-
 import cn.refactor.lib.colordialog.ColorDialog;
 
 public class ProjectContents extends AppCompatActivity {

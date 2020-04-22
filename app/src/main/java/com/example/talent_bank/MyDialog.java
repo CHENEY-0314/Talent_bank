@@ -1,4 +1,4 @@
-package com.example.talent_bank.MyApply;
+package com.example.talent_bank;
 
 import android.app.Activity;
 import android.app.Dialog;

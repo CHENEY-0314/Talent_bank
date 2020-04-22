@@ -12,23 +12,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.talent_bank.AdviceActivity;
-import com.example.talent_bank.MyApplyActivity;
 import com.example.talent_bank.MyApplyNull;
-import com.example.talent_bank.MyBiographicalActivity;
-import com.example.talent_bank.MyCollectionActivity;
-import com.example.talent_bank.MyPublishActivity;
-import com.example.talent_bank.ReceiveNullApply;
-import com.example.talent_bank.SetUpActivity;
+import com.example.talent_bank.user_fragment.MyPublishActivity;
 import com.example.talent_bank.user_fragment.AdviceActivity;
 import com.example.talent_bank.user_fragment.MyApplyActivity;
 import com.example.talent_bank.user_fragment.MyBiographicalActivity;
 import com.example.talent_bank.user_fragment.MyCollectionActivity;
-import com.example.talent_bank.user_fragment.MyPublishActivity;
 import com.example.talent_bank.user_fragment.SetUpActivity;
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
@@ -113,8 +105,8 @@ public class UserFragment extends Fragment {
                         Intent intent1 = new Intent(getActivity(), MyApplyNull.class);
                         startActivity(intent1);
                     } else {
-                        Intent intent1= new Intent(getActivity(), MyApplyActivity.class);
-                        startActivity(intent1);
+                        Intent intent2= new Intent(getActivity(), MyApplyActivity.class);
+                        startActivity(intent2);
                     }
                     break;
                 case R.id.home_btn_MyCollection:
