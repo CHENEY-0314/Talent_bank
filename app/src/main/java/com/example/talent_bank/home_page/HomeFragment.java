@@ -2,6 +2,7 @@ package com.example.talent_bank.home_page;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,9 +18,11 @@ import android.widget.TextView;
 
 import com.example.talent_bank.AdviceActivity;
 import com.example.talent_bank.MyApplyActivity;
+import com.example.talent_bank.MyApplyNull;
 import com.example.talent_bank.MyBiographicalActivity;
 import com.example.talent_bank.MyCollectionActivity;
 import com.example.talent_bank.MyPublishActivity;
+import com.example.talent_bank.ReceiveNullApply;
 import com.example.talent_bank.SetUpActivity;
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
@@ -41,6 +44,8 @@ public class HomeFragment extends Fragment {
 
     private TextView username;
     private TextView grade;
+
+    private String shpName = "SHP_NAME";
 
     private SharedPreferences mSharedPreferences;     //用于读取手机暂存用户信息
 
@@ -95,8 +100,16 @@ public class HomeFragment extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.home_btn_MyApply:
-                    Intent intent1= new Intent(getActivity(), MyApplyActivity.class);
-                    startActivity(intent1);
+                    //如果我的申请的Num为0则跳转到另一页面
+                    SharedPreferences shp = Objects.requireNonNull(getActivity()).getSharedPreferences(shpName, Context.MODE_PRIVATE);
+                    int x = shp.getInt("myApplyNum_key",0);
+                    if (x ==0) {
+                        Intent intent1 = new Intent(getActivity(), MyApplyNull.class);
+                        startActivity(intent1);
+                    } else {
+                        Intent intent1= new Intent(getActivity(), MyApplyActivity.class);
+                        startActivity(intent1);
+                    }
                     break;
                 case R.id.home_btn_MyCollection:
                     Intent intent2= new Intent(getActivity(), MyCollectionActivity.class);

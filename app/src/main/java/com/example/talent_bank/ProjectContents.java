@@ -90,13 +90,13 @@ public class ProjectContents extends AppCompatActivity {
                 new MyDialog(ProjectContents.this){
                     @Override
                     public void btnPickByTake(){
-                        //点击弹窗”结束招聘“时做的事
+                        //点击弹窗”暂停招聘“时做的事
                         ColorDialog dialog = new ColorDialog(ProjectContents.this);
                         dialog.setTitle("提示");
                         dialog.setColor("#ffffff");//颜色
                         dialog.setContentTextColor("#656565");
                         dialog.setTitleTextColor("#656565");
-                        dialog.setContentText("是否确定结束招聘？结束项目招聘后将不能再开启。");
+                        dialog.setContentText("是否确定暂停招聘？结束项目之后你的项目将不会被发现。");
                         dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                             @Override
                             public void onClick(ColorDialog dialog) {

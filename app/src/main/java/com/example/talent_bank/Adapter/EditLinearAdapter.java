@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.talent_bank.EditDemand;
+import com.example.talent_bank.EditPeopleDemand;
+import com.example.talent_bank.R;
 
 public class EditLinearAdapter extends RecyclerView.Adapter<EditLinearAdapter.LinearViewHolder> {
     private String shpName = "SHP_NAME";
@@ -30,7 +34,7 @@ public class EditLinearAdapter extends RecyclerView.Adapter<EditLinearAdapter.Li
         holder.textView.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击编辑按钮
-                Intent intent = new Intent(mContext,EditDemand.class);
+                Intent intent = new Intent(mContext, EditDemand.class);
                 mContext.startActivity(intent);
             }
         });

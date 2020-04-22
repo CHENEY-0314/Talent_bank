@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyApplyActivity">
+    android:background="@drawable/register_background"
+    tools:context=".ProjectReleased2">
     <LinearLayout
-        android:id="@+id/MAhead"
+        android:id="@+id/pr_head"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.10"
         android:paddingTop="10dp"
         android:paddingStart="30dp"
         android:gravity="bottom"
-        tools:ignore="RtlSymmetry,UseCompoundDrawables">
+        tools:ignore="RtlSymmetry,UseCompoundDrawables"
+        android:orientation="horizontal">
         <ImageView
-            android:id="@+id/MAimg_back"
+            android:id="@+id/PR2_back"
             android:layout_width="18dp"
             android:layout_height="22dp"
-            android:contentDescription="@string/signupback"
             android:background="@drawable/back"/>
         <TextView
             android:gravity="center"
@@ -27,15 +28,17 @@
             android:layout_height="wrap_content"
             android:paddingEnd="58dp"
             android:textColor="#1C1C1F"
-            android:text="我的申请"
+            android:text="项目发布"
             android:paddingStart="10dp"
             android:textSize="20sp" />
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.9"
+        android:layout_weight="0.75"
         android:focusableInTouchMode="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -44,7 +47,7 @@
         android:paddingRight="30dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_my_apply"
+            android:id="@+id/rv_project_released2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -62,7 +65,26 @@
             android:text="列表已经到尽头"
             android:textColor="#B0AFB5"
             android:textSize="14sp" />
-
-
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/signup_btnshape"
+            android:bufferType="normal"
+            android:text="发布"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="15dp"/>
+    </LinearLayout>
+
+
+
 </LinearLayout>

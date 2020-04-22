@@ -6,16 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.ActivityManager;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
+import com.example.talent_bank.Adapter.ViewPagerAdapterForNav;
 import com.example.talent_bank.home_page.HomeFragment;
 import com.example.talent_bank.home_page.MainFragment;
 import com.example.talent_bank.home_page.NewsFragment;

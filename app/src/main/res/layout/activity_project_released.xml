@@ -68,16 +68,16 @@
                 android:text="比赛名称讲作为“话题”发表"
                 android:textSize="13sp"
                 android:textColor="#CDCDCD"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="职位与人数要求"
+                android:text="备注"
                 android:textSize="17sp"
                 android:textColor="#686868"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginTop="50dp"/>
             <EditText
-                android:id="@+id/project_job"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -87,39 +87,40 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="不同需求用“、”隔开"
-                android:textSize="13sp"
-                android:textColor="#CDCDCD"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="奖励/补偿机制"
-                android:textSize="17sp"
+                android:text="人数需求"
                 android:textColor="#686868"
-                android:textStyle="bold"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                android:inputType="text"
-                android:importantForAutofill="no"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="备注"
                 android:textSize="17sp"
-                android:textColor="#686868"
-                android:textStyle="bold"
-                android:layout_marginTop="40dp"/>
-            <EditText
+                android:layout_marginTop="50dp"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                android:inputType="text"
-                android:importantForAutofill="no"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/PR_btn1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#1161E4"
+                    android:text="-"
+                    android:textColor="#fff"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/PR_num"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:text="0"
+                    android:textSize="18sp"
+                    android:textColor="#1161E4"
+                    android:gravity="center"/>
+                <Button
+                    android:id="@+id/PR_btn2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#1161E4"
+                    android:text="+"
+                    android:textColor="#fff"
+                    android:textSize="17sp"/>
+            </LinearLayout>
             <Button
                 android:id="@+id/pr_released"
                 android:layout_width="match_parent"
@@ -128,12 +129,12 @@
                 android:stateListAnimator="@null"
                 android:background="@drawable/signup_btnshape"
                 android:bufferType="normal"
-                android:text="发布"
+                android:text="下一步"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingVertical="15dp"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="120dp" />
 
          </LinearLayout>
     </ScrollView>

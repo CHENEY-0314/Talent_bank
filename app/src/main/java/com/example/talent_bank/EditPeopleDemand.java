@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.example.talent_bank.Adapter.EditLinearAdapter;
+
 public class EditPeopleDemand extends AppCompatActivity {
     private RecyclerView mRvMain;
     private ImageView imgBack;
