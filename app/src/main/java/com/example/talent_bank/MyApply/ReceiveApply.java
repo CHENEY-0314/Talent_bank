@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import com.example.talent_bank.R;
-import com.example.talent_bank.ReceiveApplyAdapter;
+import com.example.talent_bank.Adapter.ReceiveApplyAdapter;
 
 public class ReceiveApply extends AppCompatActivity {
     private RecyclerView mRvMain;

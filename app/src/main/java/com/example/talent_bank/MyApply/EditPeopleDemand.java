@@ -1,4 +1,4 @@
-package com.example.talent_bank.MyApply;
+package com.example.talent_bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.example.talent_bank.EditLinearAdapter;
 import com.example.talent_bank.R;
+
+import com.example.talent_bank.Adapter.EditLinearAdapter;
 
 public class EditPeopleDemand extends AppCompatActivity {
     private RecyclerView mRvMain;

@@ -3,6 +3,8 @@ package com.example.talent_bank;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -10,11 +12,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ProjectReleased extends AppCompatActivity {
     private ImageView imgBack;
+    private Button button,btn1,btn2;
+    private TextView textView;
+    private String shpName = "SHP_NAME";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +36,50 @@ public class ProjectReleased extends AppCompatActivity {
         setContentView(R.layout.activity_project_released);
 
         imgBack = findViewById(R.id.pr_back);
+        button = findViewById(R.id.pr_released);
+        btn1 = findViewById(R.id.PR_btn1);
+        btn2 = findViewById(R.id.PR_btn2);
+        textView = findViewById(R.id.PR_num);
+
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击上方返回按钮
                 ProjectReleased.this.finish();
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+            @Override
+            public void onClick(View v) {  //点击上方返回按钮
+                Intent intent = new Intent(ProjectReleased.this,ProjectReleased2.class);
+                startActivity(intent);
+            }
+        });
+
+        final SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = shp.edit();
+        editor.putInt("demandNum_key",0);  //初始化为0
+        editor.apply();
+        btn1.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+            @Override
+            public void onClick(View v) {  //点击"-"按钮
+                int x = shp.getInt("demandNum_key",0) - 1;
+                editor.putInt("demandNum_key",x);
+                editor.apply();
+                String textNum = String.valueOf(shp.getInt("demandNum_key",0));
+                textView.setText(textNum);
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
+            @Override
+            public void onClick(View v) {  //点击"+"按钮
+                int x = shp.getInt("demandNum_key",0) + 1;
+                editor.putInt("demandNum_key",x);
+                editor.apply();
+                String textNum = String.valueOf(shp.getInt("demandNum_key",0));
+                textView.setText(textNum);
+            }
+        });
+
     }
 
 

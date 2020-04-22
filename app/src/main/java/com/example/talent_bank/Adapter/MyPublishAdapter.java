@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,22 +6,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdapter.LinearViewHolder> {
+import com.example.talent_bank.ProjectContents;
+import com.example.talent_bank.R;
+
+public class MyPublishAdapter extends RecyclerView.Adapter<MyPublishAdapter.LinearViewHolder> {
     private Context mContext;
     private AdapterView.OnItemClickListener mListener; //点击事件
 
-    public StaggeredGridAdapter (Context context, AdapterView.OnItemClickListener listener) {
+    public MyPublishAdapter(Context context, AdapterView.OnItemClickListener listener) {
         this.mContext = context;
         this.mListener = listener;
     }
 
-    public StaggeredGridAdapter (Context context) {
+    public MyPublishAdapter(Context context) {
         this.mContext = context;
     }
 
@@ -38,7 +40,7 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
     //设置不同item类型的样式
     @NonNull
     @Override
-    public StaggeredGridAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public MyPublishAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         if (i==0) {
             return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_mypush_item, parent, false));
         } else {
@@ -48,13 +50,13 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
 
 
     @Override
-    public void onBindViewHolder(@NonNull StaggeredGridAdapter.LinearViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MyPublishAdapter.LinearViewHolder holder, final int position) {
         if(position % 2 !=0){  //position为奇数
 
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext,ProjectContents.class);
+                    Intent intent = new Intent(mContext, ProjectContents.class);
                     mContext.startActivity(intent);
                 }
             });

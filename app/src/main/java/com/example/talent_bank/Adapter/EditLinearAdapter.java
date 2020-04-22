@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.talent_bank.MyApply.EditDemand;
-import com.example.talent_bank.MyApply.EditPeopleDemand;
+import com.example.talent_bank.EditDemand;
+import com.example.talent_bank.EditPeopleDemand;
+import com.example.talent_bank.R;
 
 public class EditLinearAdapter extends RecyclerView.Adapter<EditLinearAdapter.LinearViewHolder> {
     private String shpName = "SHP_NAME";

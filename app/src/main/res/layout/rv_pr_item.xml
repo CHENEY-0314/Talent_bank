@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/project_img_num"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:hint="填写队友职务"
+                    android:maxLength="20"
+                    android:textSize="14sp"
+                    android:background="#fff"
+                    android:inputType="textMultiLine"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#E8E8E8" />
+
+            <EditText
+                android:id="@+id/pr_item_content"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#fff"
+                android:gravity="start"
+                android:hint="点击编辑队友要求"
+                android:inputType="textMultiLine|textPhonetic"
+                android:maxLength="100"
+                android:textColor="#403B49"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

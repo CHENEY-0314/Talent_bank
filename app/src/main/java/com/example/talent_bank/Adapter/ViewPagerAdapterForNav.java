@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -32,16 +32,37 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.9">
-        <LinearLayout
+        android:layout_weight="0.9"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingStart="30dp"
+        android:paddingRight="30dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_my_apply"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="310dp"
+            android:layout_height="0.1dp"
+            android:layout_marginHorizontal="23dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="7dp"
+            android:background="#E8E8E8" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:focusableInTouchMode="true"
-            android:padding="30dp">
-        </LinearLayout>
-    </ScrollView>
+            android:text="列表已经到尽头"
+            android:textColor="#B0AFB5"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
 </LinearLayout>

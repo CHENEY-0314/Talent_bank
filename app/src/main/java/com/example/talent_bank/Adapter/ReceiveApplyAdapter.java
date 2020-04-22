@@ -1,4 +1,4 @@
-package com.example.talent_bank;
+package com.example.talent_bank.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.talent_bank.MyApply.ReceiveApply;
+import com.example.talent_bank.R;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
