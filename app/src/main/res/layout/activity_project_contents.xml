@@ -204,6 +204,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/PC_enter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_btnshape"

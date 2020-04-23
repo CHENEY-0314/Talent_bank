@@ -15,12 +15,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.talent_bank.TalentBank.TalentBank;
+
 import cn.refactor.lib.colordialog.ColorDialog;
 
 public class ProjectContents extends AppCompatActivity {
     private ImageView imgBack;
     private ImageView imgMore;
-    private Button button1,button2,button3;
+    private Button button1,button2,button3,button4;
     private TextView textView;
     private String shpName = "SHP_NAME";
 
@@ -39,6 +41,7 @@ public class ProjectContents extends AppCompatActivity {
         button1 = findViewById(R.id.PC_btn_num);
         button2 = findViewById(R.id.PC_btn_demand);
         button3 = findViewById(R.id.PC_btn_apply);
+        button4 = findViewById(R.id.PC_enter);
         textView = findViewById(R.id.PC_num);
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +68,13 @@ public class ProjectContents extends AppCompatActivity {
                 } else {
                     startActivity(new Intent(ProjectContents.this, ReceiveNullApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
                 }
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {  //点击跳转界面
+                startActivity(new Intent(ProjectContents.this, TalentBank.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 
