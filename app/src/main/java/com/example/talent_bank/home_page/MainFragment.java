@@ -12,18 +12,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.talent_bank.EnterTalentBank.EnterTalentBank;
+import com.example.talent_bank.EnterTalentBank.EnterTalentBankLast;
 import com.example.talent_bank.LoginActivity;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.ProjectReleased;
+import com.example.talent_bank.SignUPActivity;
 import com.example.talent_bank.viewmodel.MainViewModel;
 import com.example.talent_bank.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
@@ -81,11 +96,9 @@ public class MainFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.main_btn_entertable:
+                case R.id.main_btn_entertable:  //进入加入人才库页面
                     enterTable.setEnabled(false);
-                    Intent intent1 = new Intent(getActivity(), EnterTalentBank.class);
-                    startActivity(intent1);
-                    enterTable.setEnabled(true);
+                    ifhaveEnter();
                     break;
                 case R.id.main_btn_publish:
                     publishProject.setEnabled(false);
@@ -120,6 +133,127 @@ public class MainFragment extends Fragment {
             }
         }
     }
+
+    //判断是否已经加入了人才库
+    public void ifhaveEnter(){
+
+        final String number=mSharedPreferences.getString("number","");
+
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/IfInTalentBank?number="+number;
+        String tag = "IFENTER";
+        //取得请求队列
+        RequestQueue IFENTER = Volley.newRequestQueue(getActivity());
+        //防止重复请求，所以先取消tag标识的请求队列
+        IFENTER.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest IFENTERrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
+                            if(jsonObject.getString("intalent_bank").equals("")){
+                                Intent intent1 = new Intent(getActivity(), EnterTalentBank.class);
+                                startActivity(intent1);
+                                enterTable.setEnabled(true);
+                            }else {
+                                mEditor.putString("intalent_bank","true");
+                                mEditor.apply();
+                                ColorDialog dialog = new ColorDialog(mContext);
+                                dialog.setTitle("提示");
+                                dialog.setColor("#ffffff");//颜色
+                                dialog.setContentTextColor("#656565");
+                                dialog.setTitleTextColor("#656565");
+                                dialog.setContentText("您已加入人才库，是否退出");
+                                dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                                    @Override
+                                    public void onClick(ColorDialog dialog) {
+                                        ExitTalentBank();
+                                        dialog.dismiss();
+                                    }
+                                })
+                                        .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                            @Override
+                                            public void onClick(ColorDialog dialog) {
+                                                enterTable.setEnabled(true);
+                                                dialog.dismiss();
+                                            }
+                                        }).show();
+                            }
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(getActivity(),"无网络连接！",Toast.LENGTH_SHORT).show();
+                            enterTable.setEnabled(true);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
+                enterTable.setEnabled(true);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", number);
+                return params;
+            }
+        };
+        //设置Tag标签
+        IFENTERrequest.setTag(tag);
+        //将请求添加到队列中
+        IFENTER.add(IFENTERrequest);
+
+    }
+
+    public void ExitTalentBank(){
+
+        final String number=mSharedPreferences.getString("number","");
+        final String password=mSharedPreferences.getString("password","");
+
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/ExitTalentBankServlet?number="+number+"&password="+password;
+        String tag = "ExitTalent";
+        //取得请求队列
+        RequestQueue ExitTalent = Volley.newRequestQueue(getActivity());
+        //防止重复请求，所以先取消tag标识的请求队列
+        ExitTalent.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest ExitTalentrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast toast=Toast.makeText(getActivity(),null,Toast.LENGTH_SHORT);
+                        toast.setText("成功退出");
+                        toast.show();
+                        enterTable.setEnabled(true);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
+                enterTable.setEnabled(true);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", number);
+                params.put("password", password);
+                return params;
+            }
+        };
+        //设置Tag标签
+        ExitTalentrequest.setTag(tag);
+        //将请求添加到队列中
+        ExitTalent.add(ExitTalentrequest);
+    }
+
+
 }
 
 
