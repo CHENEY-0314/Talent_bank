@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -65,6 +66,11 @@ public class MyPublishActivity extends AppCompatActivity {
         runWebView=findViewById(R.id.MP_loading);
         imgBack=findViewById(R.id.MPimg_back);
 
+        //设置页面跳转动画
+        getWindow().setExitTransition(new Slide().setDuration(1000));
+        getWindow().setEnterTransition(new Slide().setDuration(1000));
+
+
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击上方返回按钮
@@ -108,9 +114,8 @@ public class MyPublishActivity extends AppCompatActivity {
     public void loadingProject(){
 
         final String number=UseforUserData.getString("number","");
-        final String password=UseforUserData.getString("password","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectByNumber?number="+number+"&password="+password;
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectByNumber?number="+number;
         String tag = "GetProject";
         //取得请求队列
         RequestQueue GetProject = Volley.newRequestQueue(this);
@@ -125,7 +130,6 @@ public class MyPublishActivity extends AppCompatActivity {
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
                             ProjectDataEditor.putString("pj_id",jsonObject.getString("pj_id"));
                             ProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
-                            ProjectDataEditor.putString("state",jsonObject.getString("state"));
                             ProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
                             ProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
                             ProjectDataEditor.apply();
@@ -141,6 +145,7 @@ public class MyPublishActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
                             Toast.makeText(MyPublishActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                            MyPublishActivity.this.finish();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -148,13 +153,13 @@ public class MyPublishActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
                 Toast.makeText(MyPublishActivity.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+                MyPublishActivity.this.finish();
             }
         }) {
             @Override
             protected Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
                 params.put("number", number);
-                params.put("password", password);
                 return params;
             }
         };

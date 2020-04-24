@@ -71,10 +71,10 @@
             android:id="@+id/RLeditGrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
             android:ems="10"
+            android:hint="如：2018级/软件工程"
             android:maxLength="15"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:ignore="LabelFor"
             tools:layout_editor_absoluteX="20dp" />
 
@@ -95,7 +95,7 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="18"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:ignore="LabelFor"
             tools:layout_editor_absoluteX="20dp" />
 
@@ -116,7 +116,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:maxLength="20"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:ignore="LabelFor,TextFields"
             tools:layout_editor_absoluteX="20dp" />
 
@@ -136,14 +136,14 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:maxLength="50"
-            android:importantForAutofill="no"
             android:inputType="text"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:hint="如：华南理工大学大学城校区"
             tools:ignore="LabelFor" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="广州大学城内"
+            android:text="广州番禺区大学城内"
             android:textSize="13sp"
             android:textColor="#CDCDCD"/>
     </LinearLayout>

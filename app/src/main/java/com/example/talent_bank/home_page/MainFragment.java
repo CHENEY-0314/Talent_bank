@@ -82,12 +82,16 @@ public class MainFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.main_btn_entertable:
+                    enterTable.setEnabled(false);
                     Intent intent1 = new Intent(getActivity(), EnterTalentBank.class);
                     startActivity(intent1);
+                    enterTable.setEnabled(true);
                     break;
                 case R.id.main_btn_publish:
+                    publishProject.setEnabled(false);
                     Intent intent2 = new Intent(getActivity(), ProjectReleased.class);
                     startActivity(intent2);
+                    publishProject.setEnabled(true);
                     break;
                 case R.id.main_user_img:
                     ColorDialog dialog = new ColorDialog(mContext);

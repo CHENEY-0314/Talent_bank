@@ -100,14 +100,13 @@ public class EditPeopleDemand extends AppCompatActivity {
     public void loadingProject(){
 
         final String number=UseforUserData.getString("number","");
-        final String password=UseforUserData.getString("password","");
 
         final String ALLpj_id=UseforProjectData.getString("pj_id","");
         int Curr_pj=UseforProjectData.getInt("curr_pj",-1);
         String[] ALLpj_idstrarr = ALLpj_id.split("~");
         final String pj_id=ALLpj_idstrarr[Curr_pj];
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectMemberByID?number="+number+"&password="+password+"&pj_id="+pj_id;
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectMemberByID?number="+number+"&pj_id="+pj_id;
         String tag = "GetProjectMember";
         //取得请求队列
         RequestQueue GetProjectMember = Volley.newRequestQueue(this);
@@ -149,7 +148,6 @@ public class EditPeopleDemand extends AppCompatActivity {
             protected Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
                 params.put("number", number);
-                params.put("password", password);
                 params.put("pj_id", pj_id);
                 return params;
             }

@@ -250,6 +250,7 @@ public class ProjectReleasedAdapter extends RecyclerView.Adapter<ProjectReleased
                         try {
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("结果");
                             String result = jsonObject.getString("Result");
+                            if(result.equals("创建成功")){
                             editor.clear();
                             editor.apply();
                             Toast toast=Toast.makeText(mContext,null,Toast.LENGTH_SHORT);
@@ -262,7 +263,7 @@ public class ProjectReleasedAdapter extends RecyclerView.Adapter<ProjectReleased
                                     mContext.startActivity(new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                                     mContext.overridePendingTransition(0,R.anim.fade_out);
                                 }
-                            },1300);
+                            },1300);}
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
                             btn_publich.setEnabled(true);

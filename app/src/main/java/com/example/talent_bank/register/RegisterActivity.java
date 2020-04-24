@@ -105,10 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
                 mEditor.putString("register_advantage",mEditadvantage.getText().toString());
                 mEditor.putString("register_tag",tag);
                 mEditor.apply();
-                if(!ifEmpty()){
-                    mBtnNext.setEnabled(false);
-                    startActivity(new Intent(RegisterActivity.this, RegisterLastActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this).toBundle());}
-            }
+                mBtnNext.setEnabled(false);
+                startActivity(new Intent(RegisterActivity.this, RegisterLastActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this).toBundle());}
         });
         mImgback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,11 +180,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     //判断是否已经填好数据
-    public boolean ifEmpty(){
-        if(mEditexperience.getText().toString().equals("")){mEditexperience.setError(getString(R.string.error_empty));return true;}
-        else if(mEditadvantage.getText().toString().equals("")){mEditadvantage.setError(getString(R.string.error_empty));return true;}
-        else return false;
-    }
+//    public boolean ifEmpty(){
+//        if(mEditexperience.getText().toString().equals("")){mEditexperience.setError(getString(R.string.error_empty));return true;}
+//        else if(mEditadvantage.getText().toString().equals("")){mEditadvantage.setError(getString(R.string.error_empty));return true;}
+//        else return false;
+//    }
 
     //点击空白处收起键盘
     @Override
