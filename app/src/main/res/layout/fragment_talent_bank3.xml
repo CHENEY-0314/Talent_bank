@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".TalentBank.TalentBankFragment3"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingTop="20dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="20dp"
+        app:flexWrap="wrap">
+        <CheckBox
+            android:id="@+id/talent_bank_cb10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/talent_bank_check"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="Photohop"
+            android:textColor="#000"
+            android:textSize="15sp" />
+        <CheckBox
+            android:id="@+id/talent_bank_cb11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/talent_bank_check"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="PPT制作"
+            android:textColor="#000"
+            android:textSize="15sp" />
+        <CheckBox
+            android:id="@+id/talent_bank_cb12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/talent_bank_check"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="视频剪辑"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>

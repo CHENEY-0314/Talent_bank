@@ -15,12 +15,14 @@ public class GuideViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> receiveApplyNum;
     private MutableLiveData<Integer> demandNum;
     private MutableLiveData<Integer> myApplyNum; //我发出的申请的num
+    private MutableLiveData<Boolean> ifOpenTable; //判断我是否打开了TalentBank中的Table；
     private String key = "fristload_key";
     private String key2 = "editNum_key";
     private String key3 = "editDemand_key";
     private String key4 = "receiveApplyNum_key";
     private String key5 = "demandNum_key";
     private String key6 = "myApplyNum_key";
+    private String key7 = "ifOpenTable_key";
     private String shpName = "SHP_NAME";
 
     public GuideViewModel(@NonNull Application application) {
@@ -54,6 +56,11 @@ public class GuideViewModel extends AndroidViewModel {
             myApplyNum = new MutableLiveData<>();
             SharedPreferences shp = getApplication().getSharedPreferences(shpName,Context.MODE_PRIVATE);
             myApplyNum.setValue(shp.getInt(key6,0));
+        }
+        if(ifOpenTable == null) {
+            ifOpenTable = new MutableLiveData<>();
+            SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
+            ifOpenTable.setValue(shp.getBoolean(key7,false));
         }
     }
 }

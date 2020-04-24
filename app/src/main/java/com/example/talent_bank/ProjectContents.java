@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.talent_bank.TalentBank.TalentBank;
+
 import cn.refactor.lib.colordialog.ColorDialog;
 
 public class ProjectContents extends AppCompatActivity {
@@ -49,6 +51,8 @@ public class ProjectContents extends AppCompatActivity {
         TXETcount_member = findViewById(R.id.PC_num);
         TEXTpj_name=findViewById(R.id.PC_pj_name);
         TEXTpj_introduce=findViewById(R.id.PC_pj_introduce);
+        button4 = findViewById(R.id.PC_enter);
+        textView = findViewById(R.id.PC_num);
 
         UseforProjectData=getSharedPreferences("projectdata",MODE_PRIVATE);
         ProjectDataEditor=UseforProjectData.edit();
@@ -72,6 +76,13 @@ public class ProjectContents extends AppCompatActivity {
                 } else {
                     startActivity(new Intent(ProjectContents.this, ReceiveNullApply.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
                 }
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {  //点击跳转界面
+                startActivity(new Intent(ProjectContents.this, TalentBank.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 

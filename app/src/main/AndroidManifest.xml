@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".ReceiveNullApply"/>
-        <activity android:name=".MyApplyNull"/>
+        <activity android:name=".EnterTalentBank.EnterTalentBankLast"></activity>
+        <activity android:name=".EnterTalentBank.EnterTalentBank" />
+        <activity android:name=".TalentBank.TalentBank" />
+        <activity android:name=".ReceiveNullApply" />
+        <activity android:name=".MyApplyNull" />
         <activity android:name=".ReceiveApply" />
         <activity android:name=".EditDemand" />
         <activity android:name=".EditPeopleDemand" />
@@ -35,7 +37,8 @@
         <activity android:name=".SignUPActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".GuideActivity"
+        <activity
+            android:name=".GuideActivity"
             android:theme="@style/splash_style">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
