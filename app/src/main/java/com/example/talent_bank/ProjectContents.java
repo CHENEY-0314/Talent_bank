@@ -20,9 +20,17 @@ import cn.refactor.lib.colordialog.ColorDialog;
 public class ProjectContents extends AppCompatActivity {
     private ImageView imgBack;
     private ImageView imgMore;
-    private Button button1,button2,button3;
-    private TextView textView;
+    private Button button2,button3;
+    private TextView TXETcount_member;
     private String shpName = "SHP_NAME";
+
+    private TextView TEXTpj_name;
+    private TextView TEXTpj_introduce;
+
+    private int Curr_PJ;//用于标识点进来的项目是哪个项目
+
+    private SharedPreferences UseforProjectData;
+    private SharedPreferences.Editor ProjectDataEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +44,27 @@ public class ProjectContents extends AppCompatActivity {
         //设置head的img监听
         imgBack = findViewById(R.id.PCimg_back);
         imgMore = findViewById(R.id.PCimg_more);
-        button1 = findViewById(R.id.PC_btn_num);
         button2 = findViewById(R.id.PC_btn_demand);
         button3 = findViewById(R.id.PC_btn_apply);
-        textView = findViewById(R.id.PC_num);
+        TXETcount_member = findViewById(R.id.PC_num);
+        TEXTpj_name=findViewById(R.id.PC_pj_name);
+        TEXTpj_introduce=findViewById(R.id.PC_pj_introduce);
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {  //点击跳转界面
-                startActivity(new Intent(ProjectContents.this, EditProjectNum.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
-            }
-        });
+        UseforProjectData=getSharedPreferences("projectdata",MODE_PRIVATE);
+        ProjectDataEditor=UseforProjectData.edit();
+
+        Curr_PJ=UseforProjectData.getInt("curr_pj",0);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {  //点击跳转界面
+            public void onClick(View v) {  //点击跳转查看需求队友
                 startActivity(new Intent(ProjectContents.this, EditPeopleDemand.class), ActivityOptions.makeSceneTransitionAnimation(ProjectContents.this).toBundle());
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {  //点击跳转界面
+            public void onClick(View v) {  //点击跳转查看申请
                 SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
                 int x = shp.getInt("receiveApplyNum_key",3);
                 if (x == 0) {
@@ -71,17 +78,20 @@ public class ProjectContents extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击上方返回按钮
+                //清除当前项目的标记符curr_pj
+                ProjectDataEditor.putInt("curr_pj",-1);
+                ProjectDataEditor.apply();
                 ProjectContents.this.finish();
             }
         });
 
-        SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
-        String textNum = "参与人数：" + String.valueOf(shp.getInt("editNum_key",0)) + "人";
-        textView.setText(textNum);
+        //初始化当前项目信息
+        Initializing();
 
+        //点击右上角更多的按钮
         imgMore.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
-            public void onClick(View v) {  //点击右上角更多的按钮
+            public void onClick(View v) {
                 new MyDialog(ProjectContents.this){
                     @Override
                     public void btnPickByTake(){
@@ -135,18 +145,38 @@ public class ProjectContents extends AppCompatActivity {
         });
     }
 
+    //用于初始化当前项目信息
+    public void Initializing(){
+        String count_member=UseforProjectData.getString("count_member","");
+        String pj_name=UseforProjectData.getString("pj_name","");
+        String pj_introduce=UseforProjectData.getString("pj_introduce","");
+
+        String[] count_memberstrarr = count_member.split("~");
+        String[] pj_namestrarr = pj_name.split("~");
+        String[] pj_introducestrarr = pj_introduce.split("~");
+
+        TEXTpj_name.setText(pj_namestrarr[Curr_PJ]);
+        TEXTpj_introduce.setText(pj_introducestrarr[Curr_PJ]);
+        String textNum = "参与人数：" + String.valueOf(count_memberstrarr[Curr_PJ]) + " 人";
+        TXETcount_member.setText(textNum);
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
-        textView = findViewById(R.id.PC_num);
-        SharedPreferences shp = getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
-        String textNum = "参与人数：" + String.valueOf(shp.getInt("editNum_key",0)) + "人";
-        textView.setText(textNum);
+        TXETcount_member = findViewById(R.id.PC_num);
+        String count_member=UseforProjectData.getString("count_member","");
+        String[] count_memberstrarr = count_member.split("~");
+        String textNum = "参与人数：" + String.valueOf(count_memberstrarr[Curr_PJ]) + " 人";
+        TXETcount_member.setText(textNum);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {   //重写返回函数
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            //清除当前项目的标记符curr_pj
+            ProjectDataEditor.putInt("curr_pj",-1);
+            ProjectDataEditor.apply();
             ProjectContents.this.finish();
         }
         return super.onKeyDown(keyCode, event);

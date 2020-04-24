@@ -42,9 +42,7 @@
         android:focusableInTouchMode="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingStart="30dp"
-        android:paddingRight="30dp">
+        android:paddingTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_project_released2"
@@ -71,6 +69,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.15">
         <Button
+            android:id="@+id/pr_btn_publish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
@@ -79,7 +78,7 @@
             android:bufferType="normal"
             android:text="发布"
             android:textColor="#fff"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingVertical="14dp"
             android:layout_marginTop="15dp"/>

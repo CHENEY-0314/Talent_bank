@@ -46,80 +46,123 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:padding="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="比赛名称"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:paddingTop="30dp"
-                android:textColor="#686868"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ProjectR_project_nametext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目名称"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:paddingTop="30dp"
+                    android:textColor="#686868"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textSize="20sp"
+                    android:paddingTop="25dp"
+                    android:textColor="#FF0000"
+                    android:paddingLeft="8dp"
+                    android:layout_toEndOf="@+id/ProjectR_project_nametext"/>
+            </RelativeLayout>
+
             <EditText
-                android:id="@+id/project_name"
+                android:id="@+id/ProjectR_project_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textSize="18sp"
+                android:maxLength="20"
                 android:layout_marginTop="10dp"
                 android:importantForAutofill="no"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="比赛名称讲作为“话题”发表"
+                android:text="比赛名称讲作为“话题”发表,20字内"
                 android:textSize="13sp"
                 android:textColor="#CDCDCD"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="备注"
-                android:textSize="17sp"
-                android:textColor="#686868"
-                android:textStyle="bold"
-                android:layout_marginTop="50dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ProjectR_project_introducetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目介绍"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:paddingTop="50dp"
+                    android:textColor="#686868"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textSize="20sp"
+                    android:paddingTop="45dp"
+                    android:textColor="#FF0000"
+                    android:paddingLeft="8dp"
+                    android:layout_toEndOf="@+id/ProjectR_project_introducetext"/>
+            </RelativeLayout>
+
             <EditText
+                android:id="@+id/ProjectR_project_intro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_marginTop="10dp"
+                android:maxLength="100"
                 android:inputType="text"
                 android:importantForAutofill="no"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="人数需求"
-                android:textColor="#686868"
+                android:text="需求队友类型数量"
                 android:textSize="17sp"
+                android:textColor="#686868"
+                android:textStyle="bold"
                 android:layout_marginTop="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="输入您总共需要多少种类型的队友，上限为5"
+                android:textSize="13sp"
+                android:textColor="#CDCDCD"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="15dp">
                 <Button
                     android:id="@+id/PR_btn1"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#1161E4"
-                    android:text="-"
+                    android:layout_width="40dp"
+                    android:layout_height="37dp"
+                    android:enabled="false"
+                    android:background="@drawable/btn_addnum"
+                    android:text="—"
                     android:textColor="#fff"
-                    android:textSize="17sp"/>
+                    android:textSize="18sp"/>
                 <TextView
                     android:id="@+id/PR_num"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:text="0"
+                    android:text="1"
                     android:textSize="18sp"
                     android:textColor="#1161E4"
                     android:gravity="center"/>
                 <Button
                     android:id="@+id/PR_btn2"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#1161E4"
+                    android:layout_width="40dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/btn_addnum"
                     android:text="+"
                     android:textColor="#fff"
-                    android:textSize="17sp"/>
+                    android:textSize="19sp"/>
+
             </LinearLayout>
          </LinearLayout>
 

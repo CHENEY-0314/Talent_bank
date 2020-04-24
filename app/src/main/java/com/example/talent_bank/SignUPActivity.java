@@ -66,6 +66,9 @@ public class SignUPActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
+    private SharedPreferences ForSignup;
+    private SharedPreferences.Editor mEdi;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +92,12 @@ public class SignUPActivity extends AppCompatActivity {
         mSharedPreferences=getSharedPreferences("userdata",MODE_PRIVATE);
         mEditor=mSharedPreferences.edit();
 
+        ForSignup=getSharedPreferences("signup",MODE_PRIVATE);
+        mEdi=ForSignup.edit();
+
         //初始化用户名和密码输入框
-        medtname.setText(mSharedPreferences.getString("number",""));
-        medtpassword.setText(mSharedPreferences.getString("password",""));
+        medtname.setText(ForSignup.getString("number",""));
+        medtpassword.setText(ForSignup.getString("password",""));
 
         mCbxhidepsa.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
@@ -279,14 +285,17 @@ public class SignUPActivity extends AppCompatActivity {
                             if (result.equals("success")) {
                                 //自动保存账号，密码
                                 if(mCbxrempas.isChecked()){
-                                    mEditor.putString("number",medtname.getText().toString());
-                                    mEditor.putString("password",medtpassword.getText().toString());
-                                    mEditor.apply();
+                                    mEdi.putString("number",medtname.getText().toString());
+                                    mEdi.putString("password",medtpassword.getText().toString());
+                                    mEdi.apply();
                                 }else{
-                                    mEditor.putString("number",medtname.getText().toString());
-                                    mEditor.putString("password","");    //如没有选择则清空password文件
-                                    mEditor.apply();
+                                    mEdi.putString("number",medtname.getText().toString());
+                                    mEdi.putString("password","");    //如没有选择则清空password文件
+                                    mEdi.apply();
                                 }
+                                //将用户名和密码存储到userdata，以便后续使用
+                                mEditor.putString("number",medtname.getText().toString());
+                                mEditor.putString("password",medtpassword.getText().toString());
                                 //实现页面跳转（并清空页面栈）
                                 mEditor.putString("auto","true");
                                 mEditor.apply();

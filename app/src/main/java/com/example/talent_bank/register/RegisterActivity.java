@@ -105,7 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
                 mEditor.putString("register_advantage",mEditadvantage.getText().toString());
                 mEditor.putString("register_tag",tag);
                 mEditor.apply();
-                if(!ifEmpty()) startActivity(new Intent(RegisterActivity.this, RegisterLastActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this).toBundle());
+                if(!ifEmpty()){
+                    mBtnNext.setEnabled(false);
+                    startActivity(new Intent(RegisterActivity.this, RegisterLastActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this).toBundle());}
             }
         });
         mImgback.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (s.equals("演讲能力")) mC8.setChecked(true);
             if (s.equals("Photoshop")) mC9.setChecked(true);
             if (s.equals("PPT制作")) mC10.setChecked(true);
-            if (s.equals("C++")) mC11.setChecked(true);
+            if (s.equals("C")) mC11.setChecked(true);
             if (s.equals("JAVA")) mC12.setChecked(true);
             if (s.equals("微信小程序开发")) mC13.setChecked(true);
             if (s.equals("Android开发")) mC14.setChecked(true);
@@ -158,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(mC8.isChecked())if (tag.length()==0)tag=tag+"演讲能力";else tag=tag+",演讲能力";
         if(mC9.isChecked())if (tag.length()==0)tag=tag+"Photoshop";else tag=tag+",Photoshop";
         if(mC10.isChecked())if (tag.length()==0)tag=tag+"PPT制作";else tag=tag+",PPT制作";
-        if(mC11.isChecked())if (tag.length()==0)tag=tag+"C++";else tag=tag+",C++";
+        if(mC11.isChecked())if (tag.length()==0)tag=tag+"C";else tag=tag+",C";
         if(mC12.isChecked())if (tag.length()==0)tag=tag+"JAVA";else tag=tag+",JAVA";
         if(mC13.isChecked())if (tag.length()==0)tag=tag+"微信小程序开发";else tag=tag+",微信小程序开发";
         if(mC14.isChecked())if (tag.length()==0)tag=tag+"Android开发";else tag=tag+",Android开发";

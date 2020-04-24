@@ -146,6 +146,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
     //前往下一注册页面
     private  void ToRegisterActivity(){
         //存储当前页面信息
+        mBtnNext.setEnabled(false);
         mEditor.putString("register_name",mEdtname.getText().toString());
         mEditor.putString("register_number",mEdtnumber.getText().toString());
         mEditor.putString("register_password",mEdtpassword.getText().toString());
