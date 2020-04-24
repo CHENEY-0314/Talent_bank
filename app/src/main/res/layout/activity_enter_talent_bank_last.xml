@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EnterTalentBank.EnterTalentBankLast">
+    <LinearLayout
+        android:id="@+id/ETBL_head"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:paddingTop="10dp"
+        android:paddingStart="30dp"
+        android:gravity="bottom"
+        tools:ignore="RtlSymmetry,UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/ETBL_back"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
+            android:contentDescription="@string/signupback"
+            android:background="@drawable/back"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="58dp"
+            android:textColor="#1C1C1F"
+            android:text="加入人才库"
+            android:paddingStart="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.73">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true"
+            android:padding="30dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ETBL_text_grade"
+                    android:paddingTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/QQ"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textSize="20sp"
+                    android:paddingTop="25dp"
+                    android:textColor="#FF0000"
+                    android:paddingLeft="8dp"
+                    android:layout_toEndOf="@+id/ETBL_text_grade"/>
+            </RelativeLayout>
+            <EditText
+                android:id="@+id/ETBL_edit_grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:maxLength="15"
+                android:textSize="18sp"
+                tools:ignore="LabelFor"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <TextView
+                android:id="@+id/ETBL_text_Wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Wechart"
+                android:paddingTop="38dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/ETBL_edit_Wechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="text"
+                android:maxLength="18"
+                android:textSize="18sp"
+                tools:ignore="LabelFor"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <TextView
+                android:id="@+id/ETBL_text_Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Email"
+                android:paddingTop="38dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/ETBL_edit_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="20"
+                android:textSize="18sp"
+                tools:ignore="LabelFor,TextFields"
+                tools:layout_editor_absoluteX="20dp" />
+
+
+            <TextView
+                android:id="@+id/ETBL_text_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adress"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:paddingTop="38dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/ETBL_edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="50"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textSize="18sp"
+                tools:ignore="LabelFor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广州大学城内"
+                android:textSize="13sp"
+                android:textColor="#CDCDCD"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.17"
+        android:gravity="center">
+        <Button
+            android:id="@+id/ETBL_btn_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="53dp"
+            android:background="@drawable/signup_btnshape"
+            android:bufferType="normal"
+            android:paddingVertical="14dp"
+            android:stateListAnimator="@null"
+            android:text="@string/comple"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EnterTalentBank.EnterTalentBank">
+    <LinearLayout
+        android:id="@+id/ETB_head"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:paddingTop="10dp"
+        android:paddingStart="30dp"
+        android:gravity="bottom"
+        tools:ignore="RtlSymmetry,UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/ETB_back"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
+            android:contentDescription="@string/signupback"
+            android:background="@drawable/back"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="58dp"
+            android:textColor="#1C1C1F"
+            android:text="加入人才库"
+            android:paddingStart="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ETB_middle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:gravity="bottom"
+        android:layout_weight="0.15"
+        android:orientation="vertical"
+        android:paddingStart="30dp">
+
+        <ImageView
+            android:id="@+id/ETB_middleImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="back"
+            app:srcCompat="@drawable/user_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改并确认你的个人简历"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/ETB_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:background="@color/homeContent"
+        android:clipToPadding="true"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <LinearLayout
+                android:id="@+id/ETB_card_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/register_cardview"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/ETB_text_advantage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="个人优势"
+                            android:textColor="#000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/ETB_text_advantage"
+                            android:paddingLeft="8dp"
+                            android:text="*"
+                            android:textColor="#FF0000"
+                            android:textSize="20sp" />
+                    </RelativeLayout>
+
+
+                    <EditText
+                        android:id="@+id/ETB_edt_advantage"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginBottom="10dp"
+                        android:autofillHints=""
+                        android:gravity="start"
+                        android:hint="填写您的意向、优点、特长等"
+                        android:inputType="textMultiLine"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLength="100"
+                        android:textColor="#000"
+                        android:textColorHint="#CBCBCB"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ETB_card_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/register_cardview"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/ETB_text_experience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="项目经验"
+                            android:textColor="#000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/ETB_text_experience"
+                            android:paddingLeft="8dp"
+                            android:text="*"
+                            android:textColor="#FF0000"
+                            android:textSize="20sp" />
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/ETB_edt_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginBottom="10dp"
+                        android:autofillHints=""
+                        android:gravity="start"
+                        android:hint="填写您的过往项目经历、团队定位等"
+                        android:inputType="textMultiLine"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLength="130"
+                        android:textColor="#000"
+                        android:textColorHint="#CBCBCB"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ETB_card_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/register_cardview"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dp"
+                            android:text="综合能力标签"
+                            android:textColor="#000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="（ 多选 ）"
+                            android:textColor="#CBCBCB"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        app:flexWrap="wrap">
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="包装设计"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="平面设计"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="UI设计"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="产品设计"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="英语"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="其他外语"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="视频剪辑"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="演讲能力"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="Photoshop"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="PPT制作"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="C++"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="JAVA"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="微信小程序开发"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="Android开发"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/ETB_cb_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/register_choose"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="IOS开发"
+                            android:textColor="#fff"
+                            android:textSize="15sp" />
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ETB_btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/signup_btnshape"
+                android:gravity="center"
+                android:paddingVertical="14dp"
+                android:stateListAnimator="@null"
+                android:text="@string/next"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.talent_bank.EnterTalentBank.EnterTalentBank;
 import com.example.talent_bank.LoginActivity;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.ProjectReleased;
@@ -81,10 +82,12 @@ public class MainFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.main_btn_entertable:
+                    Intent intent1 = new Intent(getActivity(), EnterTalentBank.class);
+                    startActivity(intent1);
                     break;
                 case R.id.main_btn_publish:
-                    Intent intent1 = new Intent(getActivity(), ProjectReleased.class);
-                    startActivity(intent1);
+                    Intent intent2 = new Intent(getActivity(), ProjectReleased.class);
+                    startActivity(intent2);
                     break;
                 case R.id.main_user_img:
                     ColorDialog dialog = new ColorDialog(mContext);
@@ -99,8 +102,8 @@ public class MainFragment extends Fragment {
                             //删除申请的操作
                             mEditor.putString("auto", "false");
                             mEditor.apply();
-                            Intent intent2 = new Intent(getActivity(), LoginActivity.class);
-                            startActivity(intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            Intent intent3 = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                         }
                     })
                             .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
