@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EnterTalentBank.EnterTalentBankLast"></activity>
+        <activity android:name=".PeopleDemand"></activity>
+        <activity android:name=".ProjectContentsApply" />
+        <activity android:name=".EnterTalentBank.EnterTalentBankLast" />
         <activity android:name=".EnterTalentBank.EnterTalentBank" />
         <activity android:name=".TalentBank.TalentBank" />
         <activity android:name=".ReceiveNullApply" />
