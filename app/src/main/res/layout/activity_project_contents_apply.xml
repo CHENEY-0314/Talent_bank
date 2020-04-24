@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProjectContents">
+    tools:context=".ProjectContentsApply">
 
     <LinearLayout
-        android:id="@+id/PChead"
+        android:id="@+id/PCAhead"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.10"
@@ -17,7 +17,7 @@
         android:gravity="bottom"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
         <ImageView
-            android:id="@+id/PCimg_back"
+            android:id="@+id/PCAimg_back"
             android:layout_width="18dp"
             android:layout_height="22dp"
             android:contentDescription="@string/signupback"
@@ -29,12 +29,6 @@
             android:textColor="#1C1C1F"
             android:text="项目详情"
             android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/PCimg_more"
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_more_horiz_black_24dp" />
     </LinearLayout>
 
     <ScrollView
@@ -49,7 +43,6 @@
             android:padding="30dp">
 
             <ImageView
-                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
@@ -72,7 +65,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="160dp"
                 android:layout_marginTop="30dp"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="0dp">
@@ -85,7 +78,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.5"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -97,25 +90,13 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/PC_num"
+                            android:id="@+id/PCA_num"
                             android:layout_width="180dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:text="参与人数：0人"
+                            android:text="参与人数：3人"
                             android:textColor="#000"
                             android:textSize="18sp" />
-
-                        <Button
-                            android:id="@+id/PC_btn_num"
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/login_btnshape"
-                            android:backgroundTint="#1161E4"
-                            android:bufferType="normal"
-                            android:stateListAnimator="@null"
-                            android:textColor="#fff"
-                            android:text="编辑人数"
-                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -127,7 +108,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.5"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -145,51 +126,9 @@
                             android:text="队友要求"
                             android:textColor="#000"
                             android:textSize="18sp" />
-
+A
                         <Button
-                            android:id="@+id/PC_btn_demand"
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/login_btnshape"
-                            android:backgroundTint="#1161E4"
-                            android:bufferType="normal"
-                            android:stateListAnimator="@null"
-                            android:text="编辑详情"
-                            android:textColor="#fff"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_marginHorizontal="23dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:background="#E8E8E8" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.33"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
-                            android:layout_marginStart="23dp"
-                            android:background="@drawable/project_img_content"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="18dp"
-                            android:text="申请情况"
-                            android:textColor="#000"
-                            android:textSize="18sp" />
-
-                        <Button
-                            android:id="@+id/PC_btn_apply"
+                            android:id="@+id/PCA_btn_detail"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:background="@drawable/login_btnshape"
@@ -203,22 +142,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/PC_enter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/login_btnshape"
-                android:backgroundTint="#fff"
-                android:bufferType="normal"
-                android:stateListAnimator="@null"
-                android:text="进入人才库"
-                android:textStyle="bold"
-                android:textColor="#1161E4"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp" />
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
