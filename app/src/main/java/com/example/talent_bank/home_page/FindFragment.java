@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.example.talent_bank.Adapter.FindingAdapter;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.R;
@@ -21,6 +24,7 @@ public class FindFragment extends Fragment {
     private RecyclerView mRvMain;
     private View mView;
     private MainActivity mContext;
+    private ImageView imgSearch;
 
     public static FindFragment newInstance() {
         return new FindFragment();
@@ -32,8 +36,15 @@ public class FindFragment extends Fragment {
         mView = inflater.inflate(R.layout.talking_fragment, container, false);
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_finding);
+        imgSearch = mView.findViewById(R.id.finding_search);
         mRvMain.setLayoutManager(new LinearLayoutManager(mContext));
         mRvMain.setAdapter(new FindingAdapter(FindFragment.this));
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //检索操作
+
+            }
+        });
         return mView;
     }
 

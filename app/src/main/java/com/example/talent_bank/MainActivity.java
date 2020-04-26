@@ -100,16 +100,16 @@ public class MainActivity extends AppCompatActivity {
             menuItem = item;
             switch (item.getItemId()) {
                 case R.id.mainFragment:
-                    viewPager.setCurrentItem(0);
+                    viewPager.setCurrentItem(0,false);
                     return true;
                 case R.id.talkingFragment:
-                    viewPager.setCurrentItem(1);
+                    viewPager.setCurrentItem(1,false);
                     return true;
                 case R.id.newsFragment:
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(2,false);
                     return true;
                 case R.id.homeFragment:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(3,false);
                     return true;
             }
             return false;
