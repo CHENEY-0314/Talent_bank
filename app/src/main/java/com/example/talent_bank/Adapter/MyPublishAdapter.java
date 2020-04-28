@@ -89,7 +89,7 @@ public class MyPublishAdapter extends RecyclerView.Adapter<MyPublishAdapter.Line
 
     @Override
     public int getItemCount() {
-        UseforProjectData=mContext.getSharedPreferences("projectdata",MODE_PRIVATE);
+        UseforProjectData = mContext.getSharedPreferences("projectdata",MODE_PRIVATE);
         String pj_id=UseforProjectData.getString("pj_id","");
         String[] strarr = pj_id.split("~");
         return strarr.length;
