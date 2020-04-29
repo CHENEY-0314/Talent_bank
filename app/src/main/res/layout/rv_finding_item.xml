@@ -31,6 +31,7 @@
                     android:src="@drawable/my_apply_img" />
 
                 <TextView
+                    android:id="@+id/finding_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -41,10 +42,13 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/finding_item_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.3"
                 android:text="#“三七互娱杯”软件设计大赛#"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="#7C7C7C"
                 android:textSize="14sp"
                 android:layout_marginStart="30dp"
