@@ -3,9 +3,13 @@ package com.example.talent_bank.home_page;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,6 +46,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
+import pl.droidsonroids.gif.GifImageView;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -53,6 +58,8 @@ public class MainFragment extends Fragment {
     private CardView enterTable;
     private CardView publishProject;
     private MainActivity mContext;
+    private GifImageView runWebView;
+    private ImageView EnterTBIMG;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
@@ -81,6 +88,8 @@ public class MainFragment extends Fragment {
     }
 
     private void initView() {
+        EnterTBIMG=mView.findViewById(R.id.main_EnterTB);
+        runWebView =mView.findViewById(R.id.main_loading);
         enterTable = mView.findViewById(R.id.main_btn_entertable);
         enterTable.setOnClickListener(new ButtonListener());
         publishProject = mView.findViewById(R.id.main_btn_publish);
@@ -98,7 +107,39 @@ public class MainFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.main_btn_entertable:  //进入加入人才库页面
                     enterTable.setEnabled(false);
-                    ifhaveEnter();
+                    showProgress(true);
+                    String isintalentbank =mSharedPreferences.getString("intalent_bank","");
+                    if(isintalentbank.equals("")){
+                        ifhaveEnter();
+                    }else if(isintalentbank.equals("true")){
+                        ColorDialog dialog = new ColorDialog(mContext);
+                        dialog.setTitle("提示");
+                        dialog.setColor("#ffffff");//颜色
+                        dialog.setContentTextColor("#656565");
+                        dialog.setTitleTextColor("#656565");
+                        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
+                        dialog.setContentText("您已加入人才库，是否退出");
+                        dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                            @Override
+                            public void onClick(ColorDialog dialog) {
+                                ExitTalentBank();
+                                dialog.dismiss();
+                            }
+                        })
+                                .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                    @Override
+                                    public void onClick(ColorDialog dialog) {
+                                        enterTable.setEnabled(true);
+                                        dialog.dismiss();
+                                        showProgress(false);
+                                    }
+                                }).show();
+                    }else {
+                        Intent intent3 = new Intent(getActivity(), EnterTalentBank.class);
+                        startActivity(intent3);
+                        enterTable.setEnabled(true);
+                        showProgress(false);
+                    }
                     break;
                 case R.id.main_btn_publish:
                     publishProject.setEnabled(false);
@@ -113,11 +154,12 @@ public class MainFragment extends Fragment {
                     dialog.setContentTextColor("#656565");
                     dialog.setTitleTextColor("#656565");
                     dialog.setContentText("是否注销账号？");
+                    Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                     dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                         @Override
                         public void onClick(ColorDialog dialog) {
-                            //删除申请的操作
                             mEditor.putString("auto", "false");
+                            mEditor.putString("intalent_bank", "");
                             mEditor.apply();
                             Intent intent3 = new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -132,6 +174,38 @@ public class MainFragment extends Fragment {
                     break;
             }
         }
+    }
+
+
+    /**
+     * Shows the progress UI and hides the login form.
+     * 显示进度UI并隐藏登录表单。
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        //在Honeycomb MR2上，我们有ViewPropertyAnimator API，可以实现非常简单的动画。如果可用，请使用这些API淡入进度微调器。
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        EnterTBIMG.setVisibility(show ? View.GONE : View.VISIBLE);
+        EnterTBIMG.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                EnterTBIMG.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
+
+        runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
+        runWebView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     //判断是否已经加入了人才库
@@ -157,6 +231,8 @@ public class MainFragment extends Fragment {
                                 Intent intent1 = new Intent(getActivity(), EnterTalentBank.class);
                                 startActivity(intent1);
                                 enterTable.setEnabled(true);
+                                showProgress(false);
+
                             }else {
                                 mEditor.putString("intalent_bank","true");
                                 mEditor.apply();
@@ -165,6 +241,7 @@ public class MainFragment extends Fragment {
                                 dialog.setColor("#ffffff");//颜色
                                 dialog.setContentTextColor("#656565");
                                 dialog.setTitleTextColor("#656565");
+                                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                                 dialog.setContentText("您已加入人才库，是否退出");
                                 dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                                     @Override
@@ -178,6 +255,7 @@ public class MainFragment extends Fragment {
                                             public void onClick(ColorDialog dialog) {
                                                 enterTable.setEnabled(true);
                                                 dialog.dismiss();
+                                                showProgress(false);
                                             }
                                         }).show();
                             }
@@ -185,6 +263,7 @@ public class MainFragment extends Fragment {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
                             Toast.makeText(getActivity(),"无网络连接！",Toast.LENGTH_SHORT).show();
                             enterTable.setEnabled(true);
+                            showProgress(false);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -193,6 +272,7 @@ public class MainFragment extends Fragment {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
                 Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
                 enterTable.setEnabled(true);
+                showProgress(false);
             }
         }) {
             @Override
@@ -229,7 +309,10 @@ public class MainFragment extends Fragment {
                         Toast toast=Toast.makeText(getActivity(),null,Toast.LENGTH_SHORT);
                         toast.setText("成功退出");
                         toast.show();
+                        mEditor.putString("intalent_bank","false");
+                        mEditor.apply();
                         enterTable.setEnabled(true);
+                        showProgress(false);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -237,6 +320,8 @@ public class MainFragment extends Fragment {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
                 Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
                 enterTable.setEnabled(true);
+                showProgress(false);
+
             }
         }) {
             @Override

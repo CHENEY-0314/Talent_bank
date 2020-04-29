@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
@@ -121,6 +122,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     dialog.setColor("#ffffff");//颜色
                     dialog.setContentTextColor("#656565");
                     dialog.setTitleTextColor("#656565");
+                    Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                     dialog.setContentText("继续返回将丢失当前已填写的注册信息，是否确定离开？");
                     dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                         @Override
@@ -316,6 +318,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
             dialog.setColor("#ffffff");//颜色
             dialog.setContentTextColor("#656565");
             dialog.setTitleTextColor("#656565");
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
             dialog.setContentText("继续返回将丢失当前所有注册信息，是否确定离开？");
             dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                 @Override

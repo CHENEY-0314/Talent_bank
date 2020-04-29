@@ -1,6 +1,8 @@
 package com.example.talent_bank.home_page;
 
 import androidx.lifecycle.ViewModelProviders;
+
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+
 import com.example.talent_bank.Adapter.FindingAdapter;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.R;
@@ -29,6 +33,8 @@ public class FindFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
         mView = inflater.inflate(R.layout.talking_fragment, container, false);
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_finding);

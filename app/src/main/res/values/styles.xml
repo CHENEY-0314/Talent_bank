@@ -16,12 +16,12 @@
     <!--没有选中的样式-->
     <style name="bottom_normal_text">
         <item name="android:textColor">#707070</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
     <!--选中的样式-->
     <style name="bottom_selected_text">
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <!-- ActionSheet项目详情的底部弹出框 设置 -->
@@ -53,4 +53,5 @@
     <style name="splash_style" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/login_background</item>
     </style>
+
 </resources>

@@ -7,6 +7,7 @@
     android:background="@drawable/main_background"
     tools:context=".home_page.MainFragment">
 
+
     <ImageView
         android:id="@+id/main_user_img"
         android:layout_width="40dp"
@@ -51,12 +52,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/main_loading"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/enter_tb_loading" />
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/main_EnterTB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp"
             android:src="@drawable/main_img1" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.Guideline

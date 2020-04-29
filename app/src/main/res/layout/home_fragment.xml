@@ -10,17 +10,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.28"
+        android:layout_weight="0.26"
         android:background="@drawable/me_topimage"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingTop="40dp">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_img_user"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
             android:layout_marginStart="26dp"
+            app:civ_border_width="1dp"
+            app:civ_border_overlay="true"
+            app:civ_border_color="#000"
+            app:civ_fill_color="#fff"
             android:src="@drawable/user_image" />
 
         <LinearLayout
@@ -33,7 +38,7 @@
                 android:id="@+id/home_txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="名称"
+                android:text="您的名称"
                 android:textStyle="bold"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="23sp" />
@@ -43,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="年级和专业"
+                android:text="您的年级/您的专业"
                 android:textColor="#B3B2C2"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -52,7 +57,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.72">
+        android:layout_weight="0.74">
 
     <LinearLayout
         android:layout_width="match_parent"

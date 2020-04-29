@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 import pl.droidsonroids.gif.GifImageView;
@@ -113,28 +114,28 @@ public class RegisterLastActivity extends AppCompatActivity {
                 case R.id.RLbtn_complet:
                     if(!Empty()){ //判断grade栏是否为空
                         if(mEdtEmail.getText().toString().equals("")||mEdtWechart.getText().toString().equals("")||mEdtAddress.getText().toString().equals("")){ //判断其他三栏是否为空
-                    ColorDialog dialog = new ColorDialog(RegisterLastActivity.this);  //为空则跳出提示框
-                    dialog.setTitle("提示");
-                    dialog.setColor("#ffffff");//颜色
-                    dialog.setContentTextColor("#656565");
-                    dialog.setTitleTextColor("#656565");
-                    dialog.setContentText("简历信息不完善会影响您的组队成功率，是否确定保存并离开？");
-                    dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                            ColorDialog dialog = new ColorDialog(RegisterLastActivity.this);  //为空则跳出提示框
+                            dialog.setTitle("提示");
+                            dialog.setColor("#ffffff");//颜色
+                            dialog.setContentTextColor("#656565");
+                            dialog.setTitleTextColor("#656565");
+                            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
+                            dialog.setContentText("简历信息不完善会影响您的组队成功率，是否确定保存并离开？");
+                            dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                         @Override
                         public void onClick(ColorDialog dialog) {
                             register();  //将信息更新到数据库,执行注册操作
                             dialog.dismiss();
                         }
-                    })
-                            .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                            }).setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
                                 @Override
                                 public void onClick(ColorDialog dialog) {
                                     dialog.dismiss();
                                 }
                             }).show();}
-                    else {   //信息填写完整，直接注册
-                        register();  //将信息更新到数据库，执行注册操作
-                    }}
+                        else {   //信息填写完整，直接注册
+                            register();  //将信息更新到数据库，执行注册操作
+                            }}
                     break;
                 case R.id.RLimg_back:
                     //返回上一界面（保存当前页面数据）

@@ -10,38 +10,90 @@
         android:id="@+id/Setup_head"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:paddingTop="10dp"
+        android:layout_weight="0.12"
+        android:paddingTop="25dp"
         android:paddingStart="30dp"
-        android:gravity="bottom"
+        android:background="#fff"
+        android:gravity="center"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
-        <ImageView
-            android:id="@+id/Setup_back"
-            android:layout_width="18dp"
-            android:layout_height="22dp"
-            android:contentDescription="@string/signupback"
-            android:background="@drawable/back"/>
-        <TextView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="58dp"
-            android:textColor="#1C1C1F"
-            android:text="设置"
-            android:paddingStart="10dp"
-            android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/Setup_back"
+                android:layout_width="18dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/signupback"
+                android:background="@drawable/back"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="58dp"
+                android:textColor="#1C1C1F"
+                android:text="设置"
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.9">
+        android:layout_weight="0.88">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:focusableInTouchMode="true"
-            android:padding="30dp">
+            android:focusableInTouchMode="true">
+            <LinearLayout
+                android:id="@+id/Setup_exitlogin"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:background="#fff">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:text="账号注销" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/goright"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Setup_aboutus"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:text="关于本APP" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/goright"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

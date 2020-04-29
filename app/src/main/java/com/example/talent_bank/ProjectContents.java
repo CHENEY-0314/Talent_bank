@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
@@ -136,6 +137,7 @@ public class ProjectContents extends AppCompatActivity {
                         dialog.setColor("#ffffff");//颜色
                         dialog.setContentTextColor("#656565");
                         dialog.setTitleTextColor("#656565");
+                        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                         dialog.setContentText("是否确定删除项目？删除后将不能再找回。");
                         dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                             @Override
