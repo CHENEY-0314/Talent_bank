@@ -49,6 +49,7 @@ import cn.refactor.lib.colordialog.ColorDialog;
 import pl.droidsonroids.gif.GifImageView;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertStringToIcon;
 
 public class MainFragment extends Fragment {
 
@@ -99,6 +100,11 @@ public class MainFragment extends Fragment {
 
         mSharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences("userdata", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+
+        String Suserimage=mSharedPreferences.getString("userimage","");  //获取现在的头像
+        if(!Suserimage.equals("")){
+            mimg_back.setImageBitmap(convertStringToIcon(Suserimage));
+        }
     }
 
     public class ButtonListener implements View.OnClickListener {
