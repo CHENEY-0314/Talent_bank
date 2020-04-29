@@ -156,6 +156,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_id",jsonObject.getString("pj_id"));
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
+                            AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
@@ -209,6 +210,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_id",jsonObject.getString("pj_id"));
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
+                            AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {

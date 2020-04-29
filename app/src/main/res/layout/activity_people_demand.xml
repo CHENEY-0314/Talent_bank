@@ -42,6 +42,19 @@
         android:paddingStart="30dp"
         android:paddingRight="30dp">
 
+        <LinearLayout
+            android:id="@+id/people_demand_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:visibility="gone"
+            android:gravity="center">
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/loading"/>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_people_demand"
             android:layout_width="match_parent"

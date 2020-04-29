@@ -32,8 +32,9 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.LinearVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FindingAdapter.LinearViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FindingAdapter.LinearViewHolder holder, final int position) {
         AllProjectData = mFragment.getActivity().getSharedPreferences("all_project_data",MODE_PRIVATE);
+        AllProjectDataEditor = AllProjectData.edit();
         String pj_id = AllProjectData.getString("pj_id","");
         String pj_name = AllProjectData.getString("pj_name","");
         String pj_introduce = AllProjectData.getString("pj_introduce","");
@@ -52,6 +53,8 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.LinearVi
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AllProjectDataEditor.putInt("curr_pj",position);
+                AllProjectDataEditor.apply();
                 Intent intent = new Intent(mFragment.getActivity(), ProjectContentsApply.class);
                 mFragment.getActivity().startActivity(intent);
             }

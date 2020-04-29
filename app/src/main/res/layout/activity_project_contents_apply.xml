@@ -49,6 +49,7 @@
                 app:srcCompat="@drawable/project_photp1" />
 
             <TextView
+                android:id="@+id/PCA_text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="华工软件设计大赛"
@@ -56,11 +57,14 @@
                 android:layout_marginTop="20dp"
                 android:textColor="#000"/>
             <TextView
+                android:id="@+id/PCA_text_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#“三七互娱杯”软件设计大赛#"
                 android:layout_marginTop="10dp"
                 android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="#7C7C7C"/>
 
             <androidx.cardview.widget.CardView
@@ -94,7 +98,7 @@
                             android:layout_width="180dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:text="参与人数：3人"
+                            android:text="参与人数：0人"
                             android:textColor="#000"
                             android:textSize="18sp" />
                     </LinearLayout>
