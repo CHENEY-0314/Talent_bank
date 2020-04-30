@@ -118,23 +118,23 @@ public class FindFragment extends Fragment {
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
         //在Honeycomb MR2上，我们有ViewPropertyAnimator API，可以实现非常简单的动画。如果可用，请使用这些API淡入进度微调器。
-        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+//        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
         runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
-        runWebView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
-            }
-        });
-        mRvMain.animate().setDuration(shortAnimTime).alpha(
-                !show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
-            }
-        });
+//        runWebView.animate().setDuration(shortAnimTime).alpha(
+//                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
+//            }
+//        });
+//        mRvMain.animate().setDuration(shortAnimTime).alpha(
+//                !show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
+//            }
+//        });
     }
 
     //加载项目基本信息到手机暂存
