@@ -233,6 +233,7 @@ public class TalentBank extends AppCompatActivity {
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
         //在Honeycomb MR2上，我们有ViewPropertyAnimator API，可以实现非常简单的动画。如果可用，请使用这些API淡入进度微调器。
+        
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         recyclerView.setVisibility(!show ? View.VISIBLE : View.GONE);
         runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
