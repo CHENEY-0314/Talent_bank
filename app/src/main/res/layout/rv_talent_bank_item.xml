@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp">
 
@@ -19,8 +19,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
+                android:layout_height="80dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -35,6 +34,7 @@
                     android:orientation="vertical"
                     android:layout_marginStart="20dp">
                     <TextView
+                        android:id="@+id/item_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="张三"
@@ -42,6 +42,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/item_user_grade"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -54,35 +55,226 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/talent_bank_tag_box"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
-                android:orientation="horizontal"
-                android:paddingTop="10dp">
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                app:flexWrap="wrap">
 
                 <TextView
+                    android:id="@+id/talent_bank_tag1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:text="参数经验丰富"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/talent_bank_lable"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="1dp"
+                    android:text="包装设计"
                     android:textColor="#1161E4"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
 
                 <TextView
+                    android:id="@+id/talent_bank_tag2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="平面设计"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="UI设计"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="产品设计"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="英语"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="其他外语"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="视频剪辑"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="演讲能力"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="Photoshop"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="PPT制作"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="C++"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="JAVA"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="微信小程序开发"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/talent_bank_lable"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="1dp"
                     android:text="Android开发"
                     android:textColor="#1161E4"
-                    android:textSize="15sp" />
-            </LinearLayout>
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/talent_bank_tag15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/talent_bank_lable"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="IOS开发"
+                    android:textColor="#1161E4"
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
+
+
+            </com.google.android.flexbox.FlexboxLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -91,8 +283,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_height="50dp"
                 android:orientation="horizontal">
 
                 <TextView
