@@ -105,6 +105,7 @@ public class MainFragment extends Fragment {
         if(!Suserimage.equals("")){
             mimg_back.setImageBitmap(convertStringToIcon(Suserimage));
         }
+
     }
 
     public class ButtonListener implements View.OnClickListener {
@@ -146,6 +147,8 @@ public class MainFragment extends Fragment {
                         enterTable.setEnabled(true);
                         showProgress(false);
                     }
+                    enterTable.setEnabled(true);
+                    showProgress(false);
                     break;
                 case R.id.main_btn_publish:
                     publishProject.setEnabled(false);
@@ -166,9 +169,11 @@ public class MainFragment extends Fragment {
                         public void onClick(ColorDialog dialog) {
                             mEditor.putString("auto", "false");
                             mEditor.putString("intalent_bank", "");
+                            mEditor.putString("userimage", "");
                             mEditor.apply();
                             Intent intent3 = new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            dialog.dismiss();
                         }
                     })
                             .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {

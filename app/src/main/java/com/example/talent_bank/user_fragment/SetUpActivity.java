@@ -63,12 +63,13 @@ public class SetUpActivity extends AppCompatActivity {
                 dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                     @Override
                     public void onClick(ColorDialog dialog) {
-                        //删除申请的操作
                         mEditor.putString("auto", "false");
                         mEditor.putString("intalent_bank", "");
+                        mEditor.putString("userimage", "");
                         mEditor.apply();
                         Intent intent3 = new Intent(SetUpActivity.this, LoginActivity.class);
                         startActivity(intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        dialog.dismiss();
                     }
                 })
                         .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {

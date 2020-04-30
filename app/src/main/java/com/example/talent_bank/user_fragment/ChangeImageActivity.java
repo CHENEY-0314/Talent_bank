@@ -3,12 +3,11 @@ package com.example.talent_bank.user_fragment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -28,15 +28,28 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.example.talent_bank.Base64Coder;
 import com.example.talent_bank.BuildConfig;
-import com.example.talent_bank.MyApplyNull;
 import com.example.talent_bank.R;
-import com.example.talent_bank.home_page.UserFragment;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -69,6 +82,10 @@ public class ChangeImageActivity extends AppCompatActivity {
 
     private Button ablum;
     private Button camera;
+
+    //多线程通信
+    private Handler myHandler;
+    private ProgressDialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,17 +319,66 @@ public class ChangeImageActivity extends AppCompatActivity {
     private void setImageToHeadView(Intent intent,Bitmap b) {
         try {
             if (intent != null) {
-                Bitmap bitmap = imageZoom(b);  //看个人需求，可以不压缩
-                userimage.setImageBitmap(bitmap);
-                mEditor.putString("userimage",convertIconToString(bitmap));  //将头像存到手机
-                mEditor.apply();
-
+                final Bitmap bitmap = imageZoom(b);  //看个人需求，可以不压缩
                 //上传到数据库
+
+                myDialog = ProgressDialog.show(this, "Loading...", "Please wait...", true, false);
+                new Thread(new Runnable() {
+                    public void run() {
+                        upload(bitmap);
+                    }
+                }).start();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    // 上传
+    public void upload(Bitmap upbitmap) {
+
+        String number=mSharedPreferences.getString("number","");
+
+        String RequestURL = "http://47.107.125.44:8080/Talent_bank/servlet/UpdateUserImageServlet?number="+number;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        upbitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);
+        byte[] b = stream.toByteArray();
+        // 将图片流以字符串形式存储下来
+        String file = new String(Base64Coder.encodeLines(b));
+        HttpClient client = new DefaultHttpClient();
+        // 设置上传参数
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        formparams.add(new BasicNameValuePair("file", file));
+        HttpPost post = new HttpPost(RequestURL);
+        UrlEncodedFormEntity entity;
+        try {
+            entity = new UrlEncodedFormEntity(formparams, "UTF-8");
+            post.addHeader("Accept", "text/javascript, text/html, application/xml, text/xml");
+            post.addHeader("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+            post.addHeader("Accept-Encoding", "gzip,deflate,sdch");
+            post.addHeader("Connection", "Keep-Alive");
+            post.addHeader("Cache-Control", "no-cache");
+            post.addHeader("Content-Type", "application/x-www-form-urlencoded");
+            post.setEntity(entity);
+            HttpResponse response = client.execute(post);
+            System.out.println(response.getStatusLine().getStatusCode());
+            HttpEntity e = response.getEntity();
+            System.out.println(EntityUtils.toString(e));
+            if (200 == response.getStatusLine().getStatusCode()) {
+                mEditor.putString("userimage",convertIconToString(upbitmap));  //将头像存到手机
+                mEditor.apply();
+                userimage.setImageBitmap(upbitmap); //更新头像
+                myDialog.dismiss();
+            } else {
+                myDialog.dismiss();
+            }
+            client.getConnectionManager().shutdown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static String convertIconToString(Bitmap bitmap) {   //将Bitmap转为string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();// outputstream
@@ -320,7 +386,6 @@ public class ChangeImageActivity extends AppCompatActivity {
         byte[] appicon = baos.toByteArray();// 转为byte数组
         String img = Base64.encodeToString(appicon, Base64.DEFAULT);
         return img;
-
     }
 
     private Bitmap imageZoom(Bitmap bitMap) {

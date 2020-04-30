@@ -10,11 +10,15 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.telecom.Call;
 import android.text.InputType;
 import android.transition.Slide;
 import android.util.Log;
@@ -40,10 +44,17 @@ import com.example.talent_bank.register.RegisterLastActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.security.auth.callback.Callback;
+
+import okhttp3.OkHttpClient;
 import pl.droidsonroids.gif.GifImageView;
+
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertIconToString;
 
 
 public class SignUPActivity extends AppCompatActivity {
@@ -300,14 +311,11 @@ public class SignUPActivity extends AppCompatActivity {
                                 mEditor.putString("auto","true");
                                 mEditor.apply();
                                 UpdateUserdate(account,password);
-                                Handler mHandler = new Handler();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
+                                new Thread(new Runnable() {
                                     public void run() {
-                                        startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
+                                        downloadPic();
                                     }
-                                },1800);
+                                }).start();
                             } else {
                                 if (result.equals("failed"))
                                     Toast.makeText(SignUPActivity.this,"账户或密码错误！",Toast.LENGTH_SHORT).show();
@@ -364,10 +372,19 @@ public class SignUPActivity extends AppCompatActivity {
                             mEditor.putString("wechart",jsonObject.getString("wechart"));
                             mEditor.putString("email",jsonObject.getString("email"));
                             mEditor.putString("adress",jsonObject.getString("adress"));
+                            mEditor.putString("intalent_bank",jsonObject.getString("intalent_bank"));
                             mEditor.apply();
                             Toast toast=Toast.makeText(SignUPActivity.this,null,Toast.LENGTH_SHORT);
                             toast.setText("欢迎你:"+jsonObject.getString("name"));
                             toast.show();
+                            Handler mHandler = new Handler();
+                            mHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(new Intent(SignUPActivity.this, HandlerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //设置跳转动画
+                                }
+                            },1800);
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
                             Toast.makeText(SignUPActivity.this,"无网络连接！",Toast.LENGTH_SHORT).show();
@@ -392,6 +409,31 @@ public class SignUPActivity extends AppCompatActivity {
         Updatarequest.setTag(tag);
         //将请求添加到队列中
         Updata.add(Updatarequest);
+    }
+
+    //获取用户头像
+    private void downloadPic() {
+        String number=medtname.getText().toString();
+        String url="http://47.107.125.44:8080/Talent_bank/userimagefiles/"+number+".png";
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .build();
+        okHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                mEditor.putString("userimage","");
+                mEditor.apply();
+            }
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+                InputStream inputStream = response.body().byteStream();//得到图片的流
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                mEditor.putString("userimage",convertIconToString(bitmap));  //将头像存到手机
+                mEditor.apply();
+            }
+        });
     }
 
     //重写返回函数
