@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
         mimg_back = mView.findViewById(R.id.main_user_img);
         mimg_back.setOnClickListener(new ButtonListener());
 
-        mSharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences("userdata", MODE_PRIVATE);
+        mSharedPreferences = requireActivity().getSharedPreferences("userdata", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
         String Suserimage=mSharedPreferences.getString("userimage","");  //获取现在的头像
