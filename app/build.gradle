@@ -53,8 +53,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0'
     //垂直的tablayout
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
-
+    //圆形图片
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
+    //联网
     implementation'com.squareup.okhttp3:okhttp:3.10.0'
+    //下拉刷新
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 }

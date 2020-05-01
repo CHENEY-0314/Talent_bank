@@ -152,7 +152,7 @@ public class MyPublishActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(MyPublishActivity.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyPublishActivity.this,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
                 MyPublishActivity.this.finish();
             }
         }) {

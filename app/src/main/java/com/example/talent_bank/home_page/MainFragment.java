@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.talent_bank.EnterTalentBank.EnterTalentBank;
 import com.example.talent_bank.EnterTalentBank.EnterTalentBankLast;
+import com.example.talent_bank.HandlerActivity;
 import com.example.talent_bank.LoginActivity;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.ProjectReleased;
@@ -147,16 +148,21 @@ public class MainFragment extends Fragment {
                         enterTable.setEnabled(true);
                         showProgress(false);
                     }
-                    enterTable.setEnabled(true);
-                    showProgress(false);
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            enterTable.setEnabled(true);
+                            showProgress(false);
+                        }
+                    },1800);
                     break;
-                case R.id.main_btn_publish:
+                case R.id.main_btn_publish:  //发布项目
                     publishProject.setEnabled(false);
                     Intent intent2 = new Intent(getActivity(), ProjectReleased.class);
                     startActivity(intent2);
-                    publishProject.setEnabled(true);
                     break;
-                case R.id.main_user_img:
+                case R.id.main_user_img:  //点击用户头像
                     ColorDialog dialog = new ColorDialog(mContext);
                     dialog.setTitle("提示");
                     dialog.setColor("#ffffff");//颜色
@@ -281,7 +287,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
                 enterTable.setEnabled(true);
                 showProgress(false);
             }
@@ -329,7 +335,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(getActivity(),"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
                 enterTable.setEnabled(true);
                 showProgress(false);
 
@@ -349,7 +355,11 @@ public class MainFragment extends Fragment {
         ExitTalent.add(ExitTalentrequest);
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        publishProject.setEnabled(true);
+    }
 }
 
 

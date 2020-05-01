@@ -86,7 +86,7 @@ public class UserFragment extends Fragment {
         mAdvice=mView.findViewById(R.id.home_btn_advice);
         mAdvice.setOnClickListener(new ButtonListener());
 
-        mSharedPreferences= Objects.requireNonNull(getActivity()).getSharedPreferences("userdata",MODE_PRIVATE);
+        mSharedPreferences= requireActivity().getSharedPreferences("userdata",MODE_PRIVATE);
 
         username=mView.findViewById(R.id.home_txt_username);
         grade=mView.findViewById(R.id.home_txt_grade);
@@ -110,7 +110,7 @@ public class UserFragment extends Fragment {
                     break;
                 case R.id.home_btn_MyApply:
                     //如果我的申请的Num为0则跳转到另一页面
-                    SharedPreferences shp = Objects.requireNonNull(getActivity()).getSharedPreferences(shpName, Context.MODE_PRIVATE);
+                    SharedPreferences shp = requireActivity().getSharedPreferences(shpName, Context.MODE_PRIVATE);
                     int x = shp.getInt("myApplyNum_key",0);
                     if (x ==0) {
                         Intent intent1 = new Intent(getActivity(), MyApplyNull.class);
@@ -141,6 +141,19 @@ public class UserFragment extends Fragment {
                     startActivity(intent6);
                     break;
             }
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //初始化用户名称和年级信息
+        username.setText(mSharedPreferences.getString("name",""));
+        grade.setText(mSharedPreferences.getString("grade",""));
+
+        String Suserimage=mSharedPreferences.getString("userimage","");  //获取现在的头像
+        if(!Suserimage.equals("")){
+            circleImageView.setImageBitmap(convertStringToIcon(Suserimage));
         }
     }
 

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class FindFragment extends Fragment {
     private LinearLayout runWebView;
     private EditText editText;
 
+    private SwipeRefreshLayout refresh;
     //以下用于手机存用户信息
     private SharedPreferences AllProjectData;
     private SharedPreferences.Editor AllProjectDataEditor;
@@ -74,6 +76,9 @@ public class FindFragment extends Fragment {
         imgSearch = mView.findViewById(R.id.finding_search);
         runWebView = mView.findViewById(R.id.finding_loading);
         editText = mView.findViewById(R.id.finding_edit);
+
+        refresh= mView.findViewById(R.id.find_swrefresh);
+
 
         AllProjectData = mContext.getSharedPreferences("all_project_data",mContext.MODE_PRIVATE);
         AllProjectDataEditor = AllProjectData.edit();
@@ -97,9 +102,40 @@ public class FindFragment extends Fragment {
                 searchingProject(target);
             }
         });
+
+        refresh.setColorSchemeResources(R.color.colorPrimary);  //设置进度条颜色
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gorefresh();
+            }
+        });
+
         return mView;
     }
 
+    //刷新
+    private void gorefresh(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+
+                mContext.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRvMain.setLayoutManager(new LinearLayoutManager(mContext));
+                        mRvMain.setAdapter(new FindingAdapter(FindFragment.this));
+                        refresh.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -108,33 +144,16 @@ public class FindFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+
+
     /**
      * Shows the progress UI and hides the login form.
      * 显示进度UI并隐藏登录表单。
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        //在Honeycomb MR2上，我们有ViewPropertyAnimator API，可以实现非常简单的动画。如果可用，请使用这些API淡入进度微调器。
-//        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
         runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
-//        runWebView.animate().setDuration(shortAnimTime).alpha(
-//                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
-//            }
-//        });
-//        mRvMain.animate().setDuration(shortAnimTime).alpha(
-//                !show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
-//            }
-//        });
     }
 
     //加载项目基本信息到手机暂存
@@ -176,7 +195,7 @@ public class FindFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(mContext,"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -230,7 +249,7 @@ public class FindFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(mContext,"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
