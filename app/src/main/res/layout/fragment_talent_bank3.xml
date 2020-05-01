@@ -27,7 +27,7 @@
             android:gravity="center"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
-            android:text="Photohop"
+            android:text="Photoshop"
             android:textColor="#000"
             android:textSize="15sp" />
         <CheckBox
@@ -60,5 +60,19 @@
             android:textSize="15sp" />
 
     </com.google.android.flexbox.FlexboxLayout>
+    <Button
+        android:id="@+id/talent_bank3_save"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:background="@drawable/login_btnshape"
+        android:backgroundTint="#1161E4"
+        android:bufferType="normal"
+        android:stateListAnimator="@null"
+        android:text="SAVE"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
 </LinearLayout>

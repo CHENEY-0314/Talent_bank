@@ -453,6 +453,8 @@ public class SignUPActivity extends AppCompatActivity {
             View v = getCurrentFocus();      //得到当前页面的焦点,ps:有输入框的页面焦点一般会被输入框占据
             if (isShouldHideKeyboard(v, me)) { //判断用户点击的是否是输入框以外的区域
                 hideKeyboard(v.getWindowToken());   //收起键盘
+                medtname.clearFocus();
+                medtpassword.clearFocus();
             }
         }
         return super.dispatchTouchEvent(me);
