@@ -302,6 +302,7 @@
                     android:background="#fff8f8f8" />
 
                 <TextView
+                    android:id="@+id/rv_talent_bank_touch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"

@@ -6,7 +6,8 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:background="#fff"
-    android:layout_marginTop="4dp">
+    android:layout_marginTop="4dp"
+    android:paddingRight="5dp">
     <ImageView
         android:layout_weight="0.18"
         android:layout_width="0dp"
@@ -14,12 +15,13 @@
         android:src="@drawable/user_image"
         android:paddingLeft="15dp"/>
     <LinearLayout
-        android:layout_weight="0.62"
+        android:layout_weight="0.59"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:orientation="vertical"
         android:paddingLeft="5dp">
         <TextView
+            android:id="@+id/news_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="张三"
@@ -28,6 +30,7 @@
             android:textStyle="bold"
             android:layout_marginTop="2dp"/>
         <TextView
+            android:id="@+id/news_item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="您好，我已看到您对于“华工软件三七互娱杯”发出的申请"
@@ -39,24 +42,27 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_weight="0.20"
+        android:layout_height="match_parent"
+        android:layout_weight="0.23"
         android:orientation="vertical"
         android:gravity="center_horizontal">
         <TextView
+            android:id="@+id/news_item_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="11:40"
             android:textSize="14sp"
-            android:textColor="#C9C9C9"/>
+            android:textColor="#C9C9C9"
+            android:layout_marginTop="10dp"/>
         <TextView
+            android:id="@+id/news_item_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
             android:textSize="14sp"
             android:textColor="#fff"
             android:textStyle="bold"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/news_text_background"
             android:paddingHorizontal="7dp"
             android:paddingVertical="1dp"/>
