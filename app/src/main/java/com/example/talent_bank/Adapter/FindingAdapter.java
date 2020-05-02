@@ -28,7 +28,13 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.LinearVi
     @NonNull
     @Override
     public FindingAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FindingAdapter.LinearViewHolder(LayoutInflater.from(mFragment.getActivity()).inflate(R.layout.rv_finding_item,parent,false));
+        AllProjectData = mFragment.getActivity().getSharedPreferences("all_project_data",MODE_PRIVATE);
+        String pj_id = AllProjectData.getString("pj_id","");
+        if (pj_id.equals("")) {
+            return new FindingAdapter.LinearViewHolder(LayoutInflater.from(mFragment.getActivity()).inflate(R.layout.rv_null_finding,parent,false));
+        } else {
+            return new FindingAdapter.LinearViewHolder(LayoutInflater.from(mFragment.getActivity()).inflate(R.layout.rv_finding_item,parent,false));
+        }
     }
 
     @Override
@@ -42,31 +48,37 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.LinearVi
         String[] Namestrarr = pj_name.split("~");
         String[] Introducestrarr = pj_introduce.split("~");
         //为每个item设置项目Text
-        for(int m=0;m<IDstrarr.length;m++){
-            if(position==m) {
-                holder.name.setText(Namestrarr[m]);
-                holder.content.setText(Introducestrarr[m]);
+        if (!pj_id.equals("")) {
+            for(int m=0;m<IDstrarr.length;m++){
+                if(position==m) {
+                    holder.name.setText(Namestrarr[m]);
+                    holder.content.setText(Introducestrarr[m]);
+                }
             }
-        }
 
-        //点击详情的点击事件
-        holder.detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AllProjectDataEditor.putInt("curr_pj",position);
-                AllProjectDataEditor.apply();
-                Intent intent = new Intent(mFragment.getActivity(), ProjectContentsApply.class);
-                mFragment.getActivity().startActivity(intent);
-            }
-        });
+            //点击详情的点击事件
+            holder.detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AllProjectDataEditor.putInt("curr_pj",position);
+                    AllProjectDataEditor.apply();
+                    Intent intent = new Intent(mFragment.getActivity(), ProjectContentsApply.class);
+                    mFragment.getActivity().startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         AllProjectData = mFragment.getActivity().getSharedPreferences("all_project_data",MODE_PRIVATE);
         String pj_id = AllProjectData.getString("pj_id","");
-        String[] strarr = pj_id.split("~");
-        return strarr.length;
+        if (pj_id.equals("")) {
+            return 1;
+        } else {
+            String[] strarr = pj_id.split("~");
+            return strarr.length;
+        }
     }
 
     class LinearViewHolder extends RecyclerView.ViewHolder {

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +18,18 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.os.IBinder;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -45,6 +52,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import q.rorbin.verticaltablayout.util.TabFragmentManager;
 
 public class FindFragment extends Fragment {
 
@@ -103,6 +112,22 @@ public class FindFragment extends Fragment {
             }
         });
 
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId== EditorInfo.IME_ACTION_SEARCH) {
+                    InputMethodManager im = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    im.hideSoftInputFromWindow(mView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    AllProjectDataEditor.clear();
+                    AllProjectDataEditor.apply();
+                    String target = String.valueOf(editText.getText());
+                    showProgress(true);
+                    searchingProject(target);
+                }
+                return false;
+            }
+        });
+
         refresh.setColorSchemeResources(R.color.colorPrimary);  //设置进度条颜色
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -143,8 +168,6 @@ public class FindFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(TalkingViewModel.class);
         // TODO: Use the ViewModel
     }
-
-
 
     /**
      * Shows the progress UI and hides the login form.

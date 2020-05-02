@@ -77,6 +77,8 @@ public class TalentBank extends AppCompatActivity {
     //以下用于手机存用户信息
     private SharedPreferences AllUsersData;
     private SharedPreferences.Editor AllUsersDataEditor;
+    private SharedPreferences TagData;
+    private SharedPreferences.Editor TagDataEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,13 @@ public class TalentBank extends AppCompatActivity {
         AllUsersDataEditor = AllUsersData.edit();
         AllUsersDataEditor.clear();
         AllUsersDataEditor.apply();
+
+        TagData = getSharedPreferences("tag_data",MODE_PRIVATE);
+        TagDataEditor = TagData.edit();
+        TagDataEditor.clear();
+        TagDataEditor.apply();
+        initTagEditor();
+
         showProgress(true);
         loadingUsers();
 
@@ -125,7 +134,7 @@ public class TalentBank extends AppCompatActivity {
 
         imgOpen.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
-            public void onClick(View v) {  //点击上方返回按钮
+            public void onClick(View v) {
                 boolean x = shp.getBoolean("ifOpenTable_key",false);
                 if (x) { //在处于打开的状态下按下按钮
                     imgOpen.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);  //改变图标
@@ -141,6 +150,10 @@ public class TalentBank extends AppCompatActivity {
                             linearLayout.setVisibility( View.GONE );
                         }
                     });
+                    AllUsersDataEditor.clear();
+                    AllUsersDataEditor.apply();
+                    showProgress(true);
+                    searchingUsers();
                 } else {  //在处于关闭状态下按下按钮
                     imgOpen.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);  //改变图标
                     editor.putBoolean("ifOpenTable_key",true);
@@ -312,4 +325,195 @@ public class TalentBank extends AppCompatActivity {
         //将请求添加到队列中
         GetUser.add(GetUserrequest);
     }
+
+    public void initTagEditor() {
+        TagDataEditor.putBoolean("mC1",false);
+        TagDataEditor.putBoolean("mC2",false);
+        TagDataEditor.putBoolean("mC3",false);
+        TagDataEditor.putBoolean("mC4",false);
+        TagDataEditor.putBoolean("mC5",false);
+        TagDataEditor.putBoolean("mC6",false);
+        TagDataEditor.putBoolean("mC7",false);
+        TagDataEditor.putBoolean("mC8",false);
+        TagDataEditor.putBoolean("mC9",false);
+        TagDataEditor.putBoolean("mC10",false);
+        TagDataEditor.putBoolean("mC11",false);
+        TagDataEditor.putBoolean("mC12",false);
+        TagDataEditor.putBoolean("mC13",false);
+        TagDataEditor.putBoolean("mC14",false);
+        TagDataEditor.putBoolean("mC15",false);
+        TagDataEditor.apply();
+    }
+
+    public String getTargetTag() {
+        String target = "";
+        if(TagData.getBoolean("mC1",false)) {
+            if (target.equals("")) {
+                target = target+"包装设计";
+            } else {
+                target = target+",包装设计";
+            }
+        }
+        if(TagData.getBoolean("mC2",false)) {
+            if (target.equals("")) {
+                target = target+"平面设计";
+            } else {
+                target = target+",平面设计";
+            }
+        }
+        if(TagData.getBoolean("mC3",false)) {
+            if (target.equals("")) {
+                target = target+"UI设计";
+            } else {
+                target = target+",UI设计";
+            }
+        }
+        if(TagData.getBoolean("mC4",false)) {
+            if (target.equals("")) {
+                target = target+"产品设计";
+            } else {
+                target = target+",产品设计";
+            }
+        }
+        if(TagData.getBoolean("mC5",false)) {
+            if (target.equals("")) {
+                target = target+"C";
+            } else {
+                target = target+",C";
+            }
+        }
+        if(TagData.getBoolean("mC6",false)) {
+            if (target.equals("")) {
+                target = target+"JAVA";
+            } else {
+                target = target+",JAVA";
+            }
+        }
+        if(TagData.getBoolean("mC7",false)) {
+            if (target.equals("")) {
+                target = target+"微信小程序开发";
+            } else {
+                target = target+",微信小程序开发";
+            }
+        }
+        if(TagData.getBoolean("mC8",false)) {
+            if (target.equals("")) {
+                target = target+"Android开发";
+            } else {
+                target = target+",Android开发";
+            }
+        }
+        if(TagData.getBoolean("mC9",false)) {
+            if (target.equals("")) {
+                target = target+"IOS开发";
+            } else {
+                target = target+",IOS开发";
+            }
+        }
+        if(TagData.getBoolean("mC10",false)) {
+            if (target.equals("")) {
+                target = target+"Photoshop";
+            } else {
+                target = target+",Photoshop";
+            }
+        }
+        if(TagData.getBoolean("mC11",false)) {
+            if (target.equals("")) {
+                target = target+"PPT制作";
+            } else {
+                target = target+",PPT制作";
+            }
+        }
+        if(TagData.getBoolean("mC12",false)) {
+            if (target.equals("")) {
+                target = target+"视频剪辑";
+            } else {
+                target = target+",视频剪辑";
+            }
+        }
+        if(TagData.getBoolean("mC13",false)) {
+            if (target.equals("")) {
+                target = target+"演讲能力";
+            } else {
+                target = target+",演讲能力";
+            }
+        }
+        if(TagData.getBoolean("mC14",false)) {
+            if (target.equals("")) {
+                target = target+"英语";
+            } else {
+                target = target+",英语";
+            }
+        }
+        if(TagData.getBoolean("mC15",false)) {
+            if (target.equals("")) {
+                target = target+"其他外语";
+            } else {
+                target = target+",其他外语";
+            }
+        }
+        return target;
+    }
+
+    public void searchingUsers() {
+        final String target = getTargetTag();
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchUsers?target="+target;
+        String tag = "GetUsers";
+        //取得请求队列
+        RequestQueue GetUsers = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        GetUsers.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest GetProjectrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
+                            AllUsersDataEditor.putString("user_name",jsonObject.getString("name"));
+                            AllUsersDataEditor.putString("user_wechart",jsonObject.getString("wechart"));
+                            AllUsersDataEditor.putString("user_adress",jsonObject.getString("adress"));
+                            AllUsersDataEditor.putString("user_advantage",jsonObject.getString("advantage"));
+                            AllUsersDataEditor.putString("user_email",jsonObject.getString("email"));
+                            AllUsersDataEditor.putString("user_tag",jsonObject.getString("tag"));
+                            AllUsersDataEditor.putString("user_grade",jsonObject.getString("grade"));
+                            AllUsersDataEditor.putString("user_number",jsonObject.getString("number"));
+                            AllUsersDataEditor.putString("user_experience",jsonObject.getString("experience"));
+                            AllUsersDataEditor.apply();
+                            Handler mHandler = new Handler();
+                            mHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showProgress(false);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(TalentBank.this));
+                                    recyclerView.setAdapter(new TalentBankAdapter(TalentBank.this));
+                                }
+                            },500);
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(TalentBank.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(TalentBank.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("target", target);
+                return params;
+            }
+        };
+        //设置Tag标签
+        GetProjectrequest.setTag(tag);
+        //将请求添加到队列中
+        GetUsers.add(GetProjectrequest);
+
+    }
+
 }
