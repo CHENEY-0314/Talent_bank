@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="30dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp">
 
@@ -37,24 +37,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:background="#fff"
-                    android:text="软件开发"
+                    android:text="职位名称"
                     android:textColor="#403B49"
-                    android:textSize="17sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
+                android:layout_marginTop="8dp"
                 android:background="#E8E8E8" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="队友能力标签"
-                android:textColor="#000"
+                android:text="队友能力标签："
+                android:textColor="#403B49"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="13dp"/>
 
             <TextView
                 android:id="@+id/epd_item_tag"
@@ -62,22 +63,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="#fff"
-                android:ellipsize="end"
                 android:gravity="start"
                 android:lineSpacingExtra="3dp"
-                android:maxLines="2"
-                android:text="包装设计、平面设计、PPT制作"
+                android:text="这个人很懒，没有选对有能力标签"
                 android:textColor="#403B49"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="备注详情"
-                android:textColor="#000"
+                android:text="其他要求："
+                android:textColor="#403B49"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="13dp"/>
 
             <TextView
                 android:id="@+id/epd_item_content"
@@ -89,21 +88,24 @@
                 android:textColor="#403B49"
                 android:textSize="16sp"
                 android:ellipsize="end"
-                android:text="具体要求：能完成简单Android开发工作；有参加类似比赛经验者优先。负责认真，乐观开朗。暂找2人。"
+                android:text="这个人很懒，没有填写其他的要求。"
                 android:layout_marginTop="5dp"/>
 
             <Button
                 android:id="@+id/pd_item_apply"
                 android:layout_width="85dp"
+                android:layout_marginTop="15dp"
                 android:layout_height="35dp"
                 android:layout_gravity="right"
                 android:background="@drawable/login_btnshape"
                 android:backgroundTint="#1161E4"
+                android:layout_marginBottom="7dp"
                 android:bufferType="normal"
                 android:stateListAnimator="@null"
                 android:text="申请"
                 android:textColor="#fff"
                 android:textSize="16sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

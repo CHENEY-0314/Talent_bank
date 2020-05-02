@@ -9,13 +9,15 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp">
 
         <LinearLayout
+            android:id="@+id/finding_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingVertical="30dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -23,6 +25,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.4"
                 android:gravity="bottom|center_vertical"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -45,13 +48,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="#fff8f8f8" />
+
             <TextView
                 android:id="@+id/finding_item_content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:text="#这里是有关项目的介绍#"
-                android:maxLines="2"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="#这里是有关项目的介绍,这里是有关项目的介绍,这里是有关项目的介绍,这里是有关项目的介绍,这里是有关项目的介绍#"
+                android:maxLines="3"
                 android:layout_marginHorizontal="30dp"
                 android:ellipsize="end"
                 android:textColor="#7C7C7C"
@@ -60,48 +69,6 @@
 
             </TextView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#fff8f8f8" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="收藏"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"
-                        android:drawablePadding="10dp"
-                        android:drawableLeft="@drawable/ic_star_border_black_24dp"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="10dp"
-                    android:background="#fff8f8f8" />
-
-                <TextView
-                    android:id="@+id/finding_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:text="详情"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
-            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

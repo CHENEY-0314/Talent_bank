@@ -15,6 +15,8 @@ import com.example.talent_bank.PeopleDemand;
 import com.example.talent_bank.ProjectContents;
 import com.example.talent_bank.R;
 
+import java.util.Objects;
+
 import cn.refactor.lib.colordialog.ColorDialog;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -37,13 +39,13 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PeopleDemandAdapter.LinearViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PeopleDemandAdapter.LinearViewHolder holder, final int position) {
         AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
         String member_title = AllProjectData.getString("member_title","");
         String member_tag = AllProjectData.getString("member_tag","");
         String remark = AllProjectData.getString("remark","");
 
-        String[] member_titlestrarr = member_title.split("~");
+        final String[] member_titlestrarr = member_title.split("~");
         String[] remarkstrarr = remark.split("~");
         String[] member_tagstrarr = member_tag.split("~");
 
@@ -52,19 +54,33 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
             if(position==m) {
                 holder.textName.setText(member_titlestrarr[m]);
                 holder.textContent.setText(remarkstrarr[m]);
-                holder.textTag.setText(member_tagstrarr[m]);
+                String[] membertag=member_tagstrarr[m].split(",");
+                String tag="";
+                for(int yy=0;yy<membertag.length;yy++){
+                    if(!membertag[yy].equals("C")){
+                    if(yy==0) tag=membertag[yy];
+                    else tag=tag+"; "+membertag[yy];
+                    }else{
+                        if(yy==0) tag="C++";
+                        else tag=tag+"; "+"C++";
+                    }
+                }
+                holder.textTag.setText(tag);
             }
         }
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String job="";
+                job="是否确定申请 “"+member_titlestrarr[position]+"” 职位？";
                 ColorDialog dialog = new ColorDialog(mContext);
                 dialog.setTitle("提示");
                 dialog.setColor("#ffffff");//颜色
                 dialog.setContentTextColor("#656565");
                 dialog.setTitleTextColor("#656565");
-                dialog.setContentText("是否确定申请“软件开发”职位？");
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
+                dialog.setContentText(job);
                 dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                     @Override
                     public void onClick(ColorDialog dialog) {

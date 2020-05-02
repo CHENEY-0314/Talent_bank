@@ -55,6 +55,8 @@ import java.util.Map;
 
 import q.rorbin.verticaltablayout.util.TabFragmentManager;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class FindFragment extends Fragment {
 
     private TalkingViewModel mViewModel;
@@ -69,6 +71,8 @@ public class FindFragment extends Fragment {
     //以下用于手机存用户信息
     private SharedPreferences AllProjectData;
     private SharedPreferences.Editor AllProjectDataEditor;
+
+    private SharedPreferences ShareUserData;
 
     public static FindFragment newInstance() {
         return new FindFragment();
@@ -93,6 +97,9 @@ public class FindFragment extends Fragment {
         AllProjectDataEditor = AllProjectData.edit();
         AllProjectDataEditor.clear();
         AllProjectDataEditor.apply();
+
+        ShareUserData=mContext.getSharedPreferences("userdata",MODE_PRIVATE);
+
         if(String.valueOf(editText.getText())=="") {
             showProgress(true);
             loadingProject();
@@ -288,5 +295,55 @@ public class FindFragment extends Fragment {
         GetProject.add(GetProjectrequest);
 
     }
+
+//    //从数据库获取用户已收藏的pj_id
+//    public void getCollection(){
+//
+//        final String number=ShareUserData.getString("number","");
+//        final String password=ShareUserData.getString("password","");
+//
+//        //请求地址
+//        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetCollectByNumberServlet?number="+number+"&password="+password;
+//        String tag = "GetCollection";
+//        //取得请求队列
+//        RequestQueue GetCollection = Volley.newRequestQueue(mContext);
+//        //防止重复请求，所以先取消tag标识的请求队列
+//        GetCollection.cancelAll(tag);
+//        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+//        final StringRequest GetCollectionrequest = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
+//                            AllProjectDataEditor.putString("collect_pj_id",jsonObject.getString("collect_pj_id"));
+//                            AllProjectDataEditor.apply();
+//                        } catch (JSONException e) {
+//                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+//                            Toast.makeText(mContext,"无网络连接！",Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+//                Toast.makeText(mContext,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams()  {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("number", number);
+//                params.put("password", password);
+//
+//                return params;
+//            }
+//        };
+//        //设置Tag标签
+//        GetCollectionrequest.setTag(tag);
+//        //将请求添加到队列中
+//        GetCollection.add(GetCollectionrequest);
+//
+//    }
 
 }

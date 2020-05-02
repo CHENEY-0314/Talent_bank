@@ -21,6 +21,7 @@
             android:layout_width="18dp"
             android:layout_height="22dp"
             android:contentDescription="@string/signupback"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/back"/>
         <TextView
             android:gravity="center"
@@ -52,7 +53,7 @@
                 android:id="@+id/PCA_text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="华工软件设计大赛"
+                android:text="比赛名称"
                 android:textSize="19sp"
                 android:layout_marginTop="20dp"
                 android:textColor="#000"/>
@@ -60,11 +61,10 @@
                 android:id="@+id/PCA_text_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="#“三七互娱杯”软件设计大赛#"
+                android:text="#这是比赛的相关简介,这是比赛的相关简介,这是比赛的相关简介,这是比赛的相关简介,这是比赛的相关简介,这是比赛的相关简介#"
                 android:layout_marginTop="10dp"
+                android:lineHeight="19dp"
                 android:textSize="14sp"
-                android:maxLines="1"
-                android:ellipsize="end"
                 android:textColor="#7C7C7C"/>
 
             <androidx.cardview.widget.CardView
@@ -124,28 +124,93 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
                             android:text="队友要求"
                             android:textColor="#000"
                             android:textSize="18sp" />
-A
-                        <Button
-                            android:id="@+id/PCA_btn_detail"
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/login_btnshape"
-                            android:backgroundTint="#1161E4"
-                            android:bufferType="normal"
-                            android:stateListAnimator="@null"
-                            android:text="查看详情"
-                            android:textColor="#fff"
-                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginEnd="23dp"
+                            android:gravity="end"
+                            android:layout_height="wrap_content">
+                            <Button
+                                android:id="@+id/PCA_btn_detail"
+                                android:layout_width="80dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/login_btnshape"
+                                android:backgroundTint="#1161E4"
+                                android:bufferType="normal"
+                                android:stateListAnimator="@null"
+                                android:text="查看详情"
+                                android:textColor="#fff"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
 
                     </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:id="@+id/PCA_collect"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/ic_star_border_black_24dp"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="添加收藏"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/PCA_collected"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="20dp"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/ic_collected"
+                    android:textAlignment="center" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="已收藏"
+                    android:textColor="#7E7E7E"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

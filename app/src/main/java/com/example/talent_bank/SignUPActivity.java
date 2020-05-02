@@ -311,11 +311,7 @@ public class SignUPActivity extends AppCompatActivity {
                                 mEditor.putString("auto","true");
                                 mEditor.apply();
                                 UpdateUserdate(account,password);
-                                new Thread(new Runnable() {
-                                    public void run() {
-                                        downloadPic();
-                                    }
-                                }).start();
+                                downloadPic();
                             } else {
                                 if (result.equals("failed"))
                                     Toast.makeText(SignUPActivity.this,"账户或密码错误！",Toast.LENGTH_SHORT).show();
@@ -330,7 +326,7 @@ public class SignUPActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(SignUPActivity.this,"请稍后再试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUPActivity.this,"无网络连接,请稍后再试！",Toast.LENGTH_SHORT).show();
                 Log.e("TAG", error.getMessage(), error);
             }
         }) {
@@ -430,8 +426,13 @@ public class SignUPActivity extends AppCompatActivity {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
                 InputStream inputStream = response.body().byteStream();//得到图片的流
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                if(bitmap!=null){
                 mEditor.putString("userimage",convertIconToString(bitmap));  //将头像存到手机
                 mEditor.apply();
+                }else{
+                    mEditor.putString("userimage","");
+                    mEditor.apply();
+                }
             }
         });
     }

@@ -321,7 +321,7 @@ public class ChangeImageActivity extends AppCompatActivity {
             if (intent != null) {
                 final Bitmap bitmap = imageZoom(b);  //看个人需求，可以不压缩
                 //上传到数据库
-
+                userimage.setImageBitmap(bitmap); //更新头像
                 myDialog = ProgressDialog.show(this, "Loading...", "Please wait...", true, false);
                 new Thread(new Runnable() {
                     public void run() {
@@ -368,7 +368,6 @@ public class ChangeImageActivity extends AppCompatActivity {
             if (200 == response.getStatusLine().getStatusCode()) {
                 mEditor.putString("userimage",convertIconToString(upbitmap));  //将头像存到手机
                 mEditor.apply();
-                userimage.setImageBitmap(upbitmap); //更新头像
                 myDialog.dismiss();
             } else {
                 myDialog.dismiss();
