@@ -12,9 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.talent_bank.ProjectContents;
 import com.example.talent_bank.R;
 import com.example.talent_bank.TalentBank.TalentBank;
 import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.Objects;
+
+import cn.refactor.lib.colordialog.ColorDialog;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -31,7 +36,13 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
     @NonNull
     @Override
     public TalentBankAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TalentBankAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_talent_bank_item,parent,false));
+        AllUsersData = mContext.getSharedPreferences("all_users_data",MODE_PRIVATE);
+        String user_name = AllUsersData.getString("user_name","");
+        if(user_name.equals("")) {
+            return new TalentBankAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_null_finding,parent,false));
+        } else {
+            return new TalentBankAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_talent_bank_item,parent,false));
+        }
     }
 
     @Override
@@ -41,46 +52,79 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
         String user_name = AllUsersData.getString("user_name","");
         String user_grade = AllUsersData.getString("user_grade","");
         String user_tag = AllUsersData.getString("user_tag","");
+        String user_number = AllUsersData.getString("user_number","");
+
         String[] Namestrarr = user_name.split("~");
         String[] Gradestrarr = user_grade.split("~");
         String[] Tagstrarr = user_tag.split("~");
-        //为每个item设置项目Text
-        for(int m=0;m<Namestrarr.length;m++){
-            if(position==m) {
-                holder.userName.setText(Namestrarr[m]);
-                holder.userGrade.setText(Gradestrarr[m]);
-                String[] Tag = Tagstrarr[m].split(",");
-                for(int i=0;i<Tag.length;i++) {
-                    if(Tag[i].equals("包装设计")) {
-                        holder.mC1.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("平面设计")) {
-                        holder.mC2.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("UI设计")) {
-                        holder.mC3.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("产品设计")) {
-                        holder.mC4.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("英语")) {
-                        holder.mC5.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("其他外语")) {
-                        holder.mC6.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("视频剪辑")) {
-                        holder.mC7.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("演讲能力")) {
-                        holder.mC8.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("Photoshop")) {
-                        holder.mC9.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("PPT制作")) {
-                        holder.mC10.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("C")) {
-                        holder.mC11.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("JAVA")) {
-                        holder.mC12.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("微信小程序开发")) {
-                        holder.mC13.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("Android开发")) {
-                        holder.mC14.setVisibility(View.VISIBLE);
-                    } else if (Tag[i].equals("IOS开发")) {
-                        holder.mC15.setVisibility(View.VISIBLE);
+        final String[] Userstrarr = user_number.split("~");
+        if(!user_name.equals("")) {
+            //为每个item设置项目Text
+            for (int m = 0; m < Namestrarr.length; m++) {
+                if (position == m) {
+                    final int finalM1 = m;
+                    holder.sendNews.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //点击”沟通“的监听
+                            ColorDialog dialog = new ColorDialog(mContext);
+                            dialog.setTitle("提示");
+                            dialog.setColor("#ffffff");//颜色
+                            dialog.setContentTextColor("#656565");
+                            dialog.setTitleTextColor("#656565");
+                            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
+                            dialog.setContentText("是否向此成员发出沟通邀请");
+                            dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                                @Override
+                                public void onClick(ColorDialog dialog) {
+                                    //确定操作
+                                    mContext.SendNews(Userstrarr[finalM1]);
+                                    dialog.dismiss();
+                                }
+                            })
+                                    .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                        @Override
+                                        public void onClick(ColorDialog dialog) {
+                                            dialog.dismiss();
+                                        }
+                                    }).show();
+                        }
+                    });
+                    holder.userName.setText(Namestrarr[m]);
+                    holder.userGrade.setText(Gradestrarr[m]);
+                    String[] Tag = Tagstrarr[m].split(",");
+                    for (int i = 0; i < Tag.length; i++) {
+                        if (Tag[i].equals("包装设计")) {
+                            holder.mC1.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("平面设计")) {
+                            holder.mC2.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("UI设计")) {
+                            holder.mC3.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("产品设计")) {
+                            holder.mC4.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("英语")) {
+                            holder.mC5.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("其他外语")) {
+                            holder.mC6.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("视频剪辑")) {
+                            holder.mC7.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("演讲能力")) {
+                            holder.mC8.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("Photoshop")) {
+                            holder.mC9.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("PPT制作")) {
+                            holder.mC10.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("C")) {
+                            holder.mC11.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("JAVA")) {
+                            holder.mC12.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("微信小程序开发")) {
+                            holder.mC13.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("Android开发")) {
+                            holder.mC14.setVisibility(View.VISIBLE);
+                        } else if (Tag[i].equals("IOS开发")) {
+                            holder.mC15.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
@@ -93,12 +137,16 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
     public int getItemCount() {
         AllUsersData = mContext.getSharedPreferences("all_users_data",MODE_PRIVATE);
         String user_name = AllUsersData.getString("user_name","");
-        String[] strarr = user_name.split("~");
-        return strarr.length;
+        if(user_name.equals("")) {
+            return 1;
+        } else {
+            String[] strarr = user_name.split("~");
+            return strarr.length;
+        }
     }
 
     class LinearViewHolder extends RecyclerView.ViewHolder {
-        TextView userName,userGrade;
+        TextView userName,userGrade,sendNews;
         FlexboxLayout tagBox;
         TextView mC1,mC2,mC3,mC4,mC5,mC6,mC7,mC8,mC9,mC10,mC11,mC12,mC13,mC14,mC15;
         public LinearViewHolder(@NonNull View itemView) {
@@ -106,6 +154,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
             userName = itemView.findViewById(R.id.item_user_name);
             userGrade = itemView.findViewById(R.id.item_user_grade);
             tagBox = itemView.findViewById(R.id.talent_bank_tag_box);
+            sendNews = itemView.findViewById(R.id.rv_talent_bank_touch);
             mC1 = itemView.findViewById(R.id.talent_bank_tag1);
             mC2 = itemView.findViewById(R.id.talent_bank_tag2);
             mC3 = itemView.findViewById(R.id.talent_bank_tag3);

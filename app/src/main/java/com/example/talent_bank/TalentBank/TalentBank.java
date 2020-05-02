@@ -39,7 +39,9 @@ import com.example.talent_bank.home_page.FindFragment;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,6 +81,7 @@ public class TalentBank extends AppCompatActivity {
     private SharedPreferences.Editor AllUsersDataEditor;
     private SharedPreferences TagData;
     private SharedPreferences.Editor TagDataEditor;
+    private SharedPreferences UserData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,8 @@ public class TalentBank extends AppCompatActivity {
 
         initView();
         initData();
+
+        UserData = getSharedPreferences("userdata",MODE_PRIVATE);
 
         AllUsersData = getSharedPreferences("all_users_data",MODE_PRIVATE);
         AllUsersDataEditor = AllUsersData.edit();
@@ -457,6 +462,7 @@ public class TalentBank extends AppCompatActivity {
 
     public void searchingUsers() {
         final String target = getTargetTag();
+
         //请求地址
         String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchUsers?target="+target;
         String tag = "GetUsers";
@@ -515,5 +521,70 @@ public class TalentBank extends AppCompatActivity {
         GetUsers.add(GetProjectrequest);
 
     }
+
+
+    public void SendNews(final String news_number) {
+
+        final String news_send_name = UserData.getString("name","");
+        final String news_send_number = UserData.getString("number","");
+        final String news_send_content = "项目经理对你的信息感兴趣，向你发出沟通邀请。";
+        //获得当前系统的时间方法
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        Date date = new Date(System.currentTimeMillis());
+        final String news_time = simpleDateFormat.format(date);
+
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/CreatNewsServlet?news_send_number="+news_send_number+"&news_send_name="+news_send_name+"&news_number="+news_number+"&news_send_content="+news_send_content+"&news_time="+news_time;
+        String tag = "SendNews";
+        //取得请求队列
+        RequestQueue SendNews = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        SendNews.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest SendNewsrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response);
+                            Handler mHandler = new Handler();
+                            mHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showProgress(false);
+                                    Toast.makeText(TalentBank.this,"发送消息成功",Toast.LENGTH_SHORT).show();
+                                }
+                            },500);
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(TalentBank.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(TalentBank.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("news_send_number", news_send_number);
+                params.put("news_send_name", news_send_name);
+                params.put("news_number", news_number);
+                params.put("news_send_content", news_send_content);
+                params.put("news_time", news_time);
+                return params;
+            }
+        };
+        //设置Tag标签
+        SendNewsrequest.setTag(tag);
+        //将请求添加到队列中
+        SendNews.add(SendNewsrequest);
+
+    }
+
+
 
 }
