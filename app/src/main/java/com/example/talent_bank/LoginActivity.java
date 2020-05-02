@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         IfHaveLogin();
         setListeners();
     }
+    //
 
     //判断是否曾经登录过
     private  void IfHaveLogin(){
