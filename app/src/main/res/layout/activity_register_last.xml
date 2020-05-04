@@ -93,8 +93,9 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:hint="如：5201314(QQ)"
             android:inputType="text"
-            android:maxLength="18"
+            android:maxLength="25"
             android:textSize="16sp"
             tools:ignore="LabelFor"
             tools:layout_editor_absoluteX="20dp" />

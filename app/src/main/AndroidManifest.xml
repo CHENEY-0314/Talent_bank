@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.talent_bank">
     <!-- 获取联网权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 获取读取SD卡\相机的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取读取SD卡\相机的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".user_fragment.ChangeImageActivity"/>
+        <activity android:name=".user_fragment.EditMyBiographical"></activity>
+        <activity android:name=".user_fragment.ChangeImageActivity" />
         <activity android:name=".PeopleDemand" />
         <activity android:name=".ProjectContentsApply" />
         <activity android:name=".EnterTalentBank.EnterTalentBankLast" />
@@ -70,7 +69,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

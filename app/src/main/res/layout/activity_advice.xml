@@ -7,10 +7,11 @@
         android:id="@+id/Advicehead"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:paddingTop="10dp"
+        android:layout_weight="0.12"
+        android:paddingTop="25dp"
         android:paddingStart="30dp"
-        android:gravity="bottom">
+        android:background="#fff"
+        android:gravity="center">
         <ImageView
             android:id="@+id/Adviceimg_back"
             android:layout_width="18dp"
@@ -31,13 +32,68 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.9">
+        android:layout_weight="0.88">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:focusableInTouchMode="true"
             android:padding="30dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:background="@drawable/advice_card"
+                android:focusableInTouchMode="true"
+                android:padding="25dp"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/Advice_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints=""
+                    android:background="@null"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:lineSpacingExtra="3dp"
+                    android:maxLength="300"
+                    android:textColor="#000"
+                    android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/Advice_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="0/300"
+                    android:paddingEnd="10dp"
+                    android:textColor="#CBCBCB"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="#C3C0C0"
+                android:text="为防止恶意提交，每次提交不少于15字"/>
+            <Button
+                android:id="@+id/Advice_btn"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/advice_btn"
+                android:bufferType="normal"
+                android:stateListAnimator="@null"
+                android:paddingHorizontal="35dp"
+                android:text="提交"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
         </LinearLayout>
+
+
     </ScrollView>
 </LinearLayout>

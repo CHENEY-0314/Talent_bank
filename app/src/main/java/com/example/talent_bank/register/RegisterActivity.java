@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.talent_bank.R;
 
@@ -32,21 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
     private Button mBtnNext;
     private EditText mEditexperience;
     private EditText mEditadvantage;
-    private CheckBox mC1;   //包装设计
-    private CheckBox mC2;   //平面设计
-    private CheckBox mC3;   //UI设计
-    private CheckBox mC4;   //产品设计
-    private CheckBox mC5;   //英语
-    private CheckBox mC6;   //其他外语
-    private CheckBox mC7;   //视频剪辑
-    private CheckBox mC8;   //演讲能力
-    private CheckBox mC9;   //Photoshop
-    private CheckBox mC10;   //PPT制作
-    private CheckBox mC11;   //C++
-    private CheckBox mC12;   //JAVA
-    private CheckBox mC13;   //微信小程序开发
-    private CheckBox mC14;   //Android开发
-    private CheckBox mC15;   //IOS开发
+    private CheckBox mC1,mC2,mC3,mC4,mC5,mC6,mC7,mC8,mC9,mC10,mC11,mC12,mC13,mC14,mC15;
+
+    private TextView mtxtadvantage,mtxtexperience;
+
 
     private String tag="";//用于存储综合能力标签是否被选择
 
@@ -71,21 +63,14 @@ public class RegisterActivity extends AppCompatActivity {
         mEditadvantage=findViewById(R.id.R_edt_adantage);
         mEditexperience=findViewById(R.id.R_edt_experience);
 
-        mC1=findViewById(R.id.cb_1);
-        mC2=findViewById(R.id.cb_2);
-        mC3=findViewById(R.id.cb_3);
-        mC4=findViewById(R.id.cb_4);
-        mC5=findViewById(R.id.cb_5);
-        mC6=findViewById(R.id.cb_6);
-        mC7=findViewById(R.id.cb_7);
-        mC8=findViewById(R.id.cb_8);
-        mC9=findViewById(R.id.cb_9);
-        mC10=findViewById(R.id.cb_10);
-        mC11=findViewById(R.id.cb_11);
-        mC12=findViewById(R.id.cb_12);
-        mC13=findViewById(R.id.cb_13);
-        mC14=findViewById(R.id.cb_14);
-        mC15=findViewById(R.id.cb_15);
+        mtxtadvantage=findViewById(R.id.R_textAdvantage_Num);
+        mtxtexperience=findViewById(R.id.R_textExperience_Num);
+
+        mC1=findViewById(R.id.cb_1);mC2=findViewById(R.id.cb_2);mC3=findViewById(R.id.cb_3);
+        mC4=findViewById(R.id.cb_4);mC5=findViewById(R.id.cb_5);mC6=findViewById(R.id.cb_6);
+        mC7=findViewById(R.id.cb_7);mC8=findViewById(R.id.cb_8);mC9=findViewById(R.id.cb_9);
+        mC10=findViewById(R.id.cb_10);mC11=findViewById(R.id.cb_11);mC12=findViewById(R.id.cb_12);
+        mC13=findViewById(R.id.cb_13);mC14=findViewById(R.id.cb_14);mC15=findViewById(R.id.cb_15);
 
         mShared=getSharedPreferences("registerdata",MODE_PRIVATE);
         mEditor=mShared.edit();
@@ -120,6 +105,28 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(RegisterActivity.this, RegisterBasedActivity.class), ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this).toBundle());
             }
         });
+
+        mEditadvantage.addTextChangedListener(new TextWatcher() {  //监听字数变化
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                mtxtadvantage.setText(String.valueOf(s.length())+"/150");
+            }
+        });
+        mEditexperience.addTextChangedListener(new TextWatcher() {  //监听字数变化
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                mtxtexperience.setText(String.valueOf(s.length())+"/150");
+            }
+        });
+
     }
 
     //将tag的记录转化为能力标签

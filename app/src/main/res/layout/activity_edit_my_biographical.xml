@@ -7,7 +7,8 @@
     tools:context=".register.RegisterActivity"
     android:orientation="vertical">
     <LinearLayout
-        android:id="@+id/Rhead"
+        android:id="@+id/EMB_head"
+        android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.10"
@@ -15,56 +16,54 @@
         android:paddingStart="30dp"
         android:gravity="bottom">
 
-    <ImageView
-        android:id="@+id/Rimg_back"
-        android:layout_width="18dp"
-        android:layout_height="22dp"
-        android:contentDescription="@string/signupback"
-        android:background="@drawable/back" />
-    <TextView
-        android:gravity="center"
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingEnd="58dp"
-        android:textColor="@color/titlecolor"
-        android:text="@string/register"
-        android:paddingStart="10dp"
-        android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/EMBimg_back"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/signupback"
+            android:background="@drawable/back" />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="58dp"
+            android:textColor="@color/titlecolor"
+            android:text="编辑我的简历"
+            android:paddingStart="10dp"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/middle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="10dp"
+        android:background="#fff"
         android:gravity="bottom"
-        android:layout_weight="0.17"
+        android:layout_weight="0.15"
         android:orientation="vertical"
         android:paddingStart="30dp">
 
         <ImageView
-            android:id="@+id/middleimage"
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:contentDescription="back"
             app:srcCompat="@drawable/mountain" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="建立属于你的个人简历"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑属于你的个人简历"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.73"
+        android:layout_weight="0.75"
         android:background="@color/homeContent"
         android:clipToPadding="true"
         android:fillViewport="true">
@@ -76,7 +75,6 @@
             android:padding="28dp">
 
             <LinearLayout
-                android:id="@+id/card_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
@@ -93,18 +91,17 @@
                     android:orientation="vertical">
 
 
-                        <TextView
-                            android:id="@+id/gerenyoushi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:text="个人优势"
-                            android:textColor="#000"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="个人优势"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/R_edt_adantage"
+                        android:id="@+id/EMB_edt_adantage"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:layout_marginBottom="10dp"
@@ -113,13 +110,12 @@
                         android:hint="填写您的意向、优点、特长等"
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="3dp"
-                        android:maxLength="100"
+                        android:maxLength="150"
                         android:textColor="#000"
                         android:textColorHint="#CBCBCB"
                         android:textSize="13sp" />
-
                     <TextView
-                        android:id="@+id/R_textAdvantage_Num"
+                        android:id="@+id/EMB_textAdvantage_Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0/150"
@@ -131,7 +127,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/card_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
@@ -148,7 +143,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/xiangmujinyan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
@@ -158,7 +152,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/R_edt_experience"
+                        android:id="@+id/EMB_edt_experience"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:layout_marginBottom="10dp"
@@ -167,13 +161,12 @@
                         android:hint="填写您的过往项目经历、团队定位等"
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="3dp"
-                        android:maxLength="130"
+                        android:maxLength="150"
                         android:textColor="#000"
                         android:textColorHint="#CBCBCB"
                         android:textSize="13sp" />
-
                     <TextView
-                        android:id="@+id/R_textExperience_Num"
+                        android:id="@+id/EMB_textExperience_Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0/150"
@@ -184,7 +177,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/card_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
@@ -227,14 +219,13 @@
                         app:flexWrap="wrap">
 
                         <CheckBox
-                            android:id="@+id/cb_1"
+                            android:id="@+id/EMBcb_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/register_choose"
                             android:button="@null"
-                            android:checked="true"
                             android:gravity="center"
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
@@ -243,7 +234,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_2"
+                            android:id="@+id/EMBcb_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -258,7 +249,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_3"
+                            android:id="@+id/EMBcb_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -273,7 +264,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_4"
+                            android:id="@+id/EMBcb_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -288,7 +279,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_5"
+                            android:id="@+id/EMBcb_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -303,7 +294,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_6"
+                            android:id="@+id/EMBcb_6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -318,7 +309,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_7"
+                            android:id="@+id/EMBcb_7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -333,7 +324,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_8"
+                            android:id="@+id/EMBcb_8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -348,7 +339,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_9"
+                            android:id="@+id/EMBcb_9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -363,7 +354,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_10"
+                            android:id="@+id/EMBcb_10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -378,7 +369,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_11"
+                            android:id="@+id/EMBcb_11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -393,7 +384,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_12"
+                            android:id="@+id/EMBcb_12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -408,7 +399,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_13"
+                            android:id="@+id/EMBcb_13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -423,7 +414,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_14"
+                            android:id="@+id/EMBcb_14"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -438,7 +429,7 @@
                             android:textSize="15sp" />
 
                         <CheckBox
-                            android:id="@+id/cb_15"
+                            android:id="@+id/EMBcb_15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -456,16 +447,125 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/Rbtn_next"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/EMBtextGrade"
+                    android:paddingTop="30dp"
+                    android:paddingStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/QQ"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textSize="20sp"
+                    android:paddingTop="25dp"
+                    android:textColor="#FF0000"
+                    android:paddingLeft="8dp"
+                    android:layout_toEndOf="@+id/EMBtextGrade"/>
+            </RelativeLayout>
+            <EditText
+                android:id="@+id/EMBeditGrade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="如：2018级/软件工程"
+                android:maxLength="15"
+                android:textSize="16sp"
+                tools:ignore="LabelFor"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <TextView
+                android:id="@+id/EMBtextWechart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Wechart"
+                android:paddingStart="5dp"
+                android:paddingTop="38dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/EMBeditWechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="如：5201314(QQ)"
+                android:inputType="text"
+                android:maxLength="25"
+                android:textSize="16sp"
+                tools:ignore="LabelFor"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <TextView
+                android:id="@+id/EMBtextEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Email"
+                android:paddingStart="5dp"
+                android:paddingTop="38dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/EMBeditEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="20"
+                android:textSize="16sp"
+                tools:ignore="LabelFor,TextFields"
+                tools:layout_editor_absoluteX="20dp" />
+
+
+            <TextView
+                android:id="@+id/EMBtextAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adress"
+                android:textSize="16sp"
+                android:paddingStart="5dp"
+                android:textColor="#000"
+                android:paddingTop="38dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/EMBeditAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="50"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:hint="如：华南理工大学大学城校区"
+                tools:ignore="LabelFor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广州番禺区大学城内"
+                android:textSize="13sp"
+                android:textColor="#CDCDCD"/>
+
+
+            <Button
+                android:id="@+id/EMBbtn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/signup_btnshape"
                 android:gravity="center"
                 android:paddingVertical="14dp"
                 android:stateListAnimator="@null"
-                android:text="@string/next"
+                android:text="完成"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -473,4 +573,3 @@
     </ScrollView>
 
 </LinearLayout>
-

@@ -22,6 +22,7 @@
             android:id="@+id/pr_back"
             android:layout_width="18dp"
             android:layout_height="22dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/back"/>
         <TextView
             android:gravity="center"
@@ -75,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:maxLength="20"
                 android:layout_marginTop="10dp"
                 android:importantForAutofill="no"/>
@@ -96,14 +97,14 @@
                     android:text="项目介绍"
                     android:textSize="17sp"
                     android:textStyle="bold"
-                    android:paddingTop="50dp"
+                    android:paddingTop="20dp"
                     android:textColor="#686868"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="*"
                     android:textSize="20sp"
-                    android:paddingTop="45dp"
+                    android:paddingTop="15dp"
                     android:textColor="#FF0000"
                     android:paddingLeft="8dp"
                     android:layout_toEndOf="@+id/ProjectR_project_introducetext"/>
@@ -112,12 +113,26 @@
             <EditText
                 android:id="@+id/ProjectR_project_intro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:layout_height="150dp"
+                android:textSize="16sp"
+                android:padding="5dp"
+                android:gravity="start"
+                android:background="#F6F5F5"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="3dp"
                 android:layout_marginTop="10dp"
-                android:maxLength="100"
-                android:inputType="text"
+                android:maxLength="150"
                 android:importantForAutofill="no"/>
+            <TextView
+                android:id="@+id/ProjectR_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/150"
+                android:layout_gravity="end"
+                android:paddingEnd="5dp"
+                android:textStyle="bold"
+                android:textColor="#B1B0B0"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +140,7 @@
                 android:textSize="17sp"
                 android:textColor="#686868"
                 android:textStyle="bold"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="18dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

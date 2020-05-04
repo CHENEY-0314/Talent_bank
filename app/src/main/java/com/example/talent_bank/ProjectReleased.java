@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +28,7 @@ public class ProjectReleased extends AppCompatActivity {
 
     private ImageView imgBack;
     private Button button,btn1,btn2;
-    private TextView textView;
+    private TextView textView,mIntroduceNum;
 
     private EditText edit_pjname;
     private EditText edit_pjintroduce;
@@ -50,12 +52,24 @@ public class ProjectReleased extends AppCompatActivity {
 
         edit_pjname=findViewById(R.id.ProjectR_project_name);
         edit_pjintroduce=findViewById(R.id.ProjectR_project_intro);
+        mIntroduceNum=findViewById(R.id.ProjectR_Num);
 
         imgBack = findViewById(R.id.pr_back);
         button = findViewById(R.id.pr_released);
         btn1 = findViewById(R.id.PR_btn1);
         btn2 = findViewById(R.id.PR_btn2);
         textView = findViewById(R.id.PR_num);
+
+        edit_pjintroduce.addTextChangedListener(new TextWatcher() {  //监听字数变化
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                mIntroduceNum.setText(String.valueOf(s.length())+"/150");
+            }
+        });
 
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
