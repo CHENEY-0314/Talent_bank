@@ -93,7 +93,7 @@ public class FindFragment extends Fragment {
         AllProjectDataEditor = AllProjectData.edit();
         AllProjectDataEditor.clear();
         AllProjectDataEditor.apply();
-        if(String.valueOf(editText.getText())=="") {
+        if(String.valueOf(editText.getText()).equals("")) {
             showProgress(true);
             loadingProject();
         } else {
@@ -199,6 +199,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
                             AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
+                            AllProjectDataEditor.putString("pj_boss_phone",jsonObject.getString("pj_boss_phone"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
@@ -253,6 +254,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
                             AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
+                            AllProjectDataEditor.putString("pj_boss_phone",jsonObject.getString("pj_boss_phone"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {

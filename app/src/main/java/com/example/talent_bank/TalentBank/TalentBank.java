@@ -527,7 +527,7 @@ public class TalentBank extends AppCompatActivity {
 
         final String news_send_name = UserData.getString("name","");
         final String news_send_number = UserData.getString("number","");
-        final String news_send_content = "项目经理对你的信息感兴趣，向你发出沟通邀请。";
+        final String news_send_content = "项目经理("+news_send_name+")对你的信息感兴趣，向你发出沟通邀请。";
         //获得当前系统的时间方法
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         Date date = new Date(System.currentTimeMillis());
@@ -551,7 +551,6 @@ public class TalentBank extends AppCompatActivity {
                             mHandler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    showProgress(false);
                                     Toast.makeText(TalentBank.this,"发送消息成功",Toast.LENGTH_SHORT).show();
                                 }
                             },500);
@@ -582,7 +581,6 @@ public class TalentBank extends AppCompatActivity {
         SendNewsrequest.setTag(tag);
         //将请求添加到队列中
         SendNews.add(SendNewsrequest);
-
     }
 
 

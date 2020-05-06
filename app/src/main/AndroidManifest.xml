@@ -26,7 +26,6 @@
         <activity android:name=".EnterTalentBank.EnterTalentBankLast" />
         <activity android:name=".EnterTalentBank.EnterTalentBank" />
         <activity android:name=".TalentBank.TalentBank" />
-        <activity android:name=".ReceiveNullApply" />
         <activity android:name=".MyApplyNull" />
         <activity android:name=".ReceiveApply" />
         <activity android:name=".EditDemand" />

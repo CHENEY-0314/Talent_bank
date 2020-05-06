@@ -4,12 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginTop="30dp"
-    android:paddingBottom="20dp">
+    android:layout_marginTop="30dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="180dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp">
 
@@ -32,6 +31,7 @@
                     android:src="@drawable/user_image" />
 
                 <TextView
+                    android:id="@+id/send_apply_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -44,8 +44,8 @@
                     android:id="@+id/rv_RA_item_delete"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="-15dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="-10dp"
                     android:src="@drawable/delete" />
 
             </LinearLayout>
@@ -95,6 +95,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/receive_apply_agree"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.33"
@@ -108,13 +109,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginVertical="10dp"
                     android:background="#fff8f8f8" />
-
                 <TextView
+                    android:id="@+id/receive_apply_disagree"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.33"
                     android:gravity="center"
-                    android:text="简历"
+                    android:text="拒绝"
                     android:textColor="#1161E4"
                     android:textSize="18sp" />
 
@@ -125,14 +126,14 @@
                     android:background="#fff8f8f8" />
 
                 <TextView
+                    android:id="@+id/receive_apply_jianli"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.33"
                     android:gravity="center"
-                    android:text="沟通"
+                    android:text="简历"
                     android:textColor="#1161E4"
                     android:textSize="18sp" />
-
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
