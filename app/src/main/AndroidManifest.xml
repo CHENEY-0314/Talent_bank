@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".user_fragment.EditMyBiographical"></activity>
+        <activity android:name=".TalentBank.OthersBiographical"></activity>
+        <activity android:name=".user_fragment.EditMyBiographical" />
         <activity android:name=".user_fragment.ChangeImageActivity" />
         <activity android:name=".PeopleDemand" />
         <activity android:name=".ProjectContentsApply" />

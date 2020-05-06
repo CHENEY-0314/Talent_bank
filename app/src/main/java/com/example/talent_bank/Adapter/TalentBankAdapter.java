@@ -90,6 +90,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
                                     }).show();
                         }
                     });
+                    
                     holder.userName.setText(Namestrarr[m]);
                     holder.userGrade.setText(Gradestrarr[m]);
                     String[] Tag = Tagstrarr[m].split(",");

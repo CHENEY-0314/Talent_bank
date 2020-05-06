@@ -127,6 +127,9 @@ public class ProjectContents extends AppCompatActivity {
                 new MyDialog(ProjectContents.this){
                     @Override
                     public void btnPickByTake(){
+                        Toast toast=Toast.makeText(ProjectContents.this,null,Toast.LENGTH_SHORT);
+                        toast.setText("功能开发中，敬请期待");
+                        toast.show();
                         //点击弹窗修改项目时做的事
                     }
                     @Override

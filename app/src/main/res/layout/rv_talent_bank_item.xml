@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:paddingHorizontal="30dp"
     android:layout_marginTop="30dp">
 
     <androidx.cardview.widget.CardView
@@ -283,7 +284,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -293,7 +294,7 @@
                     android:gravity="center"
                     android:text="简历"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="2dp"
@@ -309,7 +310,7 @@
                     android:gravity="center"
                     android:text="沟通"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

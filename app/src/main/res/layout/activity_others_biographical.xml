@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".TalentBank.OthersBiographical">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/OBhead"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.12"
+    android:paddingTop="25dp"
+    android:paddingHorizontal="30dp"
+    android:background="#fff"
+    android:gravity="center"
+    tools:ignore="RtlSymmetry,UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/OBimg_back"
+        android:layout_width="18dp"
+        android:layout_height="22dp"
+        android:background="@drawable/back"
+        android:contentDescription="@string/signupback"
+        app:layout_constraintBottom_toBottomOf="@+id/OBtextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/OBtextView" />
+
+    <TextView
+        android:id="@+id/OBtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ta的简历"
+        android:textColor="#1C1C1F"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.655" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.88">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:focusableInTouchMode="true"
+        android:padding="30dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/register_cardview"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:padding="25dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="个人优势"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/OB_text_advantage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:text="这个人很低调，没有写自己的优势"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/register_cardview"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:padding="25dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="项目经历"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/OB_text_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:text="Ta的经历是个谜"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/register_cardview"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:padding="25dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Ta的能力标签"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:flexWrap="wrap">
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="包装设计"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="平面设计"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="UI设计"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="产品设计"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="英语"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="其他外语"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="视频剪辑"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="演讲能力"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="Photoshop"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="PPT制作"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="C++"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="JAVA"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="微信小程序开发"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="Android开发"
+                        android:textColor="#fff"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/OB_cb_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/register_choose"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="IOS开发"
+                        android:textColor="#fff"
+                        android:checked="true"
+                        android:visibility="gone"
+                        android:clickable="false"
+                        android:textSize="15sp" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:text="联系信息"
+            android:paddingStart="5dp"
+            android:paddingVertical="10dp"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="8dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:paddingTop="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/QQ"
+            android:layout_marginStart="6dp"
+            android:textSize="16sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/OB_text_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:text="这是Ta的年级与专业"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="6dp"
+            android:layout_height="0.2dp"
+            android:background="#A1A1A1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="联系方式"
+            android:paddingTop="35dp"
+            android:textSize="16sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/OB_text_wechart"
+            android:layout_width="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:text="请点击上页卡片的沟通获取哦"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="0.2dp"
+            android:layout_marginStart="6dp"
+            android:background="#A1A1A1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邮箱"
+            android:paddingTop="35dp"
+            android:layout_marginStart="6dp"
+            android:textSize="16sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/OB_text_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:text="请点击上页卡片的沟通获取哦"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="6dp"
+            android:layout_height="0.2dp"
+            android:background="#A1A1A1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系地址"
+            android:textSize="16sp"
+            android:layout_marginStart="6dp"
+            android:textColor="#000"
+            android:paddingTop="35dp"/>
+        <TextView
+            android:id="@+id/OB_text_adress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:text="请点击上页卡片的沟通获取哦"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="6dp"
+            android:layout_height="0.2dp"
+            android:layout_marginBottom="35dp"
+            android:background="#A1A1A1" />
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

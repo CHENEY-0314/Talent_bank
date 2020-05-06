@@ -19,7 +19,6 @@ import com.example.talent_bank.R;
  */
 public class TalentBankFragment4 extends Fragment {
     private Context mContext;
-    private Button button;
     private View mView;
     private CheckBox mC1;   //演讲能力
     private CheckBox mC2;   //英语
@@ -40,35 +39,57 @@ public class TalentBankFragment4 extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_talent_bank4, container, false);
         init();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoadingTag();
-            }
-        });
         return mView;
     }
 
     public void init() {
         mC1 = mView.findViewById(R.id.talent_bank_cb13);
+        mC1.setOnClickListener(new ButtonListener());
         mC2 = mView.findViewById(R.id.talent_bank_cb14);
+        mC2.setOnClickListener(new ButtonListener());
         mC3 = mView.findViewById(R.id.talent_bank_cb15);
-        button = mView.findViewById(R.id.talent_bank4_save);
+        mC3.setOnClickListener(new ButtonListener());
+
         mContext = getActivity();
         TagData = mContext.getSharedPreferences("tag_data",mContext.MODE_PRIVATE);
         TagDataEditor = TagData.edit();
     }
 
-    public void LoadingTag() { //保存当前的标签
-        if(mC1.isChecked()) {
-            TagDataEditor.putBoolean("mC13",true);
+    private class ButtonListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.talent_bank_cb13:
+                    if(!mC1.isChecked()) {
+                        TagDataEditor.putBoolean("mC13",false);
+                        mC1.setTextColor(0xFF000000);
+                    }else  {
+                        TagDataEditor.putBoolean("mC13",true);
+                        mC1.setTextColor(0xFFFFFFFF);
+                    }
+                    break;
+                case R.id.talent_bank_cb14:
+                    if(!mC2.isChecked()) {
+                        TagDataEditor.putBoolean("mC14",false);
+                        mC2.setTextColor(0xFF000000);
+                    }else  {
+                        TagDataEditor.putBoolean("mC14",true);
+                        mC2.setTextColor(0xFFFFFFFF);
+                    }
+                    break;
+                case R.id.talent_bank_cb15:
+                    if(!mC3.isChecked()) {
+                        TagDataEditor.putBoolean("mC15",false);
+                        mC3.setTextColor(0xFF000000);
+                    }else  {
+                        TagDataEditor.putBoolean("mC15",true);
+                        mC3.setTextColor(0xFFFFFFFF);
+                    }
+                    break;
+            }
+            TagDataEditor.apply();
         }
-        if(mC2.isChecked()) {
-            TagDataEditor.putBoolean("mC14",true);
-        }
-        if(mC3.isChecked()) {
-            TagDataEditor.putBoolean("mC15",true);
-        }
-        TagDataEditor.apply();
     }
+
+
 }

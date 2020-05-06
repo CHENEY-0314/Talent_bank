@@ -82,7 +82,6 @@ public class FindFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
         mView = inflater.inflate(R.layout.talking_fragment, container, false);
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_finding);
@@ -92,15 +91,15 @@ public class FindFragment extends Fragment {
 
         refresh= mView.findViewById(R.id.find_swrefresh);
 
-
         AllProjectData = mContext.getSharedPreferences("all_project_data",mContext.MODE_PRIVATE);
         AllProjectDataEditor = AllProjectData.edit();
+
         AllProjectDataEditor.clear();
         AllProjectDataEditor.apply();
 
         ShareUserData=mContext.getSharedPreferences("userdata",MODE_PRIVATE);
 
-        if(String.valueOf(editText.getText())=="") {
+        if(String.valueOf(editText.getText()).equals("")) {
             showProgress(true);
             loadingProject();
         } else {
@@ -186,10 +185,15 @@ public class FindFragment extends Fragment {
         runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    //加载项目基本信息到手机暂存
+    //加载除了自己发布的项目的基本信息到手机暂存
     public void loadingProject(){
+
+        AllProjectDataEditor.clear();
+        AllProjectDataEditor.apply();
+
+        String boss_phone=ShareUserData.getString("number","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectAll";
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetProjectAll?boss_phone="+boss_phone;
         String tag = "GetProject";
         //取得请求队列
         RequestQueue GetProject = Volley.newRequestQueue(mContext);
@@ -242,8 +246,9 @@ public class FindFragment extends Fragment {
 
     //加载符合搜索匹配的项目基本信息到手机暂存
     public void searchingProject(final String target){
+        String number=ShareUserData.getString("number","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchProject?target="+target;
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchProject?target="+target+"&number="+number;
         String tag = "GetProject";
         //取得请求队列
         RequestQueue GetProject = Volley.newRequestQueue(mContext);

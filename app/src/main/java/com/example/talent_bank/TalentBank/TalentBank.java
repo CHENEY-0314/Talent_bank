@@ -59,6 +59,7 @@ public class TalentBank extends AppCompatActivity {
     private ArrayList<Fragment> mFragmentsList;
     private ArrayList<String> mTitlesList;
     private LinearLayout runWebView;
+    private View mblowview;
 
     private CheckBox mC1;   //包装设计
     private CheckBox mC2;   //平面设计
@@ -127,15 +128,49 @@ public class TalentBank extends AppCompatActivity {
         imgOpen.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
         //初始化默认打开时，Table处于关闭状态
         linearLayout.setVisibility(View.GONE);
+        mblowview.setVisibility(View.GONE);
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        linearLayout.animate().setDuration(shortAnimTime).alpha(
-                0 ).setListener(new AnimatorListenerAdapter() {
+        linearLayout.animate().setDuration(shortAnimTime).alpha(0 ).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 linearLayout.setVisibility( View.GONE );
             }
         });
+        mblowview.animate().setDuration(shortAnimTime).alpha(0 ).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mblowview.setVisibility( View.GONE );
+            }
+        });
 
+        mblowview.setOnClickListener(new View.OnClickListener() {  //点击其他位置时收起选择框
+            @Override
+            public void onClick(View v) {
+                imgOpen.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);  //改变图标
+                editor.putBoolean("ifOpenTable_key",false);
+                editor.apply();
+                //隐藏Table
+                linearLayout.setVisibility(View.GONE);mblowview.setVisibility(View.GONE);
+                int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+                linearLayout.animate().setDuration(shortAnimTime).alpha(
+                        0 ).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        linearLayout.setVisibility( View.GONE );
+                    }
+                });
+                mblowview.animate().setDuration(shortAnimTime).alpha(0 ).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mblowview.setVisibility( View.GONE );
+                    }
+                });
+                AllUsersDataEditor.clear();
+                AllUsersDataEditor.apply();
+                showProgress(true);
+                searchingUsers();
+            }
+        });
 
         imgOpen.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
@@ -146,13 +181,19 @@ public class TalentBank extends AppCompatActivity {
                     editor.putBoolean("ifOpenTable_key",false);
                     editor.apply();
                     //隐藏Table
-                    linearLayout.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.GONE);mblowview.setVisibility(View.GONE);
                     int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
                     linearLayout.animate().setDuration(shortAnimTime).alpha(
                             0 ).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             linearLayout.setVisibility( View.GONE );
+                        }
+                    });
+                    mblowview.animate().setDuration(shortAnimTime).alpha(0 ).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mblowview.setVisibility( View.GONE );
                         }
                     });
                     AllUsersDataEditor.clear();
@@ -164,13 +205,19 @@ public class TalentBank extends AppCompatActivity {
                     editor.putBoolean("ifOpenTable_key",true);
                     editor.apply();
                     //打开显示Table
-                    linearLayout.setVisibility(View.VISIBLE);
+                    linearLayout.setVisibility(View.VISIBLE);mblowview.setVisibility(View.VISIBLE);
                     int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
                     linearLayout.animate().setDuration(shortAnimTime).alpha(
                             1 ).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             linearLayout.setVisibility( View.VISIBLE );
+                        }
+                    });
+                    mblowview.animate().setDuration(shortAnimTime).alpha(1).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mblowview.setVisibility( View.VISIBLE );
                         }
                     });
                 }
@@ -186,7 +233,7 @@ public class TalentBank extends AppCompatActivity {
         mVp = findViewById(R.id.talent_bank_viewPager);
         recyclerView = findViewById(R.id.rv_talent_bank);
         runWebView = findViewById(R.id.talent_bank_loading);
-
+        mblowview=findViewById(R.id.talent_bank_blow);
 
         mTitlesList = new ArrayList<>(); //初始化Tab栏数据
         mTitlesList.add("设计");
@@ -229,6 +276,7 @@ public class TalentBank extends AppCompatActivity {
             public ITabView.TabTitle getTitle(int position) {
                 ITabView.TabTitle title = new ITabView.TabTitle.Builder()
                         .setContent(mTitlesList.get(position))  //设置数据
+                        .setTextColor(0xFF296EF8, 0xFF757575)
                         .build();
                 return title;
             }
@@ -274,8 +322,9 @@ public class TalentBank extends AppCompatActivity {
 
     //加载项目基本信息到手机暂存
     public void loadingUsers(){
+        final String number =UserData.getString("number","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetAllUser";
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/GetAllUser?number="+number;
         String tag = "GetUser";
         //取得请求队列
         RequestQueue GetUser = Volley.newRequestQueue(this);
@@ -322,6 +371,7 @@ public class TalentBank extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
+                params.put("number", number);
                 return params;
             }
         };
@@ -403,16 +453,16 @@ public class TalentBank extends AppCompatActivity {
         }
         if(TagData.getBoolean("mC8",false)) {
             if (target.equals("")) {
-                target = target+"Android开发";
+                target = target+"IOS开发";
             } else {
-                target = target+",Android开发";
+                target = target+",IOS开发";
             }
         }
         if(TagData.getBoolean("mC9",false)) {
             if (target.equals("")) {
-                target = target+"IOS开发";
+                target = target+"Android开发";
             } else {
-                target = target+",IOS开发";
+                target = target+",Android开发";
             }
         }
         if(TagData.getBoolean("mC10",false)) {

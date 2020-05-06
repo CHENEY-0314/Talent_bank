@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/talent_bank_check"
             android:button="@null"
             android:gravity="center"
@@ -29,13 +29,13 @@
             android:paddingVertical="5dp"
             android:text="C++"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
         <CheckBox
             android:id="@+id/talent_bank_cb6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/talent_bank_check"
             android:button="@null"
             android:gravity="center"
@@ -43,13 +43,13 @@
             android:paddingVertical="5dp"
             android:text="JAVA"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
         <CheckBox
             android:id="@+id/talent_bank_cb7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/talent_bank_check"
             android:button="@null"
             android:gravity="center"
@@ -57,27 +57,13 @@
             android:paddingVertical="5dp"
             android:text="微信小程序开发"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
         <CheckBox
             android:id="@+id/talent_bank_cb8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/talent_bank_check"
-            android:button="@null"
-            android:gravity="center"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:text="Android开发"
-            android:textColor="#000"
-            android:textSize="15sp" />
-        <CheckBox
-            android:id="@+id/talent_bank_cb9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/talent_bank_check"
             android:button="@null"
             android:gravity="center"
@@ -85,22 +71,22 @@
             android:paddingVertical="5dp"
             android:text="IOS开发"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
+        <CheckBox
+            android:id="@+id/talent_bank_cb9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/talent_bank_check"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="Android开发"
+            android:textColor="#000"
+            android:textSize="13sp" />
 
     </com.google.android.flexbox.FlexboxLayout>
-    <Button
-        android:id="@+id/talent_bank2_save"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_gravity="right"
-        android:background="@drawable/login_btnshape"
-        android:backgroundTint="#1161E4"
-        android:bufferType="normal"
-        android:stateListAnimator="@null"
-        android:text="SAVE"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#fff"
-        android:textSize="16sp" />
 
 </LinearLayout>

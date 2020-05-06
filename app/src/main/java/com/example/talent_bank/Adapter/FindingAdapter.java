@@ -69,12 +69,10 @@ public class FindingAdapter extends RecyclerView.Adapter<FindingAdapter.LinearVi
         String pj_id = AllProjectData.getString("pj_id","");
         String pj_name = AllProjectData.getString("pj_name","");
         String pj_introduce = AllProjectData.getString("pj_introduce","");
-        String collect_id=AllProjectData.getString("collect_pj_id","");
 
         String[] IDstrarr = pj_id.split("~");
         String[] Namestrarr = pj_name.split("~");
         String[] Introducestrarr = pj_introduce.split("~");
-        String[] collect_idstrarr = collect_id.split("~");
 
         //为每个item设置项目Text
         if (!pj_id.equals("")) {
