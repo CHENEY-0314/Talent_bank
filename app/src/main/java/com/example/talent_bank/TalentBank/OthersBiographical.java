@@ -3,6 +3,7 @@ package com.example.talent_bank.TalentBank;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,11 +34,13 @@ import java.util.Map;
 public class OthersBiographical extends AppCompatActivity {
 
     private ImageView imgBack;
+    private SharedPreferences AllUsersData;
 
     String usertag;   //能力标签
 
     private TextView madvantage,mexperience,mgrade;
     private CheckBox mC1,mC2,mC3,mC4,mC5,mC6,mC7,mC8,mC9,mC10,mC11,mC12,mC13,mC14,mC15;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class OthersBiographical extends AppCompatActivity {
         mexperience=findViewById(R.id.OB_text_experience);
         mgrade=findViewById(R.id.OB_text_grade);
 
+        AllUsersData = getSharedPreferences("all_users_data",MODE_PRIVATE);
+
         mC1=findViewById(R.id.OB_cb_1);mC2=findViewById(R.id.OB_cb_2);mC3=findViewById(R.id.OB_cb_3);
         mC4=findViewById(R.id.OB_cb_4);mC5=findViewById(R.id.OB_cb_5);mC6=findViewById(R.id.OB_cb_6);
         mC7=findViewById(R.id.OB_cb_7);mC8=findViewById(R.id.OB_cb_8);mC9=findViewById(R.id.OB_cb_9);
@@ -68,6 +73,8 @@ public class OthersBiographical extends AppCompatActivity {
                 OthersBiographical.this.finish();
             }
         });
+
+        getData(AllUsersData.getString("curr_user",""));
 
     }
 
@@ -119,6 +126,7 @@ public class OthersBiographical extends AppCompatActivity {
                             mexperience.setText(jsonObject.getString("experience"));
                             usertag=jsonObject.getString("tag");
                             mgrade.setText(jsonObject.getString("grade"));
+                            gettag();
                         } catch (JSONException e) {
                             //做自己的请求异常操作，如Toast提示（“无网络连接”等）
                             Toast.makeText(OthersBiographical.this,"无网络连接！",Toast.LENGTH_SHORT).show();
@@ -128,7 +136,7 @@ public class OthersBiographical extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
-                Toast.makeText(OthersBiographical.this,"请稍后重试！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(OthersBiographical.this,"无网络连接,请稍后重试！",Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override

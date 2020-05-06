@@ -85,7 +85,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
                             dialog.setTitleTextColor("#656565");
                             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                             dialog.setContentText(contentStrarr[finalM]+"联系方式："+numberStrarr[finalM]);
-                            dialog.setPositiveListener("确认收到消息", new ColorDialog.OnPositiveListener() {
+                            dialog.setPositiveListener("确认收到", new ColorDialog.OnPositiveListener() {
                                 @Override
                                 public void onClick(ColorDialog dialog) {
                                     //确定操作

@@ -1,31 +1,44 @@
 package com.example.talent_bank.Adapter;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.talent_bank.ProjectContents;
 import com.example.talent_bank.R;
+import com.example.talent_bank.TalentBank.OthersBiographical;
 import com.example.talent_bank.TalentBank.TalentBank;
+import com.example.talent_bank.user_fragment.MyApplyActivity;
 import com.google.android.flexbox.FlexboxLayout;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.OkHttpClient;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertIconToString;
 
 public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.LinearViewHolder> {
     private TalentBank mContext;
 
+    private Bitmap userimage;
     //以下用于手机存用户信息
     private SharedPreferences AllUsersData;
     private SharedPreferences.Editor AllUsersDataEditor;
@@ -46,7 +59,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TalentBankAdapter.LinearViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final TalentBankAdapter.LinearViewHolder holder, int position) {
         AllUsersData = mContext.getSharedPreferences("all_users_data",MODE_PRIVATE);
         AllUsersDataEditor = AllUsersData.edit();
         String user_name = AllUsersData.getString("user_name","");
@@ -58,6 +71,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
         String[] Gradestrarr = user_grade.split("~");
         String[] Tagstrarr = user_tag.split("~");
         final String[] Userstrarr = user_number.split("~");
+
         if(!user_name.equals("")) {
             //为每个item设置项目Text
             for (int m = 0; m < Namestrarr.length; m++) {
@@ -73,7 +87,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
                             dialog.setContentTextColor("#656565");
                             dialog.setTitleTextColor("#656565");
                             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
-                            dialog.setContentText("是否向此成员发出沟通邀请");
+                            dialog.setContentText("是否向此同学发出沟通邀请");
                             dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                                 @Override
                                 public void onClick(ColorDialog dialog) {
@@ -90,7 +104,28 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
                                     }).show();
                         }
                     });
-                    
+
+                    //点击简历
+                    holder.mMore.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AllUsersDataEditor.putString("curr_user",Userstrarr[finalM1]);
+                            AllUsersDataEditor.apply();
+                            Intent intent2= new Intent(mContext, OthersBiographical.class);
+                            mContext.startActivity(intent2);
+                        }
+                    });
+
+                    downloadPic(Userstrarr[m]);
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(userimage!=null)
+                            holder.mImage.setImageBitmap(userimage);
+                        }
+                    },80);
+
                     holder.userName.setText(Namestrarr[m]);
                     holder.userGrade.setText(Gradestrarr[m]);
                     String[] Tag = Tagstrarr[m].split(",");
@@ -132,8 +167,6 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
         }
     }
 
-
-
     @Override
     public int getItemCount() {
         AllUsersData = mContext.getSharedPreferences("all_users_data",MODE_PRIVATE);
@@ -147,11 +180,14 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
     }
 
     class LinearViewHolder extends RecyclerView.ViewHolder {
-        TextView userName,userGrade,sendNews;
+        TextView userName,userGrade,sendNews,mMore;
         FlexboxLayout tagBox;
+        CircleImageView mImage;
         TextView mC1,mC2,mC3,mC4,mC5,mC6,mC7,mC8,mC9,mC10,mC11,mC12,mC13,mC14,mC15;
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
+            mMore=itemView.findViewById(R.id.rv_talent_bank_more);
+            mImage=itemView.findViewById(R.id.talent_bank_userimage);
             userName = itemView.findViewById(R.id.item_user_name);
             userGrade = itemView.findViewById(R.id.item_user_grade);
             tagBox = itemView.findViewById(R.id.talent_bank_tag_box);
@@ -173,4 +209,31 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
             mC15 = itemView.findViewById(R.id.talent_bank_tag15);
         }
     }
+
+
+    //获取用户头像
+    private Bitmap downloadPic(String number) {
+
+        String url="http://47.107.125.44:8080/Talent_bank/userimagefiles/"+number+".png";
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .build();
+        okHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                userimage=null;
+            }
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+                InputStream inputStream = response.body().byteStream();//得到图片的流
+                userimage = BitmapFactory.decodeStream(inputStream);
+            }
+        });
+
+        return userimage;
+    }
+
+
 }

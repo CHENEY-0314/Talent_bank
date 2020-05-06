@@ -11,6 +11,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,15 +41,20 @@ import com.example.talent_bank.home_page.FindFragment;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.OkHttpClient;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
 import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.ITabView;
+
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertIconToString;
 
 public class TalentBank extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -351,9 +358,9 @@ public class TalentBank extends AppCompatActivity {
                             mHandler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    showProgress(false);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(TalentBank.this));
                                     recyclerView.setAdapter(new TalentBankAdapter(TalentBank.this));
+                                    showProgress(false);
                                 }
                             },500);
                         } catch (JSONException e) {
@@ -512,9 +519,9 @@ public class TalentBank extends AppCompatActivity {
 
     public void searchingUsers() {
         final String target = getTargetTag();
-
+        String number=UserData.getString("number","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchUsers?target="+target;
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/SearchUsers?target="+target+"&number="+number;
         String tag = "GetUsers";
         //取得请求队列
         RequestQueue GetUsers = Volley.newRequestQueue(this);

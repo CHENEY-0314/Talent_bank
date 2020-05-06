@@ -91,7 +91,7 @@
             android:layout_below="@+id/talent_bank_layout"
             android:clickable="true"
             android:focusable="true"
-            android:background="#86E1DFDF"/>
+            android:background="#8FB1B0B0"/>
 
         <LinearLayout
             android:layout_width="match_parent"

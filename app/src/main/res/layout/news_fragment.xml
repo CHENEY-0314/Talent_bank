@@ -30,8 +30,7 @@
         android:layout_weight="0.87"
         android:focusableInTouchMode="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="13dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/news_loading"
@@ -50,5 +49,6 @@
             android:id="@+id/rv_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
 </LinearLayout>
