@@ -82,6 +82,7 @@ public class FindFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+
         mView = inflater.inflate(R.layout.talking_fragment, container, false);
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_finding);
@@ -90,6 +91,7 @@ public class FindFragment extends Fragment {
         editText = mView.findViewById(R.id.finding_edit);
 
         refresh= mView.findViewById(R.id.find_swrefresh);
+
 
         AllProjectData = mContext.getSharedPreferences("all_project_data",mContext.MODE_PRIVATE);
         AllProjectDataEditor = AllProjectData.edit();
@@ -210,6 +212,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
                             AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
+                            AllProjectDataEditor.putString("pj_boss_phone",jsonObject.getString("pj_boss_phone"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
@@ -265,6 +268,7 @@ public class FindFragment extends Fragment {
                             AllProjectDataEditor.putString("pj_name",jsonObject.getString("pj_name"));
                             AllProjectDataEditor.putString("pj_introduce",jsonObject.getString("pj_introduce"));
                             AllProjectDataEditor.putString("count_member",jsonObject.getString("count_member"));
+                            AllProjectDataEditor.putString("pj_boss_phone",jsonObject.getString("pj_boss_phone"));
                             AllProjectDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {

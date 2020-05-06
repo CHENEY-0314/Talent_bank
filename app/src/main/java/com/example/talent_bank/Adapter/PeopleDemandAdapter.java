@@ -41,13 +41,22 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
     @Override
     public void onBindViewHolder(@NonNull PeopleDemandAdapter.LinearViewHolder holder, final int position) {
         AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
-        String member_title = AllProjectData.getString("member_title","");
+        final String member_title = AllProjectData.getString("member_title",""); //职位
         String member_tag = AllProjectData.getString("member_tag","");
         String remark = AllProjectData.getString("remark","");
+        String projectId = AllProjectData.getString("pj_id","");
+        String bossNumber = AllProjectData.getString("pj_boss_phone","");
+        String projectTitle = AllProjectData.getString("pj_name","");
+        String projectContent = AllProjectData.getString("pj_introduce","");
 
+        final int curr = AllProjectData.getInt("curr_pj",0);
         final String[] member_titlestrarr = member_title.split("~");
         String[] remarkstrarr = remark.split("~");
-        String[] member_tagstrarr = member_tag.split("~");
+        final String[] member_tagstrarr = member_tag.split("~");
+        final String[] project_id_strarr = projectId.split("~");
+        final String[] boss_number_strarr = bossNumber.split("~");
+        final String[] project_title_strarr = projectTitle.split("~");
+        final String[] project_content_strarr = projectContent.split("~");
 
         //将各个项目名字写上
         for(int m=0;m<member_titlestrarr.length;m++) {
@@ -66,36 +75,38 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
                     }
                 }
                 holder.textTag.setText(tag);
-            }
-        }
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String job="";
-                job="是否确定申请 “"+member_titlestrarr[position]+"” 职位？";
-                ColorDialog dialog = new ColorDialog(mContext);
-                dialog.setTitle("提示");
-                dialog.setColor("#ffffff");//颜色
-                dialog.setContentTextColor("#656565");
-                dialog.setTitleTextColor("#656565");
-                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
-                dialog.setContentText(job);
-                dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                final int finalM = m;
+                holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(ColorDialog dialog) {
-                        //提交申请操作
-                        dialog.dismiss();
-                    }
-                })
-                        .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                    public void onClick(View v) {
+                        ColorDialog dialog = new ColorDialog(mContext);
+                        dialog.setTitle("提示");
+                        dialog.setColor("#ffffff");//颜色
+                        dialog.setContentTextColor("#656565");
+                        dialog.setTitleTextColor("#656565");
+                        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
+                        dialog.setContentText("是否确定申请“"+member_titlestrarr[finalM]+"”职位？");
+                        dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                             @Override
                             public void onClick(ColorDialog dialog) {
+                                //提交申请操作
+                                mContext.SendApply(project_id_strarr[curr],boss_number_strarr[curr],member_titlestrarr[finalM],project_title_strarr[curr],project_content_strarr[curr]);
+                                //并发出消息
+                                mContext.SendNews(boss_number_strarr[curr],project_title_strarr[curr],member_titlestrarr[finalM]);
                                 dialog.dismiss();
                             }
-                        }).show();
+                        })
+                                .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                    @Override
+                                    public void onClick(ColorDialog dialog) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+                    }
+                });
             }
-        });
+        }
 
     }
 

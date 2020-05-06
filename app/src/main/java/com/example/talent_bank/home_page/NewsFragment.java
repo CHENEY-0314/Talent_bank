@@ -92,7 +92,7 @@ public class NewsFragment extends Fragment {
      * 显示进度UI并隐藏登录表单。
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    public void showProgress(final boolean show) {
         mRvMain.setVisibility(!show ? View.VISIBLE : View.GONE);
         runWebView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
@@ -155,5 +155,112 @@ public class NewsFragment extends Fragment {
         //将请求添加到队列中
         GetNews.add(GetNewsrequest);
     }
+
+    //删除指定的消息
+    public void deleteNews(final String news_id){
+        AllNewsData = mContext.getSharedPreferences("all_news_data",mContext.MODE_PRIVATE);
+        AllNewsDataEditor = AllNewsData.edit();
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/DeleteNewsServlet?news_id="+news_id;
+        String tag = "DeleteNews";
+        //取得请求队列
+        RequestQueue GetNews = Volley.newRequestQueue(mContext);
+        //防止重复请求，所以先取消tag标识的请求队列
+        GetNews.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest DeleteNewsrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response);
+                            Handler mHandler = new Handler();
+                            mHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AllNewsDataEditor.clear();
+                                    AllNewsDataEditor.apply();
+                                    loadingNews();
+                                    Toast.makeText(mContext,"删除消息成功！",Toast.LENGTH_SHORT).show();
+                                }
+                            },500);
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(mContext,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(mContext,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("news_id", news_id);
+                return params;
+            }
+        };
+        //设置Tag标签
+        DeleteNewsrequest.setTag(tag);
+        //将请求添加到队列中
+        GetNews.add(DeleteNewsrequest);
+    }
+
+    //确认收到消息
+    public void CheckedNews(final String news_id){
+        AllNewsData = mContext.getSharedPreferences("all_news_data",mContext.MODE_PRIVATE);
+        AllNewsDataEditor = AllNewsData.edit();
+        //请求地址
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/CheckedNewsServlet?news_id="+news_id;
+        String tag = "CheckedNews";
+        //取得请求队列
+        RequestQueue CheckedNews = Volley.newRequestQueue(mContext);
+        //防止重复请求，所以先取消tag标识的请求队列
+        CheckedNews.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest CheckedNewsrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response);
+                            Handler mHandler = new Handler();
+                            mHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AllNewsDataEditor.clear();
+                                    AllNewsDataEditor.apply();
+                                    loadingNews();
+                                }
+                            },500);
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(mContext,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(mContext,"无网络连接，请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("news_id", news_id);
+                return params;
+            }
+        };
+        //设置Tag标签
+        CheckedNewsrequest.setTag(tag);
+        //将请求添加到队列中
+        CheckedNews.add(CheckedNewsrequest);
+    }
+
+
 
 }

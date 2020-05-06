@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingBottom="20dp"
     android:layout_marginTop="30dp">
 
     <androidx.cardview.widget.CardView
@@ -32,6 +31,7 @@
                         android:layout_height="25dp"
                         android:src="@drawable/my_apply_img"/>
                     <TextView
+                        android:id="@+id/my_apply_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="华工软件设计大赛"
@@ -41,6 +41,7 @@
                         android:layout_marginStart="6dp"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/my_apply_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#7C7C7C"

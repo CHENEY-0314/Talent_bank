@@ -15,9 +15,15 @@ import com.example.talent_bank.R;
 
 import cn.refactor.lib.colordialog.ColorDialog;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearViewHolder> {
     private MyApplyActivity mContext;
-    private String shpName = "SHP_NAME";
+    //以下用于手机存用户信息
+    private SharedPreferences AllApplyData;
+    private SharedPreferences.Editor AllApplyDataEditor;
+
+    private SharedPreferences Userdata;
 
     public MyApplyAdapter (MyApplyActivity mContext) {
         this.mContext = mContext;
@@ -25,58 +31,84 @@ public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearVi
     @NonNull
     @Override
     public MyApplyAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyApplyAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_my_apply_item,parent,false));
+        AllApplyData = mContext.getSharedPreferences("all_apply_data", MODE_PRIVATE);
+        String apply_id = AllApplyData.getString("apply_id", "");
+        if (apply_id.equals("")) {
+            return new MyApplyAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.released_null_apply,parent,false));
+        } else {
+            return new MyApplyAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_my_apply_item,parent,false));
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyApplyAdapter.LinearViewHolder holder, final int position) {
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ColorDialog dialog = new ColorDialog(mContext);
-                dialog.setTitle("提示");
-                dialog.setColor("#ffffff");//颜色
-                dialog.setContentTextColor("#656565");
-                dialog.setTitleTextColor("#656565");
-                dialog.setContentText("是否撤销对此项目的申请？\n申请一但删除则无法恢复。");
-                dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
-                    @Override
-                    public void onClick(ColorDialog dialog) {
-                        //删除申请的操作
-                        SharedPreferences shp = mContext.getApplication().getSharedPreferences(shpName, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = shp.edit();
-                        dialog.dismiss();
-                        int x = shp.getInt("myApplyNum_key",3);
-                        x = x-1;
-                        editor.putInt("myApplyNum_key",x);
-                        editor.apply();
-                        notifyItemRemoved(position);
-                        int itemCount = x-1-position;
-                        notifyItemRangeChanged(position,itemCount);
-                    }
-                })
-                        .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
-                            @Override
-                            public void onClick(ColorDialog dialog) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+        AllApplyData = mContext.getSharedPreferences("all_apply_data", MODE_PRIVATE);
+        String apply_id = AllApplyData.getString("apply_id", "");
+        final String apply_project_id = AllApplyData.getString("apply_project_id", "");
+        String apply_project_title = AllApplyData.getString("apply_project_title", "");
+        String apply_project_content = AllApplyData.getString("apply_project_content", "");
+
+        final String[] applyIdStrarr = apply_id.split("~");
+        String[] applyProjectIdStrarr = apply_project_id.split("~");
+        String[] applyProjectTitleStrarr = apply_project_title.split("~");
+        String[] applyProjectContentStrarr = apply_project_content.split("~");
+        //为每个item设置项目Text
+        if (!apply_id.equals("")) {
+            for (int m = 0; m < applyIdStrarr.length; m++) {
+                if (position == m) {
+                    final int finalM = m;
+                    holder.title.setText(applyProjectTitleStrarr[m]);
+                    holder.content.setText(applyProjectContentStrarr[m]);
+                    holder.delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ColorDialog dialog = new ColorDialog(mContext);
+                            dialog.setTitle("提示");
+                            dialog.setColor("#ffffff");//颜色
+                            dialog.setContentTextColor("#656565");
+                            dialog.setTitleTextColor("#656565");
+                            dialog.setContentText("是否撤销对此项目的申请？\n申请一但删除则无法恢复。");
+                            dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+                                @Override
+                                public void onClick(ColorDialog dialog) {
+                                    //删除申请的操作
+                                    mContext.deleteApply(applyIdStrarr[finalM]);
+                                    dialog.dismiss();
+                                }
+                            })
+                                    .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+                                        @Override
+                                        public void onClick(ColorDialog dialog) {
+                                            dialog.dismiss();
+                                        }
+                                    }).show();
+                        }
+                    });
+                }
             }
-        });
+        }
     }
 
     @Override
     public int getItemCount() {
-        SharedPreferences shp = mContext.getSharedPreferences(shpName, Context.MODE_PRIVATE);
-        int x = shp.getInt("myApplyNum_key",3);
-        return x;
+        AllApplyData = mContext.getSharedPreferences("all_apply_data",MODE_PRIVATE);
+        String apply_id = AllApplyData.getString("apply_id","");
+        if (apply_id.equals("")) {
+            return 1;
+        } else {
+            String[] strarr = apply_id.split("~");
+            return strarr.length;
+        }
     }
 
     class LinearViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
+        private TextView delete,detail,title,content;
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.my_apply_delete);
+            title= itemView.findViewById(R.id.my_apply_title);
+            content= itemView.findViewById(R.id.my_apply_content);
+            delete= itemView.findViewById(R.id.my_apply_delete);
+            detail= itemView.findViewById(R.id.my_apply_detail);
         }
     }
 }
