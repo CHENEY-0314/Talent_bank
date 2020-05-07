@@ -70,7 +70,36 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
                 if(position==m) {
                     holder.name.setText(nameStrarr[m]);
                     holder.content.setText(contentStrarr[m]);
-                    holder.time.setText(timeStrarr[m]);
+                    String show_time="";
+                    //获得当前系统的时间方法
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+                    Date date = new Date(System.currentTimeMillis());
+                    String now_time = simpleDateFormat.format(date);
+                    //做时间判断
+                    String target_time = timeStrarr[m];
+                    String target_year = target_time.substring(0,4);
+                    String target_month = target_time.substring(5,7);
+                    String target_day = target_time.substring(8,10);
+                    String target_day_time = target_time.substring(12,17);
+
+                    String now_year = now_time.substring(0,4);
+                    String now_month = now_time.substring(5,7);
+                    String now_day = now_time.substring(8,10);
+                    int dif = Integer.valueOf(now_day)-Integer.valueOf(target_day);
+                    if(Integer.valueOf(now_year)>Integer.valueOf(target_year)){
+                        show_time = target_year+"/"+target_month+"/"+target_day;
+                    } else if(Integer.valueOf(now_month)>Integer.valueOf(target_month)) {
+                        show_time = target_month+"/"+target_day;
+                    } else if ((Integer.valueOf(now_month)==Integer.valueOf(target_month))&&(dif>2)) {
+                        show_time = target_month+"/"+target_day;
+                    } else if ((Integer.valueOf(now_month)==Integer.valueOf(target_month))&&(dif==2)) {
+                        show_time = "前天";
+                    } else if ((Integer.valueOf(now_month)==Integer.valueOf(target_month))&&(dif==1)){
+                        show_time = "昨天";
+                    } else if ((Integer.valueOf(now_month)==Integer.valueOf(target_month))&&(dif==0)) {
+                        show_time = target_day_time;
+                    }
+                    holder.time.setText(show_time);
                     if(checkedStrarr[m].equals("true")) {
                         holder.checked.setVisibility(View.GONE);
                     }

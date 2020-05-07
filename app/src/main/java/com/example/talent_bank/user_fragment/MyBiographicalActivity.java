@@ -12,10 +12,18 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.talent_bank.MyBiographicalDialog;
+import com.example.talent_bank.MyDialog;
+import com.example.talent_bank.ProjectContents;
 import com.example.talent_bank.R;
 import com.example.talent_bank.register.RegisterActivity;
 import com.example.talent_bank.register.RegisterBasedActivity;
+
+import java.util.Objects;
+
+import cn.refactor.lib.colordialog.ColorDialog;
 
 import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertStringToIcon;
 
@@ -79,8 +87,13 @@ public class MyBiographicalActivity extends AppCompatActivity {
            @Override
            public void onClick(View v) {
 
-               startActivity(new Intent(MyBiographicalActivity.this, EditMyBiographical.class), ActivityOptions.makeSceneTransitionAnimation(MyBiographicalActivity.this).toBundle());
-
+               new MyBiographicalDialog(MyBiographicalActivity.this){
+                   @Override
+                   public void btnEditBySelect() {
+                       //点击弹窗”编辑“时做的事
+                       startActivity(new Intent(MyBiographicalActivity.this, EditMyBiographical.class), ActivityOptions.makeSceneTransitionAnimation(MyBiographicalActivity.this).toBundle());
+                   }
+               }.show();
 //               new MBDialog(MyBiographicalActivity.this){
 //                   @Override
 //                   public void btnPickByTake(){
