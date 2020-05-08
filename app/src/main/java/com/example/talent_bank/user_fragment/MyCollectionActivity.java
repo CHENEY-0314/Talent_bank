@@ -35,6 +35,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertStringToIcon;
+
 public class MyCollectionActivity extends AppCompatActivity {
 
     private ImageView imgBack;
@@ -156,6 +158,13 @@ public class MyCollectionActivity extends AppCompatActivity {
         GetCollection.add(GetCollectionrequest);
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        AllProjectDataEditor.clear();
+        AllProjectDataEditor.apply();
+        mRvMain.setAdapter(null);
+        loadingCollection();
+    }
 
 }

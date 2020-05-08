@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -38,13 +39,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.talent_bank.user_fragment.ChangeImageActivity.convertStringToIcon;
+
 public class NewsFragment extends Fragment {
 
     private RecyclerView mRvMain;
     private View mView;
     private MainActivity mContext;
     private LinearLayout runWebView;
-
+    private SwipeRefreshLayout refresh;
     private NewsViewModel mViewModel;
 
     //以下用于手机存用户信息
@@ -60,14 +63,51 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         mView = inflater.inflate(R.layout.news_fragment, container, false);
         init();
 
         showProgress(true);
         loadingNews();
 
+        refresh.setColorSchemeResources(R.color.colorPrimary);  //设置进度条颜色
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gorefresh();
+            }
+        });
+
         return mView;
+    }
+
+    //刷新
+    private void gorefresh(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                mContext.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRvMain.setAdapter(null);
+                        AllNewsDataEditor.clear();
+                        AllNewsDataEditor.apply();
+                        loadingNews();
+                        Handler mHandler = new Handler();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                refresh.setRefreshing(false);
+                            }
+                        },800);
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override
@@ -80,6 +120,7 @@ public class NewsFragment extends Fragment {
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_news);
         runWebView = mView.findViewById(R.id.news_loading);
+        refresh= mView.findViewById(R.id.news_swrefresh);
         UserData = mContext.getSharedPreferences("userdata",mContext.MODE_PRIVATE);
         AllNewsData = mContext.getSharedPreferences("all_news_data",mContext.MODE_PRIVATE);
         AllNewsDataEditor = AllNewsData.edit();
@@ -261,6 +302,13 @@ public class NewsFragment extends Fragment {
         CheckedNews.add(CheckedNewsrequest);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        AllNewsDataEditor.clear();
+        AllNewsDataEditor.apply();
+        loadingNews();
+        }
 
 
 }

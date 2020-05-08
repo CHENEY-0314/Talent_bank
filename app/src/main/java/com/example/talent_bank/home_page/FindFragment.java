@@ -160,9 +160,15 @@ public class FindFragment extends Fragment {
                 mContext.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mRvMain.setLayoutManager(new LinearLayoutManager(mContext));
-                        mRvMain.setAdapter(new FindingAdapter(FindFragment.this));
-                        refresh.setRefreshing(false);
+                        mRvMain.setAdapter(null);
+                        loadingProject();
+                        Handler mHandler = new Handler();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                refresh.setRefreshing(false);
+                            }
+                        },500);
                     }
                 });
             }
