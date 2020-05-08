@@ -11,10 +11,14 @@
         android:layout_width="160dp"
         android:layout_height="260dp"
         android:layout_marginStart="10dp"
-        android:backgroundTint="#084DFB"
         app:cardCornerRadius="25dp"
+        android:foreground = "?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            android:background = "@drawable/rv2"/>
         <TextView
             android:background="@drawable/mypush_textbackground"
             android:layout_gravity="bottom"

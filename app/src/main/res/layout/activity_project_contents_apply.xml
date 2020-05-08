@@ -44,7 +44,7 @@
             android:padding="30dp">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/project_photp1" />

@@ -7,6 +7,9 @@ MobSDK {
     appKey "2f1fdd2ea21db"
     appSecret "225768c9b8618a9a6afafc69d09d526c"
     SMSSDK {}
+    permissions {
+        exclude "android.permission.READ_CONTACTS"
+    }
 }
 android {
     compileSdkVersion 29

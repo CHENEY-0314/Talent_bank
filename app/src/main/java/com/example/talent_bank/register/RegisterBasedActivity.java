@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.IBinder;
 import android.transition.Slide;
 import android.util.Log;
@@ -36,6 +37,7 @@ import com.example.talent_bank.LoginActivity;
 import com.example.talent_bank.MainActivity;
 import com.example.talent_bank.R;
 import com.example.talent_bank.SignUPActivity;
+import com.mob.MobSDK;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,9 +47,11 @@ import java.util.Map;
 import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 
 public class RegisterBasedActivity extends AppCompatActivity {
-
+    private EventHandler eventHandler;
     private SharedPreferences mShared;     //用于手机暂存用户注册信息
     private SharedPreferences.Editor mEditor;
     private EditText mEdtname,mEdtnumber,mEdtpassword,mEdtcode;
@@ -55,6 +59,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
     private Button mBtnNext;
     private ImageView mImgback;
 
+    private Boolean RightCode=false;  //用于标识验证码是否正确
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      * 跟踪登录任务以确保我们可以根据请求取消它。
@@ -94,14 +99,60 @@ public class RegisterBasedActivity extends AppCompatActivity {
         mEdtpassword.setText(mShared.getString("register_password",""));
         mEdtcode.setText(mShared.getString("register_code",""));
 
+
+        eventHandler = new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    // TODO 处理验证成功的结果
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                        //提交验证码成功
+                        RightCode=true;
+                        toast("验证码正确");
+                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                        //获取验证码成功
+                        toast("获取成功");
+                    } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
+                        //返回支持发送验证码的国家列表
+                        Log.i("EventHandler", "返回支持发送验证码的国家列表");
+                    }
+                } else {
+                    ((Throwable) data).printStackTrace();
+                    String str = ((Throwable) data).getMessage();
+                    toast(str);
+                }
+            }
+        };
+
+        //注册 eventHandler
+        SMSSDK.registerEventHandler(eventHandler);
+
+
         //监听点击事件
         setListeners();
     }
+
+    //吐司的一个小方法
+    private void toast(final String str) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(RegisterBasedActivity.this, str, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void setListeners(){
         RegisterBasedActivity.OnClick onClick=new RegisterBasedActivity.OnClick();
         mImgback.setOnClickListener(onClick);
         mBtnCode.setOnClickListener(onClick);
         mBtnNext.setOnClickListener(onClick);
+    }
+
+    // 使用完EventHandler需注销，否则可能出现内存泄漏
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SMSSDK.unregisterEventHandler(eventHandler);
     }
 
     private class OnClick implements View.OnClickListener{
@@ -113,7 +164,20 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     break;
                 case R.id.RBbtn_next:
                     //跳转到注册第二界面
-                    if(!IsEmpty()) ToRegisterActivity();
+                    if(!IsEmpty()) {//验证码是否正确
+                        String code=mEdtcode.getText().toString().replaceAll("/s","");
+                        String phone=mEdtnumber.getText().toString().replaceAll("/s","");
+                        SMSSDK.submitVerificationCode("86", phone, code); // 校验短信验证码
+                        Handler mHandler = new Handler();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(RightCode){
+                                    ToRegisterActivity();
+                                }
+                            }
+                        },1000);
+                    }
                     break;
                 case R.id.RBimg_back:
                     //返回上一界面（不保存当前页面数据）
@@ -267,8 +331,8 @@ public class RegisterBasedActivity extends AppCompatActivity {
                             String result = jsonObject.getString("Result");
                             if (result.equals("账号未注册")) {
                                 timer.start();  //开始60秒倒计时
-                                //这里发送验证码
-
+                                //中国大陆区域 +86
+                                SMSSDK.getVerificationCode("86", account);// 获取短信验证码
                             } else {
                                 if (result.equals("账号已存在")) {
                                     Toast toast=Toast.makeText(RegisterBasedActivity.this,null,Toast.LENGTH_SHORT);
