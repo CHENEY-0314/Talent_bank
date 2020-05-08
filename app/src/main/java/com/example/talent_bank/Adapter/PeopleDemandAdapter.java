@@ -48,6 +48,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
         String bossNumber = AllProjectData.getString("pj_boss_phone","");
         String projectTitle = AllProjectData.getString("pj_name","");
         String projectContent = AllProjectData.getString("pj_introduce","");
+        String projectCountMember = AllProjectData.getString("count_member","");
 
         final int curr = AllProjectData.getInt("curr_pj",0);
         final String[] member_titlestrarr = member_title.split("~");
@@ -57,6 +58,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
         final String[] boss_number_strarr = bossNumber.split("~");
         final String[] project_title_strarr = projectTitle.split("~");
         final String[] project_content_strarr = projectContent.split("~");
+        final String[] project_count_member_strarr = projectCountMember.split("~");
 
         //将各个项目名字写上
         for(int m=0;m<member_titlestrarr.length;m++) {
@@ -91,7 +93,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
                             @Override
                             public void onClick(ColorDialog dialog) {
                                 //提交申请操作
-                                mContext.SendApply(project_id_strarr[curr],boss_number_strarr[curr],member_titlestrarr[finalM],project_title_strarr[curr],project_content_strarr[curr]);
+                                mContext.SendApply(project_id_strarr[curr],boss_number_strarr[curr],member_titlestrarr[finalM],project_title_strarr[curr],project_content_strarr[curr],project_count_member_strarr[curr]);
                                 //并发出消息
                                 mContext.SendNews(boss_number_strarr[curr],project_title_strarr[curr],member_titlestrarr[finalM]);
                                 dialog.dismiss();

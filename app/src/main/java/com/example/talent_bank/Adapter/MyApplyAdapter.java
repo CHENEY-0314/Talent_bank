@@ -1,6 +1,7 @@
 package com.example.talent_bank.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.talent_bank.ProjectContents;
+import com.example.talent_bank.ProjectContentsApply;
 import com.example.talent_bank.user_fragment.MyApplyActivity;
 import com.example.talent_bank.R;
 
@@ -22,6 +26,9 @@ public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearVi
     //以下用于手机存用户信息
     private SharedPreferences AllApplyData;
     private SharedPreferences.Editor AllApplyDataEditor;
+
+    private SharedPreferences AllProjectData;
+    private SharedPreferences.Editor AllProjectDataEditor;
 
     private SharedPreferences Userdata;
 
@@ -42,6 +49,8 @@ public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearVi
 
     @Override
     public void onBindViewHolder(@NonNull MyApplyAdapter.LinearViewHolder holder, final int position) {
+        AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
+        AllProjectDataEditor = AllProjectData.edit();
         AllApplyData = mContext.getSharedPreferences("all_apply_data", MODE_PRIVATE);
         String apply_id = AllApplyData.getString("apply_id", "");
         final String apply_project_id = AllApplyData.getString("apply_project_id", "");
@@ -59,6 +68,15 @@ public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearVi
                     final int finalM = m;
                     holder.title.setText(applyProjectTitleStrarr[m]);
                     holder.content.setText(applyProjectContentStrarr[m]);
+                    holder.detail.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AllProjectDataEditor.putInt("curr_pj",position);
+                            AllProjectDataEditor.apply();
+                            Intent intent = new Intent (mContext, ProjectContentsApply.class);
+                            mContext.startActivity(intent);
+                        }
+                    });
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
