@@ -46,6 +46,9 @@ public class MyApplyActivity extends AppCompatActivity {
 
     private SharedPreferences UserData;
 
+    private SharedPreferences AllProjectData;
+    private SharedPreferences.Editor AllProjectDataEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置屏幕上方状态栏颜色
@@ -62,8 +65,12 @@ public class MyApplyActivity extends AppCompatActivity {
         UserData = getSharedPreferences("userdata",MODE_PRIVATE);
         AllApplyData = getSharedPreferences("all_apply_data",MODE_PRIVATE);
         AllApplyDataEditor = AllApplyData.edit();
+        AllProjectData = getSharedPreferences("all_project_data",MODE_PRIVATE);
+        AllProjectDataEditor = AllProjectData.edit();
         AllApplyDataEditor.clear();
         AllApplyDataEditor.apply();
+        AllProjectDataEditor.clear();
+        AllProjectDataEditor.apply();
 
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
@@ -111,11 +118,18 @@ public class MyApplyActivity extends AppCompatActivity {
                             AllApplyDataEditor.putString("apply_job",jsonObject.getString("apply_job"));
                             AllApplyDataEditor.putString("apply_project_title",jsonObject.getString("apply_project_title"));
                             AllApplyDataEditor.putString("apply_project_content",jsonObject.getString("apply_project_content"));
+                            AllApplyDataEditor.putString("apply_project_count_member",jsonObject.getString("apply_project_count_member"));
                             AllApplyDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    AllProjectDataEditor.putString("pj_id",AllApplyData.getString("apply_project_id",""));
+                                    AllProjectDataEditor.putString("pj_name",AllApplyData.getString("apply_project_title",""));
+                                    AllProjectDataEditor.putString("pj_introduce",AllApplyData.getString("apply_project_content",""));
+                                    AllProjectDataEditor.putString("count_member",AllApplyData.getString("apply_project_count_member",""));
+                                    AllProjectDataEditor.putString("pj_boss_phone",AllApplyData.getString("apply_receive_number",""));
+                                    AllProjectDataEditor.apply();
                                     showProgress(false);
                                     mRvMain.setLayoutManager(new LinearLayoutManager(MyApplyActivity.this));
                                     mRvMain.setAdapter(new MyApplyAdapter(MyApplyActivity.this));

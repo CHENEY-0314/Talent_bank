@@ -171,12 +171,12 @@ public class PeopleDemand extends AppCompatActivity {
 
     }
 
-    public void SendApply(final String apply_project_id, final String apply_receive_number, final String apply_job, final String apply_project_title, final String apply_project_content) {
+    public void SendApply(final String apply_project_id, final String apply_receive_number, final String apply_job, final String apply_project_title, final String apply_project_content,final String apply_project_count_member) {
 
         final String apply_send_name = UserData.getString("name","");
         final String apply_send_number = UserData.getString("number","");
         //请求地址
-        String url = "http://47.107.125.44:8080/Talent_bank/servlet/CreatApplyServlet?apply_send_number="+apply_send_number+"&apply_send_name="+apply_send_name+"&apply_receive_number="+apply_receive_number+"&apply_project_id="+apply_project_id+"&apply_job="+apply_job+"&apply_project_title="+apply_project_title+"&apply_project_content="+apply_project_content;
+        String url = "http://47.107.125.44:8080/Talent_bank/servlet/CreatApplyServlet?apply_send_number="+apply_send_number+"&apply_send_name="+apply_send_name+"&apply_receive_number="+apply_receive_number+"&apply_project_id="+apply_project_id+"&apply_job="+apply_job+"&apply_project_title="+apply_project_title+"&apply_project_content="+apply_project_content+"&apply_project_count_member="+apply_project_count_member;
         String tag = "SendApply";
         //取得请求队列
         RequestQueue SendApply = Volley.newRequestQueue(this);
@@ -218,6 +218,7 @@ public class PeopleDemand extends AppCompatActivity {
                 params.put("apply_job", apply_job);
                 params.put("apply_project_title", apply_project_title);
                 params.put("apply_project_content", apply_project_content);
+                params.put("apply_project_count_member", apply_project_count_member);
                 return params;
             }
         };

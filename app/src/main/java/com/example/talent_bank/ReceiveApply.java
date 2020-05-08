@@ -118,6 +118,7 @@ public class ReceiveApply extends AppCompatActivity {
                             ReceiveApplyDataEditor.putString("apply_job",jsonObject.getString("apply_job"));
                             ReceiveApplyDataEditor.putString("apply_project_title",jsonObject.getString("apply_project_title"));
                             ReceiveApplyDataEditor.putString("apply_project_content",jsonObject.getString("apply_project_content"));
+                            ReceiveApplyDataEditor.putString("apply_project_count_member",jsonObject.getString("apply_project_count_member"));
                             ReceiveApplyDataEditor.apply();
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
