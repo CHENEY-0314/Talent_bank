@@ -1,6 +1,8 @@
 package com.example.talent_bank.user_fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -8,11 +10,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.example.talent_bank.Adapter.MyCollectionAdapter;
+import com.example.talent_bank.Adapter.MyPublishAdapter;
 import com.example.talent_bank.R;
 
 public class MyCollectionActivity extends AppCompatActivity {
 
     private ImageView imgBack;
+    private RecyclerView mRvMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,8 @@ public class MyCollectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_collection);
 
+        mRvMain = findViewById(R.id.rv_my_collection);
+
         imgBack=findViewById(R.id.MCimg_back);
 
         imgBack.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
@@ -32,6 +39,9 @@ public class MyCollectionActivity extends AppCompatActivity {
                 MyCollectionActivity.this.finish();
             }
         });
+
+        mRvMain.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mRvMain.setAdapter(new MyCollectionAdapter(MyCollectionActivity.this)); //对RecyclerView设置适配器
 
     }
 }

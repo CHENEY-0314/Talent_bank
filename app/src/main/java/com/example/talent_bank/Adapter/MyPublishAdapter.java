@@ -99,8 +99,6 @@ public class MyPublishAdapter extends RecyclerView.Adapter<MyPublishAdapter.Line
     class LinearViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private TextView pj_name;
-
-
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.mypush_card);
