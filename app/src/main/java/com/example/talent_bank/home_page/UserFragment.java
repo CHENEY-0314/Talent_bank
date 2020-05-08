@@ -1,7 +1,7 @@
 package com.example.talent_bank.home_page;
 
 import androidx.lifecycle.ViewModelProviders;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.talent_bank.MyApplyNull;
+
 import com.example.talent_bank.user_fragment.ChangeImageActivity;
 import com.example.talent_bank.user_fragment.MyPublishActivity;
 import com.example.talent_bank.user_fragment.AdviceActivity;
@@ -23,7 +23,6 @@ import com.example.talent_bank.user_fragment.MyCollectionActivity;
 import com.example.talent_bank.user_fragment.SetUpActivity;
 import com.example.talent_bank.viewmodel.HomeViewModel;
 import com.example.talent_bank.R;
-import java.util.Objects;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -111,45 +110,38 @@ public class UserFragment extends Fragment {
                 case R.id.home_btn_MyApply:
                     mMyApply.setClickable(false);
                     //如果我的申请的Num为0则跳转到另一页面
-                    SharedPreferences shp = requireActivity().getSharedPreferences(shpName, Context.MODE_PRIVATE);
-                    int x = shp.getInt("myApplyNum_key",0);
-                    if (x ==0) {
-                        Intent intent1 = new Intent(getActivity(), MyApplyNull.class);
-                        startActivity(intent1);
-                    } else {
-                        Intent intent2= new Intent(getActivity(), MyApplyActivity.class);
-                        startActivity(intent2);
-                    }
+                    Intent intent2= new Intent(getActivity(), MyApplyActivity.class);
+                    startActivity(intent2);
                     mMyApply.setClickable(true);
                     break;
                 case R.id.home_btn_MyCollection:
                     mMyCollection.setClickable(false);
-                    Intent intent2= new Intent(getActivity(), MyCollectionActivity.class);
-                    startActivity(intent2);
+                    Intent intent3= new Intent(getActivity(), MyCollectionActivity.class);
+                    startActivity(intent3);
                     mMyCollection.setClickable(true);
                     break;
                 case R.id.home_btn_MyBiographical:
                     mMyBiographical.setClickable(false);
-                    Intent intent3= new Intent(getActivity(), MyBiographicalActivity.class);
-                    startActivity(intent3);
+                    Intent intent4= new Intent(getActivity(), MyBiographicalActivity.class);
+                    startActivity(intent4);
                     mMyBiographical.setClickable(true);
                     break;
                 case R.id.home_btn_setup:
                     mSetUp.setClickable(false);
-                    Intent intent4= new Intent(getActivity(), SetUpActivity.class);
-                    startActivity(intent4);
+                    Intent intent5= new Intent(getActivity(), SetUpActivity.class);
+                    startActivity(intent5);
                     mSetUp.setClickable(true);
                     break;
                 case R.id.home_btn_advice:
                     mAdvice.setClickable(false);
-                    Intent intent5= new Intent(getActivity(), AdviceActivity.class);
-                    startActivity(intent5);
+                    Intent intent6= new Intent(getActivity(), AdviceActivity.class);
+                    startActivity(intent6);
                     mAdvice.setClickable(true);
                     break;
                 case R.id.home_img_user:  //跳转到换头像的页面
                     circleImageView.setClickable(false);
-                    Intent intent6= new Intent(getActivity(), ChangeImageActivity.class);
-                    startActivity(intent6);
+                    Intent intent7= new Intent(getActivity(), ChangeImageActivity.class);
+                    startActivity(intent7);
                     circleImageView.setClickable(true);
                     break;
             }
