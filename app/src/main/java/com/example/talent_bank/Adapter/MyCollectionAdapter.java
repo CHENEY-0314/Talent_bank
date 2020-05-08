@@ -42,9 +42,6 @@ public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapte
     @NonNull
     @Override
     public MyCollectionAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-//        if (pj_id.equals("")) {   //做判断当为空的时候显示此
-//            return new MyCollectionAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.my_collection_null, parent, false));
-//        }
         if (i==0) {
             return new MyCollectionAdapter.LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.rv_mypush_item2, parent, false));
         } else if(i==1){
@@ -89,8 +86,8 @@ public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapte
     public int getItemCount() {
         AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
         String pj_id = AllProjectData.getString("pj_id","");
-        if (pj_id.equals("")) {
-            return 1;
+        if (pj_id.equals("null")) {
+            return 0;
         } else {
             String[] strarr = pj_id.split("~");
             return strarr.length;

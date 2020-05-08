@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,6 +41,7 @@ public class MyCollectionActivity extends AppCompatActivity {
     private RecyclerView mRvMain;
     private LinearLayout runWebView;
 
+    private TextView mtext;
     private SharedPreferences AllProjectData;
     private SharedPreferences.Editor AllProjectDataEditor;
 
@@ -64,7 +66,7 @@ public class MyCollectionActivity extends AppCompatActivity {
         AllProjectDataEditor.apply();
 
         runWebView = findViewById(R.id.my_collection_loading);
-
+        mtext=findViewById(R.id.MP_textview_end);
         showProgress(true);
 
         ShareUserData=getSharedPreferences("userdata",MODE_PRIVATE);
@@ -122,8 +124,12 @@ public class MyCollectionActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     showProgress(false);
-                                    mRvMain.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-                                    mRvMain.setAdapter(new MyCollectionAdapter(MyCollectionActivity.this)); //对RecyclerView设置适配器
+                                    if(!AllProjectData.getString("pj_id", "").equals("null")) {
+                                        mRvMain.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                                        mRvMain.setAdapter(new MyCollectionAdapter(MyCollectionActivity.this)); //对RecyclerView设置适配器
+                                    }else{
+                                        mtext.setText("列表空空如也，快去发现页面收藏项目吧！");
+                                    }
                                 }
                             },500);
                         } catch (JSONException e) {
