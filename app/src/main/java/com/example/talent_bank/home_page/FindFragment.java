@@ -82,7 +82,6 @@ public class FindFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
         mView = inflater.inflate(R.layout.talking_fragment, container, false);
         mContext = (MainActivity)getActivity();
         mRvMain = mView.findViewById(R.id.rv_finding);

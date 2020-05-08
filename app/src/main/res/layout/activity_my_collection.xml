@@ -14,11 +14,13 @@
         android:paddingTop="10dp"
         android:paddingStart="30dp"
         android:gravity="bottom"
+        android:layout_marginBottom="20dp"
         tools:ignore="RtlSymmetry,UseCompoundDrawables">
         <ImageView
             android:id="@+id/MCimg_back"
             android:layout_width="18dp"
             android:layout_height="22dp"
+            android:layout_marginBottom="3dp"
             android:contentDescription="@string/signupback"
             android:background="@drawable/back"/>
         <TextView
@@ -40,8 +42,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingTop="15dp"
-        android:paddingStart="17dp"
-        android:paddingRight="17dp">
+        android:paddingStart="30dp"
+        android:paddingRight="30dp">
         <LinearLayout
             android:id="@+id/my_collection_loading"
             android:layout_width="match_parent"

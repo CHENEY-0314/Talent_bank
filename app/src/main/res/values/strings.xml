@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Talent_bank</string>
+    <string name="app_name">仕界</string>
     <string name="signup">登录</string>
     <string name="account">账号（手机号）</string>
     <string name="password">密码</string>
