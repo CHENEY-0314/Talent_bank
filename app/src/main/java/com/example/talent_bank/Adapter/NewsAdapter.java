@@ -3,6 +3,9 @@ package com.example.talent_bank.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +19,15 @@ import com.example.talent_bank.ProjectContentsApply;
 import com.example.talent_bank.R;
 import com.example.talent_bank.home_page.NewsFragment;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 import cn.refactor.lib.colordialog.ColorDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.OkHttpClient;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -30,6 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
     //以下用于手机存用户信息
     private SharedPreferences AllNewsData;
     private SharedPreferences.Editor AllNewsDataEditor;
+    private Bitmap userimage;
 
     public NewsAdapter (NewsFragment mFragment) {
         this.mFragment = mFragment;
@@ -48,7 +56,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.LinearViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NewsAdapter.LinearViewHolder holder, int position) {
         AllNewsData = mFragment.getActivity().getSharedPreferences("all_news_data",MODE_PRIVATE);
         AllNewsDataEditor = AllNewsData.edit();
         String news_id = AllNewsData.getString("news_id","");
@@ -131,6 +139,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
                                     }).show();
                         }
                     });
+
+                    downloadPic(numberStrarr[m]);
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(userimage!=null)
+                                holder.mImage.setImageBitmap(userimage);
+                        }
+                    },80);
+
                 }
             }
 
@@ -155,9 +174,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
         TextView content;
         TextView time;
         TextView checked;
+        CircleImageView mImage;
+
         LinearLayout item;
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
+            mImage=itemView.findViewById(R.id.news_item_userimage);
             name = itemView.findViewById(R.id.news_item_name);
             content = itemView.findViewById(R.id.news_item_content);
             time = itemView.findViewById(R.id.news_item_time);
@@ -165,4 +187,30 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
             item = itemView.findViewById(R.id.news_item);
         }
     }
+
+    //获取用户头像
+    private Bitmap downloadPic(String number) {
+
+        String url="http://47.107.125.44:8080/Talent_bank/userimagefiles/"+number+".png";
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .build();
+        okHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                userimage=null;
+            }
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+                InputStream inputStream = response.body().byteStream();//得到图片的流
+                userimage = BitmapFactory.decodeStream(inputStream);
+            }
+        });
+
+        return userimage;
+    }
+
+
 }

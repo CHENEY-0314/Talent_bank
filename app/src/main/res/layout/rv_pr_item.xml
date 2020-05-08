@@ -309,7 +309,7 @@
                 android:gravity="start"
                 android:hint="点击编辑队友要求（如需要几个此类型的队友）（若无请写无）"
                 android:inputType="textMultiLine|textPhonetic"
-                android:maxLength="100"
+                android:maxLength="200"
                 android:textColor="#403B49"
                 android:textSize="13sp"
                 android:layout_marginTop="10dp"/>

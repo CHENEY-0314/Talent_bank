@@ -35,7 +35,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ProjectReleasedAdapter extends RecyclerView.Adapter<ProjectReleasedAdapter.LinearViewHolder> {
 
@@ -179,12 +181,19 @@ public class ProjectReleasedAdapter extends RecyclerView.Adapter<ProjectReleased
         btn_publich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_publich.setEnabled(false);
+
+                //判断数组中是否有重复元素
+                Set<String> sameSet=new HashSet<>();
+                Boolean doubletitle;
+                for(String element:SaveMember_titleData) {
+                    sameSet.add(element);
+                }
 
                 int demandNum_key=shp.getInt("demandNum_key",1);
                 String count_member=""+demandNum_key;
 
                 btn_publich.setText("正在创建中.");
-                btn_publich.setEnabled(false);
 
                 String AFTERmember_title="",AFTERremark="",AFTERmember_tag="";
 
@@ -207,19 +216,29 @@ public class ProjectReleasedAdapter extends RecyclerView.Adapter<ProjectReleased
                     btn_publich.setEnabled(true);
                     btn_publich.setText("发布");
                 }else {
-                    //将所有需求间隔~合并到一起
-                    for(int iii=0;iii<demandNum_key;iii++){
-                        if(iii==0) AFTERmember_title=SaveMember_titleData[iii];
-                        else AFTERmember_title=AFTERmember_title+"~"+SaveMember_titleData[iii];
-                        if(iii==0) AFTERremark=SaveRemarkData[iii];
-                        else AFTERremark=AFTERremark+"~"+SaveRemarkData[iii];
-                        if(iii==0) AFTERmember_tag=SaveMember_tagData[iii];
-                        else AFTERmember_tag=AFTERmember_tag+"~"+SaveMember_tagData[iii];
+                    if(sameSet.size()==SaveMember_titleData.length) {
+                        //将所有需求间隔~合并到一起
+                        for(int iii=0;iii<demandNum_key;iii++){
+                            if(iii==0) AFTERmember_title=SaveMember_titleData[iii];
+                            else AFTERmember_title=AFTERmember_title+"~"+SaveMember_titleData[iii];
+                            if(iii==0) AFTERremark=SaveRemarkData[iii];
+                            else AFTERremark=AFTERremark+"~"+SaveRemarkData[iii];
+                            if(iii==0) AFTERmember_tag=SaveMember_tagData[iii];
+                            else AFTERmember_tag=AFTERmember_tag+"~"+SaveMember_tagData[iii];
+                        }
+
+                        String pj_name=shp.getString("pj_name","");
+                        String pj_introduce=shp.getString("pj_introduce","");
+                        try_Publish_project(pj_name,pj_introduce,count_member,AFTERmember_title,AFTERremark,AFTERmember_tag);  //存入数据库
+                    }
+                    else{
+                        Toast toast=Toast.makeText(mContext,null,Toast.LENGTH_SHORT);
+                        toast.setText("队友职务不能相同哦");
+                        toast.show();
+                        btn_publich.setEnabled(true);
+                        btn_publich.setText("发布");
                     }
 
-                    String pj_name=shp.getString("pj_name","");
-                    String pj_introduce=shp.getString("pj_introduce","");
-                    try_Publish_project(pj_name,pj_introduce,count_member,AFTERmember_title,AFTERremark,AFTERmember_tag);  //存入数据库
                 }
 
             }

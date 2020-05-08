@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:cardCornerRadius="25dp"
+        android:layout_marginHorizontal="30dp"
         app:cardElevation="0dp">
 
         <LinearLayout
@@ -20,11 +21,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.35"
+                android:layout_weight="0.40"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/send_apply_userimage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="25dp"
@@ -37,23 +40,27 @@
                     android:layout_marginStart="15dp"
                     android:text="张三"
                     android:textColor="#2D2835"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/rv_RA_item_delete"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginTop="-10dp"
-                    android:src="@drawable/delete" />
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="end">
+                    <ImageView
+                        android:id="@+id/rv_RA_item_delete"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/delete" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.35"
+                android:layout_weight="0.30"
                 android:orientation="horizontal"
                 android:paddingTop="10dp">
 
@@ -63,7 +70,7 @@
                     android:layout_marginStart="25dp"
                     android:text="申请了"
                     android:textColor="#2D2835"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/RA_item_job"
@@ -72,7 +79,7 @@
                     android:layout_marginStart="8dp"
                     android:text="软件开发"
                     android:textColor="#2D2835"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,7 +87,7 @@
                     android:layout_marginStart="8dp"
                     android:text="职位"
                     android:textColor="#2D2835"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <View
@@ -102,7 +109,7 @@
                     android:gravity="center"
                     android:text="同意"
                     android:textColor="#1161E4"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="2dp"
@@ -117,7 +124,7 @@
                     android:gravity="center"
                     android:text="拒绝"
                     android:textColor="#1161E4"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="2dp"
@@ -133,7 +140,7 @@
                     android:gravity="center"
                     android:text="简历"
                     android:textColor="#1161E4"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

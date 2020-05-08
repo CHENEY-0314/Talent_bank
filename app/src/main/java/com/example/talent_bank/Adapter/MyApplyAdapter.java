@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.talent_bank.user_fragment.MyApplyActivity;
 import com.example.talent_bank.R;
 
+import java.util.Objects;
+
 import cn.refactor.lib.colordialog.ColorDialog;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -67,6 +69,7 @@ public class MyApplyAdapter extends RecyclerView.Adapter<MyApplyAdapter.LinearVi
                             dialog.setColor("#ffffff");//颜色
                             dialog.setContentTextColor("#656565");
                             dialog.setTitleTextColor("#656565");
+                            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.drawable.dialog_style);
                             dialog.setContentText("是否撤销对此项目的申请？\n申请一但删除则无法恢复。");
                             dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
                                 @Override

@@ -76,14 +76,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:maxLength="20"
                 android:layout_marginTop="10dp"
                 android:importantForAutofill="no"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="比赛名称讲作为“话题”发表,20字内"
+                android:text="比赛名称在20字内"
                 android:textSize="13sp"
                 android:textColor="#CDCDCD"/>
 
@@ -114,7 +114,7 @@
                 android:id="@+id/ProjectR_project_intro"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:padding="5dp"
                 android:gravity="start"
                 android:background="#F6F5F5"

@@ -38,9 +38,7 @@
         android:focusableInTouchMode="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingStart="30dp"
-        android:paddingRight="30dp">
+        android:paddingTop="10dp">
         <LinearLayout
             android:id="@+id/receive_apply_loading"
             android:layout_width="match_parent"
