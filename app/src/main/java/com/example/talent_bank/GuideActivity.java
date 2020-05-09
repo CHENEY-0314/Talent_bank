@@ -33,7 +33,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         boolean fristload = shp.getBoolean("fristload_key",true);
         if (fristload) {  //如果是第一次登录，开启引导界面
             initView();
-            GuideActivity.this.finish();  //删除当前页面
+//            GuideActivity.this.finish();  //删除当前页面
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
             editor.putBoolean("fristload_key",false);
             editor.apply();

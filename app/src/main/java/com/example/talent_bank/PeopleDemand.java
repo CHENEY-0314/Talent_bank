@@ -47,6 +47,9 @@ public class PeopleDemand extends AppCompatActivity {
 
     private SharedPreferences UserData;
 
+    private SharedPreferences data;
+    private SharedPreferences.Editor dataEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置屏幕上方状态栏颜色
@@ -63,6 +66,9 @@ public class PeopleDemand extends AppCompatActivity {
 
         AllProjectData = getSharedPreferences("all_project_data",MODE_PRIVATE);
         AllProjectDataEditor = AllProjectData.edit();
+
+        data = getSharedPreferences("SHP_NAME",MODE_PRIVATE);
+        dataEditor = data.edit();
 
         UserData = getSharedPreferences("userdata",MODE_PRIVATE);
         showProgress(true);
@@ -288,6 +294,55 @@ public class PeopleDemand extends AppCompatActivity {
         //将请求添加到队列中
         SendNews.add(SendNewsrequest);
 
+    }
+
+    //用于前往数据库判断是否已经申请
+    public void HaveCollected(final String apply_project_id, final String apply_send_number, final String apply_job){
+        dataEditor.clear();
+        dataEditor.apply();
+
+        String url="http://47.107.125.44:8080/Talent_bank/servlet/IfHaveApplyJobServlet?apply_project_id="+apply_project_id+"&apply_send_number="+apply_send_number+"&apply_job="+apply_job;
+        String tag = "HaveApply";
+        //取得请求队列
+        RequestQueue HaveApply = Volley.newRequestQueue(this);
+        //防止重复请求，所以先取消tag标识的请求队列
+        HaveApply.cancelAll(tag);
+        //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final StringRequest HaveApplyrequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
+                            if(jsonObject.getString("result").equals("已申请")){
+                                dataEditor.putString("ifApply","true");
+                                dataEditor.apply();
+                            }
+                        } catch (JSONException e) {
+                            //做自己的请求异常操作，如Toast提示（“无网络连接”等）
+                            Toast.makeText(PeopleDemand.this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //做自己的响应错误操作，如Toast提示（“请稍后重试”等）
+                Toast.makeText(PeopleDemand.this,"无网络连接,请稍后重试！",Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> params = new HashMap<>();
+                params.put("apply_project_id", apply_project_id);
+                params.put("apply_send_number", apply_send_number);
+                params.put("apply_job", apply_job);
+                return params;
+            }
+        };
+        //设置Tag标签
+        HaveApplyrequest.setTag(tag);
+        //将请求添加到队列中
+        HaveApply.add(HaveApplyrequest);
     }
 
 
