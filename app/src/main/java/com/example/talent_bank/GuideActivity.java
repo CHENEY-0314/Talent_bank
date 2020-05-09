@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -17,7 +18,7 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
 
     private ViewFlipper mVFActivity;
     private GestureDetector mGestureDetector;
-    private TextView tvInNew;
+    private Button tvInNew;
     private String shpName = "SHP_NAME";
 
     @Override
@@ -33,8 +34,8 @@ public class GuideActivity extends AppCompatActivity implements GestureDetector.
         boolean fristload = shp.getBoolean("fristload_key",true);
         if (fristload) {  //如果是第一次登录，开启引导界面
             initView();
-            GuideActivity.this.finish();  //删除当前页面
-            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
+//            GuideActivity.this.finish();  //删除当前页面
+//            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);  //更改跳转动画
             editor.putBoolean("fristload_key",false);
             editor.apply();
         } else {  //反之，直接打开登录界面
