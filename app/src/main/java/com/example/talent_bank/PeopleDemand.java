@@ -300,7 +300,6 @@ public class PeopleDemand extends AppCompatActivity {
     public void HaveCollected(final String apply_project_id, final String apply_send_number, final String apply_job){
         dataEditor.clear();
         dataEditor.apply();
-
         String url="http://47.107.125.44:8080/Talent_bank/servlet/IfHaveApplyJobServlet?apply_project_id="+apply_project_id+"&apply_send_number="+apply_send_number+"&apply_job="+apply_job;
         String tag = "HaveApply";
         //取得请求队列
