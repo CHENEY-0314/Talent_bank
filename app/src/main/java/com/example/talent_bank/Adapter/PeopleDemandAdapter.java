@@ -2,21 +2,20 @@ package com.example.talent_bank.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.talent_bank.PeopleDemand;
-import com.example.talent_bank.ProjectContents;
 import com.example.talent_bank.R;
-
 import java.util.Objects;
-
 import cn.refactor.lib.colordialog.ColorDialog;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -27,6 +26,8 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
     //以下用于手机存用户信息
     private SharedPreferences AllProjectData;
     private SharedPreferences.Editor AllProjectDataEditor;
+
+    private SharedPreferences UserData;
 
     public PeopleDemandAdapter (PeopleDemand Context) {
         this.mContext = Context;
@@ -39,7 +40,8 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PeopleDemandAdapter.LinearViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final PeopleDemandAdapter.LinearViewHolder holder, final int position) {
+        UserData = mContext.getSharedPreferences("userdata",MODE_PRIVATE);
         AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
         final String member_title = AllProjectData.getString("member_title",""); //职位
         String member_tag = AllProjectData.getString("member_tag","");
@@ -77,6 +79,9 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
                     }
                 }
                 holder.textTag.setText(tag);
+                String number = UserData.getString("number","");
+
+//                holder.button.setText(mContext.HaveCollected(project_id_strarr[curr],number,member_titlestrarr[m]));
 
                 final int finalM = m;
                 holder.button.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +102,9 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
                                 //并发出消息
                                 mContext.SendNews(boss_number_strarr[curr],project_title_strarr[curr],member_titlestrarr[finalM]);
                                 dialog.dismiss();
+                                holder.button.setText("已申请");
+                                holder.button.setEnabled(false);
+                                holder.button.setBackground(mContext.getResources().getDrawable(R.drawable.btn_unselected));
                             }
                         })
                                 .setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
@@ -132,4 +140,6 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
             textContent = itemView.findViewById(R.id.epd_item_content);
         }
     }
+
+
 }
