@@ -168,8 +168,8 @@ public class EnterTalentBankLast extends AppCompatActivity {
                             mEditor.putString("wechart",wechart);
                             mEditor.putString("email",email);
                             mEditor.putString("adress",adress);
+                            mEditor.putString("intalent_bank","true");
                             mEditor.apply();
-
                             Toast toast=Toast.makeText(EnterTalentBankLast.this,null,Toast.LENGTH_SHORT);
                             toast.setText("成功加入");
                             toast.show();

@@ -83,6 +83,8 @@ public class SetUpActivity extends AppCompatActivity {
         aboutus.setOnClickListener(new View.OnClickListener() {  //点击返回按钮返回上一页面
             @Override
             public void onClick(View v) {  //点击关于本APP
+                Intent intent= new Intent(SetUpActivity.this, AboutUsActivity.class);
+                startActivity(intent);
             }
         });
     }

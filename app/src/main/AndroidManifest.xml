@@ -3,8 +3,7 @@
     package="com.example.talent_bank">
     <!-- 获取联网权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 获取读取SD卡\相机的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取读取SD卡\相机的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ApplyerBiographical"></activity>
+        <activity android:name=".user_fragment.AboutUsActivity"></activity>
+        <activity android:name=".ApplyerBiographical" />
         <activity android:name=".TalentBank.OthersBiographical" />
         <activity android:name=".user_fragment.EditMyBiographical" />
         <activity android:name=".user_fragment.ChangeImageActivity" />

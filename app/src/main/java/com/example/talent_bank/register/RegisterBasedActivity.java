@@ -117,8 +117,7 @@ public class RegisterBasedActivity extends AppCompatActivity {
                     }
                 } else {
                     ((Throwable) data).printStackTrace();
-                    String str = ((Throwable) data).getMessage();
-                    toast(str);
+                    toast("操作错误，请稍后重试");
                 }
             }
         };
