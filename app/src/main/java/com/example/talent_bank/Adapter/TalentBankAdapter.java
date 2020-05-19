@@ -43,6 +43,9 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
     private SharedPreferences AllUsersData;
     private SharedPreferences.Editor AllUsersDataEditor;
 
+    private SharedPreferences SHP;
+    private SharedPreferences.Editor SHPEditor;
+
     public TalentBankAdapter (TalentBank mContext) {
         this.mContext = mContext;
     }
@@ -60,6 +63,7 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
 
     @Override
     public void onBindViewHolder(@NonNull final TalentBankAdapter.LinearViewHolder holder, int position) {
+        SHP = mContext.getSharedPreferences("SHP_NAME",MODE_PRIVATE);
         AllUsersData = mContext.getSharedPreferences("all_users_data",MODE_PRIVATE);
         AllUsersDataEditor = AllUsersData.edit();
         String user_name = AllUsersData.getString("user_name","");
@@ -117,14 +121,15 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
                     });
 
                     downloadPic(Userstrarr[m]);
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(userimage!=null)
-                            holder.mImage.setImageBitmap(userimage);
+                    while (true) {
+                        String done = SHP.getString("Done","");
+                        if(done.equals("true")) {
+                            if(userimage!=null) {
+                                holder.mImage.setImageBitmap(userimage);
+                            }
+                            break;
                         }
-                    },80);
+                    }
 
                     holder.userName.setText(Namestrarr[m]);
                     holder.userGrade.setText(Gradestrarr[m]);
@@ -213,6 +218,10 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
 
     //获取用户头像
     private Bitmap downloadPic(String number) {
+        SHP = mContext.getSharedPreferences("SHP_NAME",MODE_PRIVATE);
+        SHPEditor = SHP.edit();
+        SHPEditor.putString("Done","false");
+        SHPEditor.apply();
 
         String url="http://47.107.125.44:8080/Talent_bank/userimagefiles/"+number+".png";
 
@@ -231,7 +240,8 @@ public class TalentBankAdapter extends RecyclerView.Adapter<TalentBankAdapter.Li
                 userimage = BitmapFactory.decodeStream(inputStream);
             }
         });
-
+        SHPEditor.putString("Done","true");
+        SHPEditor.apply();
         return userimage;
     }
 

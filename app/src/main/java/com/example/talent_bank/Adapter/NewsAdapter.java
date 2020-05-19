@@ -37,6 +37,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
     //以下用于手机存用户信息
     private SharedPreferences AllNewsData;
     private SharedPreferences.Editor AllNewsDataEditor;
+    private SharedPreferences SHP;
+    private SharedPreferences.Editor SHPEditor;
     private Bitmap userimage;
 
     public NewsAdapter (NewsFragment mFragment) {
@@ -57,6 +59,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final NewsAdapter.LinearViewHolder holder, int position) {
+        SHP = mContext.getSharedPreferences("SHP_NAME",MODE_PRIVATE);
         AllNewsData = mFragment.getActivity().getSharedPreferences("all_news_data",MODE_PRIVATE);
         AllNewsDataEditor = AllNewsData.edit();
         String news_id = AllNewsData.getString("news_id","");
@@ -141,14 +144,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
                     });
 
                     downloadPic(numberStrarr[m]);
-                    Handler mHandler = new Handler();
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(userimage!=null)
+                    while (true) {
+                        String done = SHP.getString("Done","");
+                        if(done.equals("true")) {
+                            if(userimage!=null) {
                                 holder.mImage.setImageBitmap(userimage);
+                            }
+                            break;
                         }
-                    },80);
+                    }
 
                 }
             }
@@ -190,6 +194,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
 
     //获取用户头像
     private Bitmap downloadPic(String number) {
+        SHP = mContext.getSharedPreferences("SHP_NAME",MODE_PRIVATE);
+        SHPEditor = SHP.edit();
+        SHPEditor.putString("Done","false");
+        SHPEditor.apply();
 
         String url="http://47.107.125.44:8080/Talent_bank/userimagefiles/"+number+".png";
 
@@ -209,6 +217,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LinearViewHold
             }
         });
 
+        SHPEditor.putString("Done","true");
+        SHPEditor.apply();
         return userimage;
     }
 
