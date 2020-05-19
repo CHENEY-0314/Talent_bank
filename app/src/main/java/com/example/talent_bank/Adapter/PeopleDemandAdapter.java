@@ -29,6 +29,8 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
 
     private SharedPreferences UserData;
 
+    private SharedPreferences data;
+
     public PeopleDemandAdapter (PeopleDemand Context) {
         this.mContext = Context;
     }
@@ -41,6 +43,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final PeopleDemandAdapter.LinearViewHolder holder, final int position) {
+        data = mContext.getSharedPreferences("SHP_NAME2",MODE_PRIVATE);
         UserData = mContext.getSharedPreferences("userdata",MODE_PRIVATE);
         AllProjectData = mContext.getSharedPreferences("all_project_data",MODE_PRIVATE);
         final String member_title = AllProjectData.getString("member_title",""); //职位
@@ -51,6 +54,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
         String projectTitle = AllProjectData.getString("pj_name","");
         String projectContent = AllProjectData.getString("pj_introduce","");
         String projectCountMember = AllProjectData.getString("count_member","");
+        String ifApply = data.getString("ifApply","");
 
         final int curr = AllProjectData.getInt("curr_pj",0);
         final String[] member_titlestrarr = member_title.split("~");
@@ -61,6 +65,7 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
         final String[] project_title_strarr = projectTitle.split("~");
         final String[] project_content_strarr = projectContent.split("~");
         final String[] project_count_member_strarr = projectCountMember.split("~");
+        String[] if_Apply_strarr = ifApply.split("~");
 
         //将各个项目名字写上
         for(int m=0;m<member_titlestrarr.length;m++) {
@@ -79,7 +84,11 @@ public class PeopleDemandAdapter extends RecyclerView.Adapter<PeopleDemandAdapte
                     }
                 }
                 holder.textTag.setText(tag);
-                String number = UserData.getString("number","");
+                if(if_Apply_strarr[m].equals("true")) {
+                    holder.button.setText("已申请");
+                    holder.button.setEnabled(false);
+                    holder.button.setBackground(mContext.getResources().getDrawable(R.drawable.btn_unselected));
+                }
 
 //                holder.button.setText(mContext.HaveCollected(project_id_strarr[curr],number,member_titlestrarr[m]));
 

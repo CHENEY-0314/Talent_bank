@@ -67,7 +67,7 @@ public class PeopleDemand extends AppCompatActivity {
         AllProjectData = getSharedPreferences("all_project_data",MODE_PRIVATE);
         AllProjectDataEditor = AllProjectData.edit();
 
-        data = getSharedPreferences("SHP_NAME",MODE_PRIVATE);
+        data = getSharedPreferences("SHP_NAME2",MODE_PRIVATE);
         dataEditor = data.edit();
 
         UserData = getSharedPreferences("userdata",MODE_PRIVATE);
@@ -137,11 +137,25 @@ public class PeopleDemand extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            dataEditor.clear();
+                            dataEditor.apply();
+
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
                             AllProjectDataEditor.putString("remark",jsonObject.getString("remark"));
                             AllProjectDataEditor.putString("member_title",jsonObject.getString("member_title"));
                             AllProjectDataEditor.putString("member_tag",jsonObject.getString("member_tag"));
                             AllProjectDataEditor.apply();
+
+                            String all_pj_id = AllProjectData.getString("pj_id","");
+                            int curr = AllProjectData.getInt("curr_pj",-1);
+                            String[] all_pj_id_strarr = all_pj_id.split("~");
+                            String pj_id = all_pj_id_strarr[curr];
+                            String all_member_title = AllProjectData.getString("member_title","");
+                            String[] all_member_title_strarr = all_member_title.split("~");
+                            int n = all_member_title_strarr.length;
+                            for (int i = 0 ; i<n ; i++) {
+                                HaveCollected(pj_id,all_member_title_strarr[i]);
+                            }
                             Handler mHandler = new Handler();
                             mHandler.postDelayed(new Runnable() {
                                 @Override
@@ -297,9 +311,9 @@ public class PeopleDemand extends AppCompatActivity {
     }
 
     //用于前往数据库判断是否已经申请
-    public void HaveCollected(final String apply_project_id, final String apply_send_number, final String apply_job){
-        dataEditor.clear();
-        dataEditor.apply();
+    public void HaveCollected(final String apply_project_id, final String apply_job){
+        String apply_send_number = "";
+        apply_send_number = UserData.getString("number","");
         String url="http://47.107.125.44:8080/Talent_bank/servlet/IfHaveApplyJobServlet?apply_project_id="+apply_project_id+"&apply_send_number="+apply_send_number+"&apply_job="+apply_job;
         String tag = "HaveApply";
         //取得请求队列
@@ -307,6 +321,7 @@ public class PeopleDemand extends AppCompatActivity {
         //防止重复请求，所以先取消tag标识的请求队列
         HaveApply.cancelAll(tag);
         //创建StringRequest，定义字符串请求的请求方式为POST(省略第一个参数会默认为GET方式)
+        final String finalApply_send_number = apply_send_number;
         final StringRequest HaveApplyrequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -314,7 +329,22 @@ public class PeopleDemand extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = (JSONObject) new JSONObject(response).get("1");
                             if(jsonObject.getString("result").equals("已申请")){
-                                dataEditor.putString("ifApply","true");
+                                String ifApply = data.getString("ifApply","");
+                                if (ifApply.equals("")) {
+                                    ifApply = "true";
+                                } else {
+                                    ifApply = ifApply+"~"+"true";
+                                }
+                                dataEditor.putString("ifApply",ifApply);
+                                dataEditor.apply();
+                            } else {
+                                String ifApply = data.getString("ifApply","");
+                                if (ifApply.equals("")) {
+                                    ifApply = "false";
+                                } else {
+                                    ifApply = ifApply+"~"+"false";
+                                }
+                                dataEditor.putString("ifApply",ifApply);
                                 dataEditor.apply();
                             }
                         } catch (JSONException e) {
@@ -333,7 +363,7 @@ public class PeopleDemand extends AppCompatActivity {
             protected Map<String, String> getParams()  {
                 Map<String, String> params = new HashMap<>();
                 params.put("apply_project_id", apply_project_id);
-                params.put("apply_send_number", apply_send_number);
+                params.put("apply_send_number", finalApply_send_number);
                 params.put("apply_job", apply_job);
                 return params;
             }
